@@ -1,0 +1,18 @@
+npm i express body-parser nunjucks chokidar express-session session-file-store mysql2 cors
+설치했음
+--
+config 쪽에서 db 연결 해주세요~
+
+user.js 에 주석처리되어있음
+//const conn = require('../config/database')
+
+--
+db 스크립트 어디 폴더에 넣을까요
+--
+쿼리문은 config에서 새로 js 만들어서 해봅시다.
+--
+api이용 js는 어디서 해볼까요
+--
+필요 폴더가 있으면 만들고 여기에 적어주세요
+
+--
