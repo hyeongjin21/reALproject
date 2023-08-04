@@ -1,0 +1,13 @@
+/* screen */
+@import url("screen/header.css");
+@import url("reset.css");
+*{
+    box-sizing: border-box;
+}
+:root {
+    --main-color:tomato;
+}
+
+h1 {
+    color:var(--main-color)
+}
