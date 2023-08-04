@@ -1,15 +1,15 @@
 // 외부 DB와 연결하려면 npm 모듈이 필요함 - mysql2
 // 1) 설치 : npm i mysql2
 // 2) require
-const mysql = require('mysql2');
+const maria = require('mysql2');
 
 // 3) 나의 DB 정보 기재
-let conn = mysql.createConnection({
-    host : 'localhost',
+let conn = maria.createConnection({
+    host : 'project-db-stu3.smhrd.com',
     user : 'Insa4_JSB_hacksim_5',
     password : 'aishcool5',
     port : 3308,
-    database : 'nodejs'
+    database : 'Insa4_JSB_hacksim_5'
 })
 
 conn.connect()

@@ -11,19 +11,9 @@ router.get('/login',(req,res)=>{
     res.render('login')
 })
 
-// 회원 가입 선택 페이지 이동
-router.get('/join_choice',(req,res)=>{
-    res.render('join_choice')
-})
-
-// 회원 가입(일반) 페이지 이동
+// 회원 가입 페이지 이동
 router.get('/join',(req,res)=>{
     res.render('join')
-})
-
-// 회원 가입(기업) 페이지 이동
-router.get('/join_com',(req,res)=>{
-    res.render('join_com')
 })
 
 // 메뉴 검색 페이지 이동
@@ -44,6 +34,11 @@ router.get('/mypage',(req,res)=>{
 // 관리용 페이지 이동
 router.get('/manager',(req,res)=>{
     res.render('manager')
+})
+
+// 테스트용
+router.get('/test',(req,res)=>{
+    res.render('test')
 })
 
 module.exports = router;

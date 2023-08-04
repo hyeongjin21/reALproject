@@ -3,9 +3,26 @@ const router = express.Router()
 
 // 쿼리문 정리해놓은 파일, 경로바뀔수있음
 const queries = require('./queries')
-//const conn = require('../config/database')
+const conn = require('../config/database')
 
-// 회원 가입 (일반)
+//console.log('test :'+ conn.query(queries.printData))
+// conn.query(queries.printData,(err,rows)=>{
+//     console.log('text1: '+ queries.printData);
+// })
+
+
+// 데이터확인용
+router.post('/test',(req,res)=>{
+    console.log('ok')
+    conn.query(queries.printData,(err,rows)=>{
+        res.send(`<h1>${rows}</h1>`);
+        console.log(rows);
+    })
+    // res.send(queries.printData)
+})
+
+
+// 회원 가입
 router.post('/join',(req,res)=>{
     let {name, id, pw, pw2, phone_num} = req.body
     
