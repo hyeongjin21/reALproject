@@ -5,39 +5,39 @@ const router = express.Router()
 const queries = require('./queries')
 const conn = require('../config/database')
 
-//console.log('test :'+ conn.query(queries.printData))
-// conn.query(queries.printData,(err,rows)=>{
-//     console.log('text1: '+ queries.printData);
-// })
-
-
-// 데이터확인용
-router.post('/test',(req,res)=>{
-    console.log('ok')
-    conn.query(queries.printData,(err,rows)=>{
-        res.send(`<h1>${rows}</h1>`);
-        console.log(rows);
-    })
-    // res.send(queries.printData)
-})
-
 
 // 회원 가입
-router.post('/join',(req,res)=>{
-    let {name, id, pw, pw2, phone_num} = req.body
-    
-    if(pw == pw2){
-        
+router.post('/join', (req, res) => {
+    let { name, id, pw, pw2, tel,nick } = req.body
+    let time = ''
+    if (pw == pw2) {
+        conn.query(queries.joinUser, [id, pw, name,nick, tel,time], (err, rows) => {
+            console.log(rows)
+            if (rows) {
+                res.send(`<script>alert("환영합니다.${name}님!");location.href='http://localhost:3333'</script>`)
+            }
+            else {
+                res.send('<script>alert("회원가입에 실패하였습니다.");location.href="http://localhost:3333/join_user"</script>')
+            }
+        })
+    }
+    else {
+        res.send('<script>alert("비밀번호가 다릅니다.");location.href="http://localhost:3333/join_user"</script>')
     }
 })
 
 // 로그인
-router.post('/login',(req,res)=>{
-    queries.selectuser
+router.post('/login', (req, res) => {
+    let {id,pw} = req.body
+    conn.query(queries.searchId,[id,pw],(err,rows)=>{
+        if(rows.length > 0){
+            req.session.user = rows[3]
+        }
+    })
 })
 
 // 로그아웃
-router.get('/logout',(req,res)=>{
+router.get('/logout', (req, res) => {
     // id로 받을건지 다른걸로 받을건지 정해야함
     req.session.id = ''
 

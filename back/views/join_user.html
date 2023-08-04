@@ -8,40 +8,46 @@
         <div id="join">
             <div id="join_form">
                 <!-- 일반 회원가입 폼 -->
-                <form action="">
+                <form method='post' action="../user/join">
                     <h3 class="login" style="letter-spacing: -1px;"> 회원가입 </h3>
                     <hr>
 
                     <!-- NAME -->
                     <label for="">
                         <p style="text-align: left; font: size 12px; color:#666"> 이름 </p>
-                        <input type="text" placeholder="이름을 입력하세요" class="size">
+                        <input type="text" placeholder="이름을 입력하세요" class="size" name="name">
                     </label>
 
 
                     <!-- ID -->
                     <label for="">
                         <p style="text-align: left; font: size 12px; color:#666"> 아이디 </p>
-                        <input type="text" placeholder="아이디를 입력하세요" class="size" id="id_len">
+                        <input type="text" placeholder="아이디를 입력하세요" class="size" name="id" id="id_len">
                         <input type="button" value="중복확인" class="db_check" style="text-align: right;">
                     </label>
 
                     <!-- PW -->
                     <label for="">
                         <p style="text-align: left; font: size 12px; color:#666"> 비밀번호 </p>
-                        <input type="text" placeholder="비밀번호를 입력하세요" class="size">
+                        <input type="text" placeholder="비밀번호를 입력하세요" class="size" name="pw">
                     </label>
 
                     <!-- RE_PW -->
                     <label for="">
                         <p style="text-align: left; font: size 12px; color:#666"> 비밀번호 확인 </p>
-                        <input type="text" placeholder="비밀번호를 다시 입력하세요" class="size">
+                        <input type="text" placeholder="비밀번호를 다시 입력하세요" class="size" name="pw2">
                     </label>
 
                     <!-- TEL -->
                     <label for="">
                         <p style="text-align: left; font: size 12px; color:#666"> 전화번호 </p>
-                        <input type="text" placeholder="전화번호를 입력하세요" class="size">
+                        <input type="text" placeholder="전화번호를 입력하세요" class="size" name="tel">
+                    </label>
+                    
+                    <!-- TEL -->
+                    <label for="">
+                        <p style="text-align: left; font: size 12px; color:#666"> 닉네임 </p>
+                        <input type="text" placeholder="닉네임을 입력하세요" class="size" name="nick">
                     </label>
 
                     <p>
@@ -50,7 +56,7 @@
                 </form>
                 <hr>
                 <p class="find">
-                    <span><a href="">HOME</a></span>
+                    <span><a href="http://localhost:3333">HOME</a></span>
                 </p>
             </div>
         </div>

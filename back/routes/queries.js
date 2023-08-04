@@ -1,11 +1,8 @@
 module.exports = {
     // 일반 회원가입 할때 
-    joinuser :``,
+    joinUser :`insert into al_user values( ?,?,?,?,?,now() )`,
 
-    //아이디 중복체크용 쿼리
-    searchid : ``,
-
-    // 테스트용
-    printData : `select * from al_admin`
+    // 아이디 검색
+    searchId : `select * from al_user where user_id = ? and user_pw = ?`,
 
 }
