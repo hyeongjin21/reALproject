@@ -1,0 +1,51 @@
+.container{
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.coupon_area{
+    display: flex;
+/* 부모 넓이보다 요소들의 총 넓이가 크다면 나머지 요소들을 다음줄로 줄바꿈 */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.punch_hole{
+    background-color: #ccc;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+.punch_hole .punched {
+    background-color: #ffca28;
+}
+
+button{
+    font-size: 1.2em;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: #3e8e41;
+}
+
+#stamp_count{
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+#reward {
+    font-size: 1.2em;
+    font-style: italic;
+    color: #ff5722;
+}
