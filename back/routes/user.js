@@ -12,7 +12,6 @@ router.post('/join', (req, res) => {
     let time = ''
     if (pw == pw2) {
         conn.query(queries.joinUser, [id, pw, name,nick, tel,time], (err, rows) => {
-            console.log(rows)
             if (rows) {
                 res.send(`<script>alert("환영합니다.${name}님!");location.href='http://localhost:3333'</script>`)
             }
@@ -31,7 +30,11 @@ router.post('/login', (req, res) => {
     let {id,pw} = req.body
     conn.query(queries.searchId,[id,pw],(err,rows)=>{
         if(rows.length > 0){
-            req.session.user = rows[3]
+            req.session.user = rows[0]
+            res.send(`<script>alert('어서오세요~ ${req.session.user.id}님');location.href='http://localhost:3333';</script>`)
+        }
+        else{
+            res.send('<script>alert("로그인에 실패했습니다.");location.href="http://localhost:3333/login";</script>')
         }
     })
 })
