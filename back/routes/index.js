@@ -12,8 +12,8 @@ router.get('/login',(req,res)=>{
 })
 
 // 회원 가입 페이지 이동
-router.get('/join',(req,res)=>{
-    res.render('join')
+router.get('/join_user',(req,res)=>{
+    res.render('join_user')
 })
 
 // 메뉴 검색 페이지 이동

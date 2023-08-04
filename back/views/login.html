@@ -1,123 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/back/public/assets/css/login.css">
-    <!-- <style>
-        a {
-            text-decoration: none;
-            color: #333;
-        }
-        #con{
+{% extends 'layout.html' %}
 
-            width: 100%;
-            height: 100vh;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-attachment: cover;
-            padding: 0;
-        }
+{% block content %}
 
-        #login_form{
-            border-radius: 10px;
-            padding: 50px;
-            background: #fff;
-            text-align: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .login{
-            font-size: 25px;
-            font-weight: 900;
-            color: #333;
-        }
-
-        .size{
-            width: 300px;
-            height: 30px;
-            padding-left: 10px;
-            background-color: #f4f4f4;
-            border: none;
-            border-radius: 5px;
-        }
-
-        .btn{
-            width: 310px;
-            height: 40px;
-            font-size: 15px;
-            background-color: #e7e3e3;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .btn:hover{
-            background: #2272eb;
-        }
-
-        hr{
-            margin-top: 20px;
-            background-color: #eee;
-        }
-
-        .find{
-            color: #ddd;
-            font-size: 12px;
-        }
-
-        .find span::before{
-            content: "|";
-            color: #333;
-            padding-right: 10px;
-        }
-
-        .find span:first-child::before{
-            display: none;
-        }
-
-        .find a:hover{
-            color:#707070;
-        }
-    </style> -->
-</head>
 <body>
-    <div id = "con">
-    <div id = "login">
-    <div id = "login_form">
-    <!-- 로그인 폼 -->
-    <form action="">
-        <h3 class="login" style="letter-spacing: -1px;"> AFTER LUNCH </h3>
-    <hr>
-    <label for="">
-    <!-- ID -->
-    <p style="text-align: left; font: size 12px; color:#666"> 아이디 </p>
-    <input type="text" placeholder="아이디를 입력하세요" class="size">
-    </label>
+    <link rel="stylesheet" href="/assets/css/login.css">
+    <div id="con">
+        <div id="login">
+            <div id="login_form">
+                <!-- 로그인 폼 -->
+                <form action="">
+                    <h3 class="login" style="letter-spacing: -1px;"> AFTER LUNCH </h3>
+                    <hr>
+                    <label for="">
+                        <!-- ID -->
+                        <p style="text-align: left; font: size 12px; color:#666"> 아이디 </p>
+                        <input type="text" placeholder="아이디를 입력하세요" class="size">
+                    </label>
 
-    <label for="">
-    <!-- ID -->
-    <p style="text-align: left; font: size 12px; color:#666"> 비밀번호 </p>
-    <input type="text" placeholder="비밀번호를 입력하세요" class="size">
-    </label>
+                    <label for="">
+                        <!-- ID -->
+                        <p style="text-align: left; font: size 12px; color:#666"> 비밀번호 </p>
+                        <input type="text" placeholder="비밀번호를 입력하세요" class="size">
+                    </label>
 
-    <p>
-        <input type="submit" value="로그인" class="btn">
-    </p>
-    </form>
-    <hr>
-    <p class="find">
-        <span><a href="">아이디 찾기</a></span>
-        <span><a href="">비밀번호 찾기</a></span>
-        <span><a href="">회원가입</a></span>
-    </p>
-</div>
-</div>
-</div>
+                    <p>
+                        <input type="submit" value="로그인" class="btn">
+                    </p>
+                </form>
+                <hr>
+                <p class="find">
+                    <span><a href="">아이디 찾기</a></span>
+                    <span><a href="">비밀번호 찾기</a></span>
+                    <span><a href="">회원가입</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
 
 </body>
-</html>
+{% endblock %}
