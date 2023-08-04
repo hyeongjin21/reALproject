@@ -1,0 +1,37 @@
+git 설정
+
+초기설정
+1. 
+파일 설정
+왠만하면
+cd Desktop
+cd 설정한 파일명
+하면 될겁니다
+
+2. 
+git init
+
+3. 
+git config --global user.name 'git 이름'
+git config --global user.email 'git 이메일'
+
+--------------------------------------------------------
+4. 
+git remote add origin https://github.com/hyeongjin21/ALproject.git
+복사 후 붙여넣기(shift + insert)
+
+5.
+git add .
+띄어쓰기 꼭 해야함
+
+6.
+파일 다운로드
+git pull origin master
+
+파일 업로드
+git push origin master
+
+
+
+
+
