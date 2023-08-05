@@ -8,6 +8,30 @@
 </head>
 <body>
     <h1>hihi</h1>
-    
+    <p>
+        {{name}}
+    </p>
+    <a href="/user/logout">
+        <button type="button">로그아웃</button>
+    </a>
+    <br>
+    <form action="/search">
+        <select name="category" id="asd">
+            <option value="all">전체</option>
+            <option value="smoothie">스무디</option>
+            <option value="coffee">커피</option>
+            <option value="티">티</option>
+            <option value="에이드">에이드</option>
+            <option value="그외">그 외</option>
+        </select>
+        <input type="text" name="inputmenu">
+        <input type="submit">
+    </form>
+    <button id="ccccc" onclick="test()">asd</button>
+    <script>
+        let test = () =>{
+            console.log(document.querySelector('#asd').value)
+        }
+    </script>
 </body>
 </html>

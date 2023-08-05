@@ -2,4 +2,32 @@
 {% extends 'layout.html' %}
 {% block content %}
 <h1>검색 페이지</h1>
+<form action="/search">
+    <select name="category" id="asd">
+        <option value="all">전체</option>
+        <option value="smoothie">스무디</option>
+        <option value="coffee">커피</option>
+        <option value="티">티</option>
+        <option value="에이드">에이드</option>
+        <option value="그외">그 외</option>
+    </select>
+    <input type="text" name="inputmenu">
+    <input type="submit">
+</form>
+<table border="1px solid black">
+    <tr style="background-color: lightblue;">
+        <th>아이디</th>
+        <th>닉네임</th>
+        <th>주소</th>
+    </tr>
+
+    {% for i in list %}
+    <tr>
+        <td>{{i.shop_name}}</td>
+        <td>{{i.shop_bno}}</td>
+        <td>{{i.shop_addr1}}</td>
+    </tr>
+    {% endfor %}
+
+</table>
 {% endblock %}
