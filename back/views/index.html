@@ -3,17 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/back/public/assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>Document</title>
 </head>
 <body>
     <h1>hihi</h1>
     <p>
+        {% if(name === undefined)%}
+        <a href="/login">
+            <button>로그인</button>
+        </a>
+        {%else%}
         {{name}}
+        <a href="/user/logout">
+            <button type="button" onclick="kakaoLogout()">로그아웃</button>
+        </a>
+        {%endif%}
     </p>
-    <a href="/user/logout">
-        <button type="button">로그아웃</button>
-    </a>
+
     <br>
     <form action="/search">
         <select name="category" id="asd">
@@ -27,11 +34,6 @@
         <input type="text" name="inputmenu">
         <input type="submit">
     </form>
-    <button id="ccccc" onclick="test()">asd</button>
-    <script>
-        let test = () =>{
-            console.log(document.querySelector('#asd').value)
-        }
-    </script>
+
 </body>
 </html>

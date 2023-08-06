@@ -7,6 +7,8 @@ const fileStore = require('session-file-store')(session);
 const indexRouter = require('./routes');
 const userRouter = require('./routes/user')
 const searchRouter = require('./routes/search')
+const http = require('http');
+const u_url = require('url');
 const cors = require('cors')
 
 
@@ -25,7 +27,6 @@ nunjucks.configure('views',{
 
 // 3. post 방식으로 데이터를 넘겨줄 떄 필요함
 app.use(bodyParser.urlencoded({extended : true}));
-
 // 4. 정적인 파일들 public에 접근
 app.use(express.static(__dirname+'/public'));
 
@@ -36,6 +37,14 @@ app.use(session({
     secret : 'secret',
     store : new fileStore()
 }))
+app.use((req,res,next)=>{
+    if(req.session.user === undefined){
+        req.session.user = {
+            user_name:''
+        }
+    }
+    next()
+})
 
 // 6. 라우팅 처리
 app.use('/',indexRouter);

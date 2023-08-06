@@ -40,7 +40,7 @@ router.post('/login', (req, res) => {
     let { id, pw } = req.body
     conn.query(queries.searchId, [id, pw], (err, rows) => {
         if (rows.length > 0) {
-            req.session = rows[0]
+            req.session.user = rows[0]
             res.send(`<script>alert('어서오세요~ ${req.session.user.user_name}님');location.href='http://localhost:3333';</script>`)
         }
         else {
@@ -69,8 +69,27 @@ router.post('/checkId', (req, res) => {
 
 // 로그아웃
 router.get('/logout', (req, res) => {
-    req.session.user = ''
-    res.send('<script>alert("로그아웃");location.href="http://localhost:3333/"</script>')
+    // req.session.user = ''
+    req.session.destroy();
+    res.send(`
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  
+    <script>
+    Kakao.init('c1b7cc23c48477786fcb69b68f5862e5');
+    if (Kakao.Auth.getAccessToken()) {
+        Kakao.API.request({
+            url: '/v1/user/unlink',
+            success: function (response) {
+                console.log(response)
+            },
+            fail: function (error) {
+                console.log(error)
+            },
+        })
+        Kakao.Auth.setAccessToken(undefined)
+    }
+    </script>
+    <script>alert("로그아웃");location.href="http://localhost:3333/"</script>
+    `)
 })
 
 module.exports = router;

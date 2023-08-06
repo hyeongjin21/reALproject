@@ -13,17 +13,33 @@ const checkId = () => {
             input: id
         })
     })
-        .then(res => res.json()) 
+        .then(res => res.json())
         .then(res => {
             document.getElementsByClassName('checking').value = res.check
-            if(res.check == 1){
+            if (res.check == 1) {
                 alert('중복되었습니다.')
             }
-            else if(res.check == 2){
+            else if (res.check == 2) {
                 alert('사용가능합니다.')
             }
-            else{
+            else {
                 alert('아이디 중복 확인')
             }
         })
 }
+
+//카카오로그아웃  
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+        Kakao.API.request({
+            url: '/v1/user/unlink',
+            success: function (response) {
+                console.log(response)
+            },
+            fail: function (error) {
+                console.log(error)
+            },
+        })
+        Kakao.Auth.setAccessToken(undefined)
+    }
+}  
