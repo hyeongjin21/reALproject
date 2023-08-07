@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/style.css">
-    <title>Document</title>
-</head>
+{% extends 'layout.html' %}
+
+{% block content %}
 <body>
     <h1>hihi</h1>
     <p>
@@ -34,6 +29,11 @@
         <input type="text" name="inputmenu">
         <input type="submit">
     </form>
-
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        Kakao.init('c1b7cc23c48477786fcb69b68f5862e5'); //발급받은 키 중 javascript키를 사용해준다.
+        //console.log(Kakao.isInitialized()); // sdk초기화여부판단
+    </script>
+    <script src="assets/js/click.js"></script>
 </body>
-</html>
+{% endblock %}

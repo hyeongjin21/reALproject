@@ -28,6 +28,28 @@ const checkId = () => {
         })
 }
 
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+        success: function (response) {
+            Kakao.API.request({
+                url: '/v2/user/me',
+                success: function (response) {
+                    let user_name = response.kakao_account.profile.nickname;
+                    location.href=`http://localhost:3333?user_name=${user_name}`
+                },
+                fail: function (error) {
+                    console.log(error)
+                },
+            })
+            
+        },
+        fail: function (error) {
+            console.log(error)
+        },
+    })
+}
+
 //카카오로그아웃  
 function kakaoLogout() {
     if (Kakao.Auth.getAccessToken()) {

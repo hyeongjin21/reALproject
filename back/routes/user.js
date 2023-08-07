@@ -69,13 +69,14 @@ router.post('/checkId', (req, res) => {
 
 // 로그아웃
 router.get('/logout', (req, res) => {
-    // req.session.user = ''
-    req.session.destroy();
+    req.session.user.user_name = ''
+    // req.session.destroy();
     res.send(`
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  
     <script>
     Kakao.init('c1b7cc23c48477786fcb69b68f5862e5');
     if (Kakao.Auth.getAccessToken()) {
+        console.log("유저로그아웃")
         Kakao.API.request({
             url: '/v1/user/unlink',
             success: function (response) {

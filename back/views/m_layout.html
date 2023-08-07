@@ -1,17 +1,47 @@
 <!-- 관리용 페이지 레이아웃 -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>레이아웃</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/m_layout.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/admin1.css">
 </head>
 <body>
-    <header>관리용 페이지 헤더입니다</header>
+    <header>
+        <!-- 로그인 기능 등을 넣는 부분 -->
+        <div class="login-logout-nav">
+            <a href="#">로그인</a>
+            <!-- <a href="#">로그아웃</a> -->
+        </div>
+        <div class="logo">
+            <!-- <img src="/img/logo.png" alt="당신의 로고"> -->
+        </div>
+    </header>
+        <!-- 기존의 내비게이션과 검색 입력란 -->
+        <div style="display: flex; width:100%">
+        <nav>
+            <ul>
+                <li><a href="#home">회원관리</a></li>
+                <li><a href="#about">사용자</a></li>
+                <li><a href="#services">등록가게</a></li>
+                
+                <li><a href="#contact">카페관리</a></li>
+                <li><a href="#contact">신규 가게 등록</a></li>
+                <li><a href="#contact">위치정보관리</a></li>
+                <li><a href="#contact">리뷰관리</a></li>
+            </ul>
+        </nav>
+        
+        {% block content %}
+        {% endblock %}
+        </div>
 
-    {% block content %}
-    {% endblock %}
 
-    <footer>관리용 페이지 푸터입니다</footer>
+    <footer>
+        <!-- 여기에 푸터 내용 추가 -->
+        <p>FOOTER</p>
+    </footer>
 </body>
 </html>
