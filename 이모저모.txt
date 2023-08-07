@@ -1,4 +1,4 @@
-npm i express body-parser nunjucks chokidar express-session session-file-store mysql2 cors
+npm i express body-parser nunjucks chokidar express-session session-file-store mysql2 cors axios
 설치했음
 --
 config 쪽에서 db 연결 해주세요~
