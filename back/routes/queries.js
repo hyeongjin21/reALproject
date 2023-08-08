@@ -28,8 +28,12 @@ module.exports = {
     shopAll : `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop`,
 
     // 사업자 검색
-    shopNameSearch : `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop whrer shop_name like ?`
+    shopNameSearch : `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop where shop_name like ?`,
+    
 
+    // 가게 등록하기
+    insertShop : `INSERT INTO al_shop (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner) VALUES(?, ?, ?, ?, ?, ?)`
+    // (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner) 
 
 
 

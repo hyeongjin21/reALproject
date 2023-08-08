@@ -42,11 +42,25 @@ router.get('/admin2_S_userpage',(req,res)=>{
     res.render('admin2_S_userpage')
 })
 
+// 카페관리 - 가게 정보 수정 페이지로 이동
+router.get('/admin3_S_info',(req,res)=>{
+    res.render('admin3_S_info')
+})
 
+// 카페관리 - 가게 메뉴 등록 페이지로 이동
+router.get('/admin4_menu_register',(req,res)=>{
+    res.render('admin4_menu_register')
+})
 
+// 카페관리 - 가게 메뉴 수정 페이지로 이동
+router.get('/admin5_menu_modify',(req,res)=>{
+    res.render('admin5_menu_modify')
+})
 
-
-
+// 카페관리 - 신규 가게 등록 페이지로 이동
+router.get('/admin6_shop_register',(req,res)=>{
+    res.render('admin6_shop_register')
+})
 
 
 
