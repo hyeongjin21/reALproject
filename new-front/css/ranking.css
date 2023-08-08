@@ -1,0 +1,31 @@
+
+.tables-container {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 800px;
+  margin: 30px auto;
+}
+
+/* Table Area Styles */
+.hot-menu-area,
+.good-menu-area {
+  width: auto;
+  flex: 1; 
+  margin-left: 40px;
+}
+
+/* Table Styles (Optional) */
+.hot-menu,
+.good-menu {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hot-menu th,
+.hot-menu td,
+.good-menu th,
+.good-menu td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
