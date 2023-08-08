@@ -41,4 +41,8 @@ router.get('/admin1_userpage',(req,res)=>{
     res.render('admin1_userpage')
 })
 
+router.get('/ranking',(req,res)=>{
+    res.render('ranking')
+})
+
 module.exports = router;

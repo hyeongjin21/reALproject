@@ -1,0 +1,111 @@
+a {
+    text-decoration: none;
+    color: #333;
+}
+#con{
+
+    width: 100%;
+    height: 100vh;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: cover;
+    padding: 0;
+}
+
+
+/* .main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 80px - 200px); /* Subtract header and footer height */
+    /* background-color: #f5f5f5;
+    padding: 20px;
+} */ 
+
+#join_form {
+    background: #fff;
+    border-radius: 10px;
+    padding: 50px;
+    /* Additional styles for margin, width, and height */
+    margin: 50px auto;
+    max-width: 400px;
+    width: 80%;
+    height: auto;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login {
+    font-size: 25px;
+    font-weight: 900;
+    color: #333;
+}
+
+.size {
+    width: 100%;
+    height: 30px;
+    padding-left: 10px;
+    background-color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn {
+    width: 100%;
+    height: 40px;
+    font-size: 15px;
+    background-color: #e7e3e3;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.btn:hover {
+    background: #2272eb;
+}
+
+hr {
+    margin-top: 20px;
+    background-color: #eee;
+}
+
+.find {
+    color: #ddd;
+    font-size: 12px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.find a {
+    text-decoration: none;
+    color: #333;
+}
+
+.find span::before{
+    content: "|";
+    color: #333;
+    padding-right: 10px;
+}
+
+.find span:first-child::before{
+    display: none;
+}
+
+.find a:hover{
+    color:#707070;
+}
+
+#id_len{
+    width: 322px;
+    height: 30px;
+    padding-left: 1px;
+    background-color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+
+}
+#id_len::placeholder {
+    padding-left: 10px;
+}

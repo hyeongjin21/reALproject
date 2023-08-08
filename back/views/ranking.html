@@ -1,5 +1,43 @@
-<!-- 랭킹 페이지 -->
 {% extends 'layout.html' %}
 {% block content %}
-<h1>랭킹 페이지</h1>
+<head>
+  <link rel="stylesheet" href="assets/css/ranking.css">
+</head>
+<body>
+  <div class="main">
+    <div class="table-container">
+      <h3 class="table-title">화제의 메뉴</h3>
+      <table class="menu-table" id="hot-menu">
+        <tr>
+          <th>순위</th>
+          <th>카페명</th>
+          <th>메뉴명</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <!-- 여기에 데이터 추가 -->
+    </table>
+</div>
+
+<div class="table-container">
+    <h3 class="table-title">추천 많은 리뷰순</h3>
+    <table class="menu-table" id="good-review">
+        <tr>
+            <th>순위</th>
+            <th>메뉴명</th>
+            <th>리뷰</th>
+        </tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <!-- 여기에 데이터 추가 -->
+      </table>
+    </div>
+  </div>
+</body>
 {% endblock %}
