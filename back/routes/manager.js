@@ -8,7 +8,7 @@ const conn = require('../config/database')
 router.get('/',(req,res)=>{
     let userSearch = "%" + req.query.userSearch + "%"
     if(userSearch == ''){
-        conn.query(queries.userAll,[],(err, rows)=>{
+        conn.query(queries.userAll,(err, rows)=>{
             if(rows.length > 0){
                 res.render('admin1_userpage',{list:rows})
             }

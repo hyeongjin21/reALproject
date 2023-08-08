@@ -12,8 +12,6 @@ const http = require('http');
 const u_url = require('url');
 const cors = require('cors')
 
-
-
 app.use(express.json()) // json 변환에 필요한것
 app.use(cors()) // cors 때문에 필요한것
 
