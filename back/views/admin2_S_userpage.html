@@ -1,6 +1,7 @@
 {% extends 'm_layout.html' %}
 
 {% block content %}
+
 <head>
     <title>등록가게</title>
     <link rel="stylesheet" href="assets/css/admin2.css">
@@ -14,8 +15,8 @@
     <!-- Body -->
     <form action="/manager/admin2_S_userpage">
         <div class="search-section">
-        <input type="text" name = 'shopSearch' placeholder="검색어를 입력해주세요">
-        <input type="submit" value="검색">
+            <input type="text" name='shopSearch' placeholder="검색어를 입력해주세요">
+            <input type="submit" value="검색">
         </div>
     </form>
 
@@ -36,7 +37,11 @@
             {% for i in list %}
             <tr>
                 <th>{{i.rownum}}</th>
-                <th>{{i.shop_name}}</th>
+                <th>
+                    <a href="/admin4_menu_register?shop_seq={{i.shop_seq}}">
+                        {{i.shop_name}}
+                    </a>
+                </th>
                 <th>{{i.shop_bno}}</th>
                 <th>{{i.shop_addr1}}</th>
                 <th>{{i.shop_addr2}}</th>
@@ -46,7 +51,7 @@
             </tr>
             {% endfor %}
 
-        
+
             <tr>
                 <td colspan="8">가게 정보 : 카페 사업자 + 메뉴에 대한 정보</td>
             </tr>
