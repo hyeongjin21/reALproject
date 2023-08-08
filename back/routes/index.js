@@ -31,14 +31,23 @@ router.get('/mypage',(req,res)=>{
     res.render('mypage')
 })
 
-// 관리용 페이지 이동
-router.get('/manager',(req,res)=>{
-    res.render('manager')
-})
 
-// 테스트용
+// 회원관리 - 사용자 페이지로 이동
 router.get('/admin1_userpage',(req,res)=>{
     res.render('admin1_userpage')
 })
+
+// 회원관리 - 등록가게 페이지로 이동
+router.get('/admin2_S_userpage',(req,res)=>{
+    res.render('admin2_S_userpage')
+})
+
+
+
+
+
+
+
+
 
 module.exports = router;
