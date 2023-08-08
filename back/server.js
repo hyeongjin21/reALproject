@@ -7,9 +7,11 @@ const fileStore = require('session-file-store')(session);
 const indexRouter = require('./routes');
 const userRouter = require('./routes/user')
 const searchRouter = require('./routes/search')
+const managerRouter = require('./routes/manager')
 const http = require('http');
 const u_url = require('url');
 const cors = require('cors')
+
 
 
 app.use(express.json()) // json 변환에 필요한것
@@ -50,6 +52,7 @@ app.use((req,res,next)=>{
 app.use('/',indexRouter);
 app.use('/user',userRouter);
 app.use('/search',searchRouter);
+app.use('/manager',managerRouter);
 
 app.listen(app.get('port'),()=>{
     console.log(app.get('port')+'번 포트에서 대기 중..')

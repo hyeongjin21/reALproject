@@ -9,7 +9,8 @@ let conn = maria.createConnection({
     user : 'Insa4_JSB_hacksim_5',
     password : 'aishcool5',
     port : 3308,
-    database : 'Insa4_JSB_hacksim_5'
+    database : 'Insa4_JSB_hacksim_5',
+    dateStrings : 'date'
 })
 
 conn.connect()

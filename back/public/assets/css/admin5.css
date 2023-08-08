@@ -1,0 +1,133 @@
+/* 전체 페이지 스타일링 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbit', sans-serif;
+}
+
+/* Header
+스타일링 */
+ header {
+     height: 30px;
+     background-color: #ffffff;
+     color: #0f0d0d;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+     top: 100px;
+    }
+    
+    /* Body 스타일링 */
+    body {
+        height: 70%; 
+        /* display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; */
+    }
+    
+    .main-container {
+        width: 40%;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 200px; /* Move down by 50 pixels */
+}
+
+/* Table 섹션 스타일링 */
+.info-table {
+    width: 100%;
+    border: 1px solid white; /* 테두리를 흰색으로 설정 */
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Table 헤더 스타일 */
+.info-table th {
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+    border: 1px solid white;
+}
+
+/* Table 데이터 스타일 */
+.info-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid white;
+}
+
+/* 입력창 옆에 버튼 스타일링 */
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.input-wrapper p {
+    margin-right: 10px;
+}
+
+.input-wrapper input[type="text"],
+.input-wrapper input[type="file"] {
+    padding: 5px;
+}
+
+/* Table 스타일 */
+table {
+    border-collapse: collapse;
+    width: 40%;
+    margin: auto;
+    border: 2px solid black;
+}
+
+table, th, td {
+    border: 0px solid #9e4040;
+}
+
+th, td {
+    border: 0px solid black; /* 테두리 굵기 설정 */
+    border-radius: 10px; /* 테두리 둥글기 설정 */
+    padding: 10px;
+    text-align: center;
+}
+
+/* output 태그 스타일 */
+output {
+    display: inline-block;
+}
+
+/* 카페 메뉴 셀의 너비 조정 */
+th output {
+    width: 70%;
+}
+
+/* 버튼 오른쪽 정렬 */
+td {
+    position: relative;
+}
+
+td button {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+/* CSS 코드를 여기에 작성합니다 */
+input[type="text"] {
+    width: 200px;
+}
+.button-container {
+    display: flex;
+    gap: 50px; /* 간격을 원하는 크기로 조정합니다 */
+}
+/* 테이블 테두리 없애기 */
+table {
+    border-collapse: collapse;
+}

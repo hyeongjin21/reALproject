@@ -1,0 +1,150 @@
+/* 기본 스타일 초기화 및 일부 간격 추가 */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: white; /* 수정된 색상 값 */
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 1%; /* div와 nav 태그 간격 조정 */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin-bottom: 10px;
+}
+
+/*a태그 글씨 색깔*/
+nav a {
+    color: rgb(204, 103, 9); /* 수정된 색상 값 */
+    font-size: 28px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* "회원관리"와 "카페관리"의 글꼴 크기 증가 */
+nav li:nth-child(1) a,
+nav li:nth-child(4) a {
+    font-size: 45px;
+}
+
+/* Footer 스타일 */
+footer {
+    background-color: #ac7c15; /* 커피 색상 배경 */
+    color: black; /* 텍스트 색상을 검은색으로 변경 */
+    padding: 10px;
+    text-align: center;
+    height: 15vh; /* 푸터 높이를 뷰포트 높이의 15%로 설정 */
+    margin-top: 20%; /* div와 nav 태그 간격 조정 */
+}
+
+/* 하얀색 메인창 "등록된 가게"와 "카페 관리" 텍스트 간격 추가 */
+main h2 {
+    padding: 5px;
+}
+
+/* nav 태그에 테두리 추가 및 둥글게 처리, 폰트 설정, 가운데 정렬 */
+nav {
+    font-family: 'Orbit', sans-serif;
+    display: inline-block;
+    width: 200px;
+    height: 500px;
+    border: 5px solid #0a0a09;
+    padding: 10px;
+    /* margin-right: 10px; 오른쪽으로 10px 이동 */
+    border-radius: 20px;
+    font-size: 16px;
+    margin: auto;
+    text-align: center;
+    
+    position: relative;
+    left: 55px;
+}
+
+
+/* 로고에 대한 새로운 스타일 */
+.logo {
+    background-image: url('./img/logo.png');
+    background-size: cover;
+    width: 300px; /* 로고 크기 조절을 위해 너비 값 조정 */
+    height: 250px; /* 로고 크기 조절을 위해 높이 값 조정 */
+    /* 또는 로고를 비율을 유지하면서 확대할 수도 있습니다. */
+    /* transform: scale(1.5);  /* 로고 크기 조정을 위해 스케일 값을 조정 (1.5는 크기 150%를 의미) */
+}
+
+/* 검색(Search) 버튼의 글꼴 크기 증가 */
+.search-nav-container button {
+    font-size: 50px; /* 필요에 따라 값 조정 가능 */
+}
+
+/* article 요소에 대한 스타일 추가 */
+article {
+    color: black; /* 텍스트 색상을 검은색으로 변경 */
+    border: 5px solid black; /* 5px의 검은색 실선 테두리 추가 */
+    padding: 230px; /* 콘텐츠와 테두리 사이의 간격을 위해 패딩 추가 */
+    position: absolute;
+    top: 35vh;
+    left: 20vw;
+}
+
+article h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* 로그인 및 로그아웃 네비게이션에 대한 스타일 */
+.login-logout-nav {
+    margin-top: 10px;
+    margin-right: 30px;
+}
+
+.login-logout-nav ul {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+.login-logout-nav li {
+    margin-right: 10px;
+}
+
+.login-logout-nav a {
+    color: #333;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.login-logout-nav a:hover {
+    text-decoration: underline;
+}
+.login-logout-nav {
+    position: absolute;
+    top: 3%;
+    right: 3%;
+    font-family: 'Orbit', sans-serif;
+    color: rgb(204, 103, 9); /* 수정된 색상 값 */
+    font-size: 28px;
+    
+}
+/* styles.css */
+
+.login-logout-nav a {
+    font-family: 'Orbit ', sans-serif;
+    border: 3px solid black;
+    padding: 5px;
+    /* margin-right: 10px; 오른쪽으로 10px 이동 */
+    border-radius: 10px;
+    font-size: 16px;
+    margin: auto;
+    text-align: center;
+}

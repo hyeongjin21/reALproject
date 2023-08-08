@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>등록가게</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/admin2.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>등록 가게</h1>
+    </header>
+
+    <!-- Body -->
+    <form action="/manager/admin2_S_userpage">
+        <div class="search-section">
+        <input type="text" name = 'shopSearch' placeholder="검색어를 입력해주세요">
+        <input type="submit" value="검색">
+        </div>
+    </form>
+
+
+    <div class="table-container">
+        <table>
+            <tr>
+                <th>일련번호</th>
+                <th>사업자명</th>
+                <th>사업자번호</th>
+                <th>주소</th>
+                <th>상세주소</th>
+                <th>전화번호</th>
+                <th>대표자명</th>
+                <th>등록일자</th>
+            </tr>
+
+            {% for i in list %}
+            <tr>
+                <th>{{i.rownum}}</th>
+                <th>{{i.shop_name}}</th>
+                <th>{{i.shop_bno}}</th>
+                <th>{{i.shop_addr1}}</th>
+                <th>{{i.shop_addr2}}</th>
+                <th>{{i.shop_tel}}</th>
+                <th>{{i.shop_owner}}</th>
+                <th>{{i.created_at}}</th>
+            </tr>
+            {% endfor %}
+
+        
+            <tr>
+                <td colspan="8">가게 정보 : 카페 사업자 + 메뉴에 대한 정보</td>
+            </tr>
+        </table>
+    </div>
+
+
+</body>
+</html>
