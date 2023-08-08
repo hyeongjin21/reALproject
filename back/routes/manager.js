@@ -52,7 +52,7 @@ router.get('/admin2_S_userpage',(req,res)=>{
 
 
 // 카페관리 - 카페 등록
-router.post('/shop_register', (req, res) => {
+router.post('/shopRegister', (req, res) => {
     let { shopname, bno, addr1, addr2, tel, ownername } = req.body
 
     if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '')
@@ -68,8 +68,6 @@ router.post('/shop_register', (req, res) => {
         res.send(`<script>alert("${shopname} 카페가 등록되었습니다.");location.href='http://localhost:3333/admin2_S_userpage'</script>`)
         })
     }
-
-
 })
 
 
