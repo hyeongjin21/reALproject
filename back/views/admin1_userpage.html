@@ -8,12 +8,13 @@
     </header>
 
     <!-- Body -->
-    <div class="search-section">
-        <input type="text" placeholder="검색어를 입력해주세요">
-        <a href="">
-            <button>검색</button>
-        </a>
-    </div>
+    <form action="/manager">
+        <div class="search-section">
+            <input type="text" name="userSearch"  placeholder="검색어를 입력해주세요">
+            <input type="submit" value="검색">
+        </div>
+    </form>
+
     <div class="table-container">
         <table>
             <tr>
@@ -25,15 +26,17 @@
                 <th>전화번호</th>
                 <th>가입일자</th>
             </tr>
+            {% for i in list %}
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>{{i.rownum}}</th>
+                <th>{{i.user_id}}</th>
+                <th>{{i.user_pw}}</th>
+                <th>{{i.user_name}}</th>
+                <th>{{i.user_nick}}</th>
+                <th>{{i.user_phone}}</th>
+                <th>{{i.created_at}}</th>
             </tr>
+            {% endfor %}
             <tr>
                 <td colspan="7">사용자 정보 : 우리 서비스 이용하는 사용자들(일반고객)의 정보</td>
             </tr>

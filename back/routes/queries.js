@@ -13,5 +13,11 @@ module.exports = {
     searchMenuCategory: `select * from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.menu_name like ? and b.menu_category = ?`,
 
     //검색 - 메뉴선택 - 지도 위도 경도가져오기
-    shopLocation : `select a.lat, a.lng from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.shop_seq = ?`
+    shopLocation : `select a.lat, a.lng from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.shop_seq = ?`,
+
+    userAll : `select ROW_NUMBER() OVER() AS rownum, user_id ,user_pw ,user_name ,user_nick ,user_phone,created_at FROM al_user limit 10 offset 0`,
+
+    userCount : `select count(*) from al_user`
+
+    // userNameSearch
 }

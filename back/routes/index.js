@@ -31,11 +31,6 @@ router.get('/mypage',(req,res)=>{
     res.render('mypage')
 })
 
-// 관리용 페이지 이동
-router.get('/manager',(req,res)=>{
-    res.render('manager')
-})
-
 // 테스트용
 router.get('/admin1_userpage',(req,res)=>{
     res.render('admin1_userpage')
