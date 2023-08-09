@@ -37,12 +37,6 @@ router.get('/admin1_userpage',(req,res)=>{
     res.render('admin1_userpage')
 })
 
-<<<<<<< HEAD
-router.get('/ranking',(req,res)=>{
-    res.render('ranking')
-})
-
-=======
 // 회원관리 - 등록가게 페이지로 이동
 router.get('/admin2_S_userpage',(req,res)=>{
     res.render('admin2_S_userpage')
@@ -70,5 +64,4 @@ router.get('/admin6_shop_register',(req,res)=>{
 
 
 
->>>>>>> 7895aff6775a61f375d75913613317e88aab7323
 module.exports = router;
