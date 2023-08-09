@@ -48,7 +48,7 @@ router.post('/upload', upload.single('img'), (req, res) => {
         }else{
             conn.query(queries.menuInfoAll,(e,r)=>{
 
- 
+                console.log()
                 console.log(r)
                 res.render('menu_list', {list: r})
                 return;
