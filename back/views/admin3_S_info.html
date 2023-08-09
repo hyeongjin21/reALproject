@@ -1,6 +1,14 @@
 {% extends 'm_layout.html' %}
 
 {% block content %}
+<head>
+    <link rel="stylesheet" href="/assets/css/admin3.css">
+</head>
+<div style="flex-grow: 9;">
+    <!-- Header -->
+    <header style="display: flex; justify-content: center; flex-direction: row;">
+        <div>가게 정보</div>
+    </header>
     <!-- Body --> 
     <div class="main-container">
         <table class="info-table">
@@ -53,14 +61,15 @@
                         <th>{{i.menu_category}}</th>
                         <th>{{i.menu_ingredient_tag}}</th>
                     </tr>
-                    {% endfor %}
                     <th>
                         <button>수정</button>
                         <button>삭제</button>
                     </th>
+                    {% endfor %}
                 </tr>
     
             </table>
         </div>
     </div>
-    {% endblock %}
+</div>
+{% endblock %}

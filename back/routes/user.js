@@ -82,11 +82,11 @@ router.post('/checkId', (req, res) => {
     conn.query(queries.selectID, [id], (err, rows) => {
         if (rows.length > 0) {
             check = 1
-            res.json({ check: 1 })
+            res.json({ ok: 1 })
         }
         else {
             check = 2
-            res.json({ check: 2 })
+            res.json({ ok: 2 })
         }
         req.session.check = check
     })

@@ -18,6 +18,9 @@ module.exports = {
     //검색 - 메뉴선택 - 지도 위도 경도가져오기
     shopLocation: `select a.lat, a.lng from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.shop_seq = ?`,
 
+    //검색 - 위도 경도값 전체검색
+    selectLocationAll : `select shop_name, lat, lng from al_shop`,
+
     ///// 관리자페이지 /////
     //사용자 모두 가져오기
     userAll: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, user_id ,user_pw ,user_name ,user_nick ,user_phone,created_at FROM al_user`,

@@ -69,6 +69,7 @@ router.get('/admin3_S_info',(req,res)=>{
     //         res.render('admin3_S_info', {list : result})
     //     }
     // })
+    res.render('admin3_S_info')
 })
 
 // 카페관리 - 가게 메뉴 등록 페이지로 이동

@@ -34,6 +34,7 @@
                 <th>전화번호</th>
                 <th>대표자명</th>
                 <th>등록일자</th>
+                <th></th>
             </tr>
 
             {% for i in list %}
@@ -44,12 +45,17 @@
                         {{i.shop_name}}
                     </a>
                 </th>
-                <th>{{i.shop_bno}}</th>
-                <th>{{i.shop_addr1}}</th>
-                <th>{{i.shop_addr2}}</th>
-                <th>{{i.shop_tel}}</th>
-                <th>{{i.shop_owner}}</th>
-                <th>{{i.created_at}}</th>
+                <td>{{i.shop_bno}}</td>
+                <td>{{i.shop_addr1}}</td>
+                <td>{{i.shop_addr2}}</td>
+                <td>{{i.shop_tel}}</td>
+                <td>{{i.shop_owner}}</td>
+                <td>{{i.created_at}}</td>
+                <td>
+                    <button>수정</button>
+                    <button>삭제</button>
+                </td>
+
             </tr>
             {% endfor %}
 

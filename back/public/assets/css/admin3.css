@@ -13,20 +13,20 @@ html, body {
      height: 30px;
      background-color: #ffffff;
      color: #0f0d0d;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     position: relative;
-     top: 100px;
+     /* display: flex; */
+     /* align-items: center; */
+     /* justify-content: center; */
+     /* position: relative; */
+     /* top: 100px; */
     }
     
     /* Body 스타일링 */
     body {
-        height: 70%; 
-        /* display: flex;
+        /* height: 70%;  */
+        display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center; */
+        justify-content: center;
     }
     
     .main-container {

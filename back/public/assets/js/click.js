@@ -16,10 +16,10 @@ const checkId = () => {
         .then(res => res.json())
         .then(res => {
             document.getElementsByClassName('checking').value = res.check
-            if (res.check == 1) {
+            if (res.ok == 1) {
                 alert('중복되었습니다.')
             }
-            else if (res.check == 2) {
+            else if (res.ok == 2) {
                 alert('사용가능합니다.')
             }
             else {
@@ -36,13 +36,13 @@ function kakaoLogin() {
                 url: '/v2/user/me',
                 success: function (response) {
                     let user_name = response.kakao_account.profile.nickname;
-                    location.href=`http://localhost:3333?user_name=${user_name}`
+                    location.href = `http://localhost:3333?user_name=${user_name}`
                 },
                 fail: function (error) {
                     console.log(error)
                 },
             })
-            
+
         },
         fail: function (error) {
             console.log(error)
@@ -64,4 +64,4 @@ function kakaoLogout() {
         })
         Kakao.Auth.setAccessToken(undefined)
     }
-}  
+}

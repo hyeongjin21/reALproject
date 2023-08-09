@@ -1,4 +1,4 @@
-전체 페이지 스타일링
+/* 전체 페이지 스타일링 */
 html, body {
     height: 100%;
     margin: 0;
@@ -13,11 +13,11 @@ header {
     height: 30px;
     background-color: #ffffff;
     color: #0f0d0d;
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    top: 100px;
+    top: 100px; */
 }
 
 /* Body 스타일링 */
@@ -87,7 +87,7 @@ th, td {
 }
 /* 추가적인 스타일 */
 .table-container {
-    position: relative;
+    /* position: relative; */
     bottom: 200px;
     width: 50%;
     margin: 0 auto;
@@ -96,14 +96,14 @@ th, td {
 
 
 /* Footer 스타일링 */
-footer {
+/* footer {
     height: 15%;
     background-color: brown;
     color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
-}
+} */
 .search-section input[type="text"] {
     /* ... */
     width: 300px; /* 원하는 가로 크기 */
@@ -117,7 +117,7 @@ footer {
 }
 .search-section {
     /* ... */
-    padding: 250px; /* 원하는 패딩 사이즈 */
+    /* padding: 250px; 원하는 패딩 사이즈 */
     margin: 20px 0; /* 원하는 마진 사이즈 - 여기서 상하 여백을 20px로 설정합니다. 좌우 여백은 원하시는대로 조절해주세요. */
 }
 

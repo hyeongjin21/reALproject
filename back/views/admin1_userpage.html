@@ -26,17 +26,23 @@
                 <th>닉네임</th>
                 <th>전화번호</th>
                 <th>가입일자</th>
+                <th></th>
             </tr>
 
             {% for i in list %}
             <tr>
-                <th>{{i.rownum}}</th>
-                <th>{{i.user_id}}</th>
-                <th>{{i.user_pw}}</th>
-                <th>{{i.user_name}}</th>
-                <th>{{i.user_nick}}</th>
-                <th>{{i.user_phone}}</th>
-                <th>{{i.created_at}}</th>
+                <td>{{i.rownum}}</td>
+                <td>{{i.user_id}}</td>
+                <td>{{i.user_pw}}</td>
+                <td>{{i.user_name}}</td>
+                <td>{{i.user_nick}}</td>
+                <td>{{i.user_phone}}</td>
+                <td>{{i.created_at}}</td>
+                <td>
+                    <button>수정</button>
+                    <button>삭제</button>
+                </td>
+
             </tr>
             {% endfor %}
         </table>
