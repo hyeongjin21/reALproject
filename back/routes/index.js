@@ -87,6 +87,16 @@ router.get('/admin6_shop_register',(req,res)=>{
     res.render('admin6_shop_register')
 })
 
+// 카페관리 - 위치정보관리 페이지로 이동
+router.get('/admin7_location_manage',(req,res)=>{
+    res.render('admin7_location_manage')
+})
+
+// 카페관리 - 리뷰관리 페이지로 이동
+router.get('/admin8_review_manage',(req,res)=>{
+    res.render('admin8_review_manage')
+})
+
 // 이미지파일경로 설정
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

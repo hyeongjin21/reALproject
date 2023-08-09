@@ -25,7 +25,7 @@ router.get('/',(req,res)=>{
 
 // 회원관리 - 등록가게 라우터
 router.get('/admin2_S_userpage',(req,res)=>{
-    let shopSearch = req.query.shopSearch
+    let shopSearch = "%" + req.query.shopSearch + "%"
     // console.log(shopSearch)
     
     if(shopSearch == ''){
@@ -55,7 +55,7 @@ router.get('/admin2_S_userpage',(req,res)=>{
 
 
 // 카페관리 - 카페 등록
-router.post('/shop_register', (req, res) => {
+router.post('/shopRegister', (req, res) => {
     let { shopname, bno, addr1, addr2, tel, ownername } = req.body
 
     if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '')
@@ -70,12 +70,52 @@ router.post('/shop_register', (req, res) => {
         res.send(`<script>alert("${shopname} 카페가 등록되었습니다.");location.href='http://localhost:3333/admin2_S_userpage'</script>`)
         })
     }
-
-
 })
 
 
+// // 카페관리 - 위치정보관리 
+// router.get('/shopLocation', (req, res) => {
+//     let name = "%" + req.query.shopname + "%"
+//     console.log(name)
 
+//     if(name == ''){
+//         conn.query(queries.shopLocationAll,[],(err, rows)=>{
+//             if(rows.length > 0){
+//                 res.render('admin7_location_manage',{list:rows})
+//             }
+//         })
+//     }else{
+//         conn.query(queries.shopLocationSearch,[name],(err, rows)=>{
+//             if(rows.length > 0){
+//                 res.render('admin7_location_manage',{list:rows})
+//             }       
+//         })
+//     }
+
+
+//     // 삭제 기능
+
+// })
+
+
+// 카페관리 - 리뷰관리
+router.get('/reviewSearch', (req, res) => {
+    let review = "%" + req.query.review + "%"
+
+    if(review == ''){
+        conn.query(queries.reviewAll,[],(err, rows)=>{
+            if(rows.length > 0){
+                res.render('admin8_review_manage',{list:rows})
+            }
+        }) }
+//     }else{
+//         conn.query(queries.shopLocationSearch,[name],(err, rows)=>{
+//             if(rows.length > 0){
+//                 res.render('admin7_location_manage',{list:rows})
+//             }       
+//         })
+//     }
+})
 
 
 

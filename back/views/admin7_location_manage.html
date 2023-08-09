@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>위치정보관리</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/admin7.css">
+    <link rel="stylesheet" href="/assets/css/admin7.css">
 </head>
 <body>
     <!-- Header -->
@@ -14,47 +14,40 @@
     </header>
 
     <!-- Body -->
+    <form action="/manager/shopLocation">
     <div class="search-section">
-        <input type="text" placeholder="검색어를 입력해주세요">
+        <input type="text" name = "shopname" placeholder="검색어를 입력해주세요">
         <a href="">
-            <button>검색</button>
+            <button type="submit">검색</button>
         </a>
     </div>
+    </form> 
+
     <div class="table-container">
         <table>
             <tr>
+                <th>일련번호</th>
                 <th>업체명</th>
                 <th>주소</th>
                 <th>위도</th>
                 <th>경도</th>
-                <th></th>
             </tr>
+
+            {% for i in list %}
             <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>{{i.rownum}}</th>
+                <th>{{i.shop_name}}</th>
+                <th>{{i.shop_addr1}}</th>
+                <th>{{i.lat}}</th>
+                <th>{{i.lng}}</th>
                 <th>
                     <button>배포</button>
                     <button>수정</button>
                     <button>삭제</button>
                 </th>
             </tr>
-            <tr>
-            </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>
-                    <button>배포</button>
-                    <button>수정</button>
-                    <button>삭제</button>
-                </th>
-            </tr>
-            <tr>
-            </tr>
+            {% endfor %}
+
         </table>
     </div>
 
