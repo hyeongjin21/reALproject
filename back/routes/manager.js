@@ -100,22 +100,63 @@ router.post('/shopRegister', (req, res) => {
 
 // 카페관리 - 리뷰관리
 router.get('/reviewSearch', (req, res) => {
+    let category = req.query.category
     let review = "%" + req.query.review + "%"
 
-    if(review == ''){
+    // 검색
+    if(category == 'all' ){
         conn.query(queries.reviewAll,[],(err, rows)=>{
+            // console.log(rows)
             if(rows.length > 0){
                 res.render('admin8_review_manage',{list:rows})
             }
-        }) }
-//     }else{
-//         conn.query(queries.shopLocationSearch,[name],(err, rows)=>{
-//             if(rows.length > 0){
-//                 res.render('admin7_location_manage',{list:rows})
-//             }       
-//         })
-//     }
+        }) 
+    }else if(category == 'user'){
+        conn.query(queries.reviewSearchUser,[review],(err, rows)=>{
+            // console.log(rows)
+            if(rows.length > 0){
+                res.render('admin8_review_manage',{list:rows})
+            }
+        })    
+    }else{
+        conn.query(queries.reviewSearchContent,[review],(err, rows)=>{
+            if(rows.length > 0){
+                res.render('admin8_review_manage',{list:rows})
+            }
+        })   
+    }
+})    
+
+
+// 리뷰관리 - 삭제
+router.post('/reviewDelete', (req, res) => {
+    let deleteSeq = req.body.seq
+    // console.log(deleteSeq)
+    // let rs = confirm("삭제하시겠습니까?")
+    // if(rs == true){
+    conn.query(queries.reviewDelete,[deleteSeq],(err, rows)=>{
+        // console.log(rows)
+        // res.send(`<script>alert("삭제되었습니다.");location.href='http://localhost:3333/admin8_review_manage'</script>`)
+        // res.send(`<script>alert("삭제되었습니다.");location.href='http://localhost:3333/admin8_review_manage'</script>`)
+        
+        res.send(`<script>alert("삭제되었습니다.");</script>`)
+    })
+// }
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
