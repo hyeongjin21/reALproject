@@ -98,6 +98,11 @@ router.get('/admin8_review_manage',(req,res)=>{
     res.render('admin8_review_manage')
 })
 
+// 카페관리 - 삭제
+router.post('/admin8_review_manage',(req,res)=>{
+    res.render('admin8_review_manage')
+})
+
 // 이미지파일경로 설정
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {

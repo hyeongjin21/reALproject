@@ -33,11 +33,14 @@ module.exports = {
 
     // 사업자 검색
     shopNameSearch: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop where shop_name like ?`,
-
-
+    
+    
     // 가게 등록하기
     insertShop : `INSERT INTO al_shop (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner) VALUES(?, ?, ?, ?, ?, ?)`,
     // (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner) 
+    
+    // 메뉴 등록하기
+    insertMenu:'INSERT INTO al_menu (shop_seq, menu_name, menu_price, menu_desc, menu_type, menu_options, menu_category, menu_ingredient_tag, menu_img) VALUES(?,?,?,?,?,?,?,?,?)',
 
     // 가게 위치 정보 가져오기
     shopLocationAll : `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_addr1, lat, lng FROM al_shop `,
@@ -45,10 +48,33 @@ module.exports = {
     // 가게 위치 검색
     shopLocationSearch : `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_addr1, lat, lng FROM al_shop where shop_name like ?`,
 
-    // 리뷰 전체 검색
-    reviewAll : `select * from al_review`,
- 
-    // 메뉴 등록하기
-    insertMenu:'INSERT INTO al_menu (shop_seq, menu_name, menu_price, menu_desc, menu_type, menu_options, menu_category, menu_ingredient_tag, menu_img) VALUES(?,?,?,?,?,?,?,?,?)'
+    // 리뷰 관리 - 전체 검색
+    reviewAll : `select row_number() over (order by c.created_at) as rownum, 
+	a.shop_name, b.menu_name, c.user_id, c.created_at, c.review_content, c.review_seq
+  from al_shop a inner join al_menu b
+    on a.shop_seq = b.shop_seq 
+  right outer join al_review c 
+    on b.menu_seq  = c.menu_seq `,
+
+    // 리뷰 관리 - 카테고리 검색(글쓴이)
+    reviewSearchUser : `select row_number() over (order by c.created_at) as rownum, 
+	a.shop_name, b.menu_name, c.user_id, c.created_at, c.review_content, c.review_seq
+  from al_shop a inner join al_menu b
+    on a.shop_seq = b.shop_seq 
+  right outer join al_review c 
+    on b.menu_seq  = c.menu_seq 
+ where c.user_id like ?`,
+
+    // 리뷰 관리 - 카테고리 검색(내용)
+    reviewSearchContent : `select row_number() over (order by c.created_at) as rownum, 
+	a.shop_name, b.menu_name, c.user_id, c.created_at, c.review_content, c.review_seq
+  from al_shop a inner join al_menu b
+    on a.shop_seq = b.shop_seq 
+  right outer join al_review c 
+    on b.menu_seq  = c.menu_seq 
+ where c.review_content like ?`,
+
+    // 리뷰 관리 - 삭제
+    reviewDelete : `delete from al_review where review_seq = ?`
 
 }

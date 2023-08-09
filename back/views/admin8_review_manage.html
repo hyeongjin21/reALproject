@@ -12,23 +12,24 @@
     </header>
     <!-- Body -->
     <form action="/manager/reviewSearch">
-    <div class="search-section">
+        <div class="search-section">
             <select name="category">
-                <option value="카테고리1">전체</option>
-                <option value="카테고리2">글쓴이</option>
-                <option value="카테고리3">내용</option>
-            <!-- 원하는 만큼 카테고리를 추가할 수 있습니다 -->
-        </select>
-        <input type="text" name = "review" placeholder="검색어를 입력해주세요">
-        
-        <a href="">
-            <button type="submit">검색</button>
-        </a>
-    </div>
-    </form>
+                <option value="all">전체</option>
+                <option value="user">글쓴이</option>
+                <option value="content">내용</option>
+                <!-- 원하는 만큼 카테고리를 추가할 수 있습니다 -->
+            </select>
+            <input type="text" name="review" placeholder="검색어를 입력해주세요">
 
+            <a href="">
+                <button type="submit">검색</button>
+            </a>
+        </div>
+    </form>
+    <a href="https://naver.com?if:erere"></a>
     <div class="table-container">
         <table>
+
             <tr>
                 <th>일련번호</th>
                 <th>가게명</th>
@@ -38,19 +39,54 @@
                 <th>내용</th>
                 <th></th>
             </tr>
-            <tr>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th>
-                    <button>삭제</button>
-                </th>
-            </tr>
+
+            <form method="post" action="/manager/reviewDelete">
+                {% for i in list %}
+                <tr>
+                    <th>{{i.rownum}}</th>
+                    <th>{{i.shop_name}}</th>
+                    <th>{{i.menu_name}}</th>
+                    <th>{{i.user_id}}</th>
+                    <th>{{i.created_at}}</th>
+                    <th>{{i.review_content}}</th>
+                    <th>
+                        <button type="button" onclick="deleteRow({{i.review_seq}})">삭제</button>
+                    </th>
+                </tr>
+                {% endfor %}
+            </form>
+
         </table>
     </div>
 </div>
+
+    <script>
+        let refreshList = () => {
+            location.reload()
+        }
+        let url = "/manager/reviewDelete"
+        const deleteRow = (review_seq) => {
+            let rs = confirm("삭제하시겠습니까?")
+            if (rs == true) {
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        seq: review_seq
+
+                    })
+                })
+                    .then(res => res.json())
+                    .then(res => { })
+
+
+                alert("삭제되었습니다.");
+                refreshList();
+            }
+        }
+    </script>
+</body>
 
 {% endblock %}
