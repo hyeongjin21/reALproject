@@ -1,5 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const queries = require('./queries')
+const conn = require('../config/database')
+const multer = require('multer')
 
 // 메인 페이지 이동
 router.get('/',(req,res)=>{
@@ -34,21 +37,43 @@ router.get('/mypage',(req,res)=>{
 
 // 회원관리 - 사용자 페이지로 이동
 router.get('/admin1_userpage',(req,res)=>{
-    res.render('admin1_userpage')
+    const userSearch = queries.userAll
+    conn.query(userSearch,(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.render('admin1_userpage', {list : result})
+        }
+    })
 })
 
 // 회원관리 - 등록가게 페이지로 이동
 router.get('/admin2_S_userpage',(req,res)=>{
-    res.render('admin2_S_userpage')
+    const shopInfo = queries.shopAll
+    conn.query(shopInfo,(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.render('admin2_S_userpage', {list : result})
+        }
+    })
 })
 
 // 카페관리 - 가게 정보 수정 페이지로 이동
 router.get('/admin3_S_info',(req,res)=>{
-    res.render('admin3_S_info')
+    // const menuInfo = queries.menuInfoAll
+    // conn.query(menuInfo,(err,result)=>{
+    //     if(err){
+    //         console.log(err)
+    //     }else{
+    //         res.render('admin3_S_info', {list : result})
+    //     }
+    // })
 })
 
 // 카페관리 - 가게 메뉴 등록 페이지로 이동
 router.get('/admin4_menu_register',(req,res)=>{
+    console.log(req.query)
     res.render('admin4_menu_register')
 })
 
@@ -62,6 +87,25 @@ router.get('/admin6_shop_register',(req,res)=>{
     res.render('admin6_shop_register')
 })
 
+// 이미지파일경로 설정
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, '../public/asset/img/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '.' + file.mimetype.split('/')[1])
+    }
+});
 
+const upload = multer({ storage: storage });
 
+// 이미지 저장
+router.post('/upload', upload.single('image'), (req, res) => {
+    console.log(req.file);
+    if (req.file) {
+      res.json({ imageUrl: `../public/asset/img/${req.file.filename}` });
+    } else {
+      res.status(400).send('Error uploading file.');
+    }
+  });
 module.exports = router;

@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>가게정보</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/admin3.css">
-</head>
-<body>
-    <!-- Header -->
-    <header>
-        <h1>가게 정보</h1>
-    </header>
+{% extends 'm_layout.html' %}
 
-
-
+{% block content %}
     <!-- Body --> 
     <div class="main-container">
         <table class="info-table">
@@ -56,17 +42,18 @@
                 </tr>
 
                 <tr>
-                    <output>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                        <th></th>
-                    </output>
+                    {% for i in list %}
+                    <tr>
+                        <th>{{i.menu_seq}}</th>
+                        <th>{{i.menu_name}}</th>
+                        <th>{{i.menu_price}}</th>
+                        <th>{{i.menu_desc}}</th>
+                        <th>{{i.menu_type}}</th>
+                        <th>{{i.menu_option}}</th>
+                        <th>{{i.menu_category}}</th>
+                        <th>{{i.menu_ingredient_tag}}</th>
+                    </tr>
+                    {% endfor %}
                     <th>
                         <button>수정</button>
                         <button>삭제</button>
@@ -76,11 +63,4 @@
             </table>
         </div>
     </div>
-    <!-- Footer -->
-    <!-- <footer>
-        <p>Footer content goes here.</p>
-    </footer> -->
-</body>
-
-</body>
-</html>
+    {% endblock %}

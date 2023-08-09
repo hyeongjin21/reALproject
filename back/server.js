@@ -4,16 +4,24 @@ const bodyParser = require('body-parser');
 const nunjucks = require('nunjucks');
 const session = require('express-session');
 const fileStore = require('session-file-store')(session);
+const http = require('http');
+const u_url = require('url');
+const cors = require('cors');
+const morgan = require('morgan');
+// const multer = require('multer');
+// const path = require('path');
+
+// Router
 const indexRouter = require('./routes');
 const userRouter = require('./routes/user')
 const searchRouter = require('./routes/search')
 const managerRouter = require('./routes/manager')
-const http = require('http');
-const u_url = require('url');
-const cors = require('cors')
+const imgRouter = require('./routes/img')
 
 app.use(express.json()) // json 변환에 필요한것
 app.use(cors()) // cors 때문에 필요한것
+app.use(morgan('dev'))
+app.use('/', imgRouter)
 
 // 1. port 번호 설정
 app.set('port',process.env.PORT||3333);
@@ -55,3 +63,4 @@ app.use('/manager',managerRouter);
 app.listen(app.get('port'),()=>{
     console.log(app.get('port')+'번 포트에서 대기 중..')
 });
+
