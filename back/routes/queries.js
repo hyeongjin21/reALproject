@@ -43,24 +43,9 @@ module.exports = {
     shopLocationSearch : `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_addr1, lat, lng FROM al_shop where shop_name like ?`,
 
     // 리뷰 전체 검색
-    reviewAll : `select * from al_review`
-
-
-
-
-
-
-
-
-
-
-
-}
-
-
-    insertShop: `INSERT INTO al_shop (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner) VALUES(?, ?, ?, ?, ?, ?)`,
-    // (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner) 
-
+    reviewAll : `select * from al_review`,
+ 
     // 메뉴 등록하기
     insertMenu:'INSERT INTO al_menu (shop_seq, menu_name, menu_price, menu_desc, menu_type, menu_options, menu_category, menu_ingredient_tag, menu_img) VALUES(?,?,?,?,?,?,?,?,?)'
+
 }
