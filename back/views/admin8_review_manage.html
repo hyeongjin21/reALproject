@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>리뷰관리</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/admin8.css">
+    <link rel="stylesheet" href="/assets/css/admin8.css">
 </head>
 <body>
     <!-- Header -->
@@ -14,26 +14,29 @@
     </header>
 
     <!-- Body -->
+    <form action="/manager/reviewSearch">
     <div class="search-section">
             <select name="category">
-                <option value="카테고리1">리뷰</option>
-                <option value="카테고리2">로</option>
-                <option value="카테고리3">이행시</option>
-                <option value="카테고리4">리로디드</option>
-                <option value="카테고리5">뷰웅뷰웅~</option>
+                <option value="카테고리1">전체</option>
+                <option value="카테고리2">글쓴이</option>
+                <option value="카테고리3">내용</option>
             <!-- 원하는 만큼 카테고리를 추가할 수 있습니다 -->
         </select>
-        <input type="text" placeholder="검색어를 입력해주세요">
+        <input type="text" name = "review" placeholder="검색어를 입력해주세요">
         
         <a href="">
-            <button>검색</button>
+            <button type="submit">검색</button>
         </a>
     </div>
+    </form>
+
     <div class="table-container">
         <table>
             <tr>
+                <th>일련번호</th>
+                <th>가게명</th>
                 <th>메뉴이름</th>
-                <th>작성자</th>
+                <th>작성자아이디</th>
                 <th>작성날짜</th>
                 <th>내용</th>
                 <th></th>
@@ -43,26 +46,11 @@
                 <th></th>
                 <th></th>
                 <th></th>
-                <th>
-                    <button>배포</button>
-                    <button>수정</button>
-                    <button>삭제</button>
-                </th>
-            </tr>
-            <tr>
-            </tr>
-            <tr>
-                <th></th>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th>
-                    <button>배포</button>
-                    <button>수정</button>
                     <button>삭제</button>
                 </th>
-            </tr>
-            <tr>
             </tr>
         </table>
     </div>
