@@ -1,24 +1,23 @@
+{% extends 'm_layout.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block content %}
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>등록가게</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/admin2.css">
 </head>
-<body>
+<div style="flex-grow: 9;">
     <!-- Header -->
-    <header>
+    <header style="display: flex; justify-content: center; flex-direction: row;">
         <h1>등록 가게</h1>
     </header>
 
     <!-- Body -->
     <form action="/manager/admin2_S_userpage">
         <div class="search-section">
-        <input type="text" name = 'shopSearch' placeholder="검색어를 입력해주세요">
-        <input type="submit" value="검색">
+            <input type="text" name='shopSearch' placeholder="검색어를 입력해주세요">
+            <input type="submit" value="검색">
         </div>
     </form>
 
@@ -39,7 +38,11 @@
             {% for i in list %}
             <tr>
                 <th>{{i.rownum}}</th>
-                <th>{{i.shop_name}}</th>
+                <th>
+                    <a href="/admin4_menu_register?shop_seq={{i.shop_seq}}">
+                        {{i.shop_name}}
+                    </a>
+                </th>
                 <th>{{i.shop_bno}}</th>
                 <th>{{i.shop_addr1}}</th>
                 <th>{{i.shop_addr2}}</th>
@@ -49,13 +52,11 @@
             </tr>
             {% endfor %}
 
-        
+
             <tr>
                 <td colspan="8">가게 정보 : 카페 사업자 + 메뉴에 대한 정보</td>
             </tr>
         </table>
     </div>
-
-
-</body>
-</html>
+</div>>
+{% endblock %}

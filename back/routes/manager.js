@@ -9,7 +9,7 @@ router.get('/',(req,res)=>{
     let userSearch = "%" + req.query.userSearch + "%"
     console.log(userSearch)
     if(userSearch == ''){
-        conn.query(queries.userAll,[],(err, rows)=>{
+        conn.query(queries.userAll,(err, rows)=>{
             if(rows.length > 0){
                 res.render('admin1_userpage',{list:rows})
             }
@@ -31,6 +31,7 @@ router.get('/admin2_S_userpage',(req,res)=>{
     if(shopSearch == ''){
         conn.query(queries.shopAll,[],(err, rows)=>{
             if(rows.length > 0){
+                console.log("tlqkfshadk : ",rows)
                 res.render('admin2_S_userpage',{list:rows})
             }
         })
@@ -47,7 +48,9 @@ router.get('/admin2_S_userpage',(req,res)=>{
 // 카페관리 - 가게정보수정
 
 // 카페관리 - 메뉴 등록
-
+// router.post('/shop_register', (req, res) => {
+//     let {  } = req.body
+// })
 // 카페관리 - 메뉴 수정
 
 
@@ -57,7 +60,6 @@ router.post('/shopRegister', (req, res) => {
 
     if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '')
     {
-        // console.log("12312312");
         res.send(`<script>
         alert("빈칸을 빠짐없이 입력해주세요");
         location.href='http://localhost:3333/admin6_shop_register'

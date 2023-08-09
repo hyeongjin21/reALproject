@@ -12,26 +12,19 @@ const GOOGLE_REDIRECT_URI  = 'http://localhost:3333/login/redirect';
 // 회원 가입
 router.post('/join', (req, res) => {
     let { name, id, pw, pw2, tel, nick } = req.body
-    if(name == '' || id == ''||pw ==''||tel==''||nick=='')
-    {
-        res.send('<script>alert("빈칸을 입력해주세요");</script>')
-        res.redirect('/join_user')
+    if (pw == pw2) {
+        conn.query(queries.joinUser, [id, pw, name, nick, tel], (err, rows) => {
+            console.log(rows)
+            if (rows.affectedRows > 0) {
+                res.send(`<script>alert("환영합니다.${name}님!");location.href='http://localhost:3333'</script>`)
+            }
+            else {
+                res.send('<script>alert("회원가입에 실패하였습니다.");location.href="http://localhost:3333/join_user"</script>')
+            }
+        })
     }
-    else{
-        if (pw == pw2) {
-            conn.query(queries.joinUser, [id, pw, name, nick, tel], (err, rows) => {
-                console.log(rows)
-                if (rows.affectedRows > 0) {
-                    res.send(`<script>alert("환영합니다.${name}님!");location.href='http://localhost:3333'</script>`)
-                }
-                else {
-                    res.send('<script>alert("회원가입에 실패하였습니다.");location.href="http://localhost:3333/join_user"</script>')
-                }
-            })
-        }
-        else {
-            res.send('<script>alert("비밀번호가 다릅니다.");location.href="http://localhost:3333/join_user"</script>')
-        }
+    else {
+        res.send('<script>alert("비밀번호가 다릅니다.");location.href="http://localhost:3333/join_user"</script>')
     }
 
 

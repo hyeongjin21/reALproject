@@ -5,14 +5,15 @@
     <!-- Header -->
     <header style="display: flex; justify-content: center; flex-direction: row;">
         <div>사용자</div>
+    <link rel="stylesheet" href="assets/css/admin1.css">
     </header>
 
     <!-- Body -->
     <form action="/manager">
-    <div class="search-section">
-        <input type="text" name = 'userSearch' placeholder="검색어를 입력해주세요">
-        <input type="submit" value="검색">
-    </div>
+        <div class="search-section">
+            <input type="text" name='userSearch' placeholder="검색어를 입력해주세요">
+            <input type="submit" value="검색">
+        </div>
     </form>
 
     <div class="table-container">
@@ -38,13 +39,8 @@
                 <th>{{i.created_at}}</th>
             </tr>
             {% endfor %}
-
-            <tr>
-                <td colspan="7">사용자 정보 : 우리 서비스 이용하는 사용자들(일반고객)의 정보</td>
-            </tr>
         </table>
     </div>
-
 
 </div>
 {% endblock %}
