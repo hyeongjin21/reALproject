@@ -13,6 +13,9 @@ router.get('/', (req, res) => {
                 // res.json({menu:rows})
                 res.render('search', { list: rows })
             }
+            else{
+                res.render('search')
+            }
         })
     }
     else {
@@ -20,6 +23,9 @@ router.get('/', (req, res) => {
             if (rows.length > 0) {
                 // res.json({menu:rows})
                 res.render('search', { list: rows })
+            }
+            else{
+                res.render('search')
             }
         })
     }
@@ -34,25 +40,37 @@ router.get('/get-coordinate',(req,res)=>{
 })
 
 router.get('/getMenu',(req,res)=>{
-    let category = req.query.category
+    console.log('getMenu called')
+    console.log('search.getmenu req:',req.query)
+    let getCategory = req.query.category
     let searchCategory = req.query.category
-    let menu = "%" + req.query.inputmenu + "%"
-    if (category == 'all') {
-        conn.query(queries.searchMenu, [menu], (err, rows) => {
+    let getMenu = "%" + req.query.inputmenu + "%"
+    if (getCategory == 'all') {
+        conn.query(queries.searchMenu, [getMenu], (err, rows) => {
             if (rows.length > 0) {
-                res.json({menu:rows})
-                res.render('search', { list: rows })
+                // console.log('query.rows',rows[0].shop_name)
+                res.json({list:rows})
+                // res.render('search')
             }
+            else{
+                res.render('search')
+            }
+            // res.render('search')
         })
     }
     else {
-        conn.query(queries.searchMenuCategory, [menu, searchCategory], (err, rows) => {
+        conn.query(queries.searchMenuCategory, [getMenu, searchCategory], (err, rows) => {
             if (rows.length > 0) {
-                res.json({menu:rows})
-                res.render('search', { list: rows })
+                res.json({list:rows})
+                // res.render('search')
             }
+            else{
+                res.render('search')
+            }
+            // res.render('search')
         })
     }
+    // res.json({ category : getCategory , menu : getMenu})
 })
 
 module.exports = router; 
