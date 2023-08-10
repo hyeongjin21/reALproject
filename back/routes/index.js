@@ -51,6 +51,11 @@ router.get('/ranking',(req,res)=>{
     res.render('ranking')
 })
 
+
+/////////////////////////////관리자페이지/////////////////////////////////
+
+
+
 // 회원관리 - 사용자 삭제
 router.post('/admin1_userpage',(req,res)=>{
     res.render('admin1_userpage')
@@ -66,6 +71,11 @@ router.get('/admin2_S_userpage',(req,res)=>{
             res.render('admin2_S_userpage', {list : result})
         }
     })
+})
+
+// 회원관리 - 가게 수정버튼 -> 수정페이지로 이동
+router.post('/shopModify',(req,res)=>{
+    res.render('shopModify')
 })
 
 // 카페관리 - 가게 정보 수정 페이지로 이동

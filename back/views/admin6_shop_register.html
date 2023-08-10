@@ -17,47 +17,54 @@
 
 
 
-    <!-- Body -->
-    <form method='post' action="/manager/shopRegister">
-        <div class="main-container">
-            <table class="info-table">
-                <tr>
-                    <th>가게명</th>
-                    <td>
-                        <input type="text" name="shopname">
-                    </td>
-                </tr>
-                <tr>
-                    <th>사업자번호</th>
-                    <td>
-                        <input type="text" name="bno">
-                    </td>
-                </tr>
-                <tr>
-                    <th>사업장 주소</th>
-                    <td>
-                        <input type="text" name="addr1">
-                    </td>
-                </tr>
-                <tr>
-                    <th>상세주소</th>
-                    <td>
-                        <input type="text" name="addr2">
-                    </td>
-                </tr>
-                <tr>
-                    <th>전화번호</th>
-                    <td>
-                        <input type="text" name="tel">
-                    </td>
-                </tr>
-                <tr>
-                    <th>대표자명</th>
-                    <td>
-                        <input type="text" name="ownername">
-                    </td>
-            </table>
-        </div>
+    <!-- Body --> 
+    <form method='post' action="/img/shop_register" encType="multipart/form-data">
+    <div class="main-container">
+        <table class="info-table">
+            <tr>
+                <th>가게명</th>
+                <td>
+                    <input type="text" name="shopname" >
+                </td>
+            </tr>
+            <tr>
+                <th>사업자번호</th>
+                <td>
+                    <input type="text" name="bno" >
+                </td>
+            </tr>
+            <tr>
+                <th>사업장 주소</th>
+                <td>
+                    <input type="text" name="addr1" >
+                </td>
+            </tr>
+            <tr>
+                <th>상세주소</th>
+                <td>
+                    <input type="text" name="addr2" >
+                </td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td>
+                    <input type="text" name="tel" >
+                </td>
+            </tr>
+            <tr>
+                <th>대표자명</th>
+                <td>
+                    <input type="text" name="ownername" >
+                </td>
+            </tr>
+            <tr>
+                <th>가게이미지등록</th>
+                <td>
+                        <input type="file" id="profileFile" name="shop_img" accept="image/*">
+                </td>
+            </tr>
+        </table>
+    </div>
         <div class="table-container">
             <table>
                 <tr>
