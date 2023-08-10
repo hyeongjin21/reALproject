@@ -6,6 +6,7 @@
     <title>등록가게</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/admin2.css">
+    <link rel="stylesheet" href="assets/css/paginationTable.css">
 </head>
 <div style="flex-grow: 9;">
     <!-- Header -->
@@ -33,34 +34,45 @@
                 <th>전화번호</th>
                 <th>대표자명</th>
                 <th>등록일자</th>
-                <th>가게 삭제</th>
+                <th>수정</th>
+                <th>삭제</th>
             </tr>
 
         <form method="post" action="/manager/shopDelete">
-            {% for i in list %}
-            <tr>
-                <th>{{i.rownum}}</th>
-                <th>
-                    <a href="/admin4_menu_register?shop_seq={{i.shop_seq}}">
-                        {{i.shop_name}}
-                    </a>
-                </th>
-                <th>{{i.shop_bno}}</th>
-                <th>{{i.shop_addr1}}</th>
-                <th>{{i.shop_addr2}}</th>
-                <th>{{i.shop_tel}}</th>
-                <th>{{i.shop_owner}}</th>
-                <th>{{i.created_at}}</th>
-                <th>
-                    <button type="button" onclick="deleteShopRow({{i.shop_seq}})">삭제</button>
-                </th>
-            </tr>
-            {% endfor %}
-        </form>
+            <tbody id="table-one">
+
+                {% for i in list %}
+                <tr>
+                    <td>{{i.rownum}}</td>
+                    <td>
+                        <a href="/admin4_menu_register?shop_seq={{i.shop_seq}}">
+                            {{i.shop_name}}
+                        </a>
+                    </td>
+                    <td>{{i.shop_bno}}</td>
+                    <td>{{i.shop_addr1}}</td>
+                    <td>{{i.shop_addr2}}</td>
+                    <td>{{i.shop_tel}}</td>
+                    <td>{{i.shop_owner}}</td>
+                    <td>{{i.created_at}}</td>
+                    <td>
+                        <button type="button">수정</button>
+                    </td>
+                    <td>
+                        <button type="button" onclick="deleteShopRow({{i.shop_seq}})">삭제</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            </form>
 
 
         </table>
     </div>
+    <script src="./assets/js/paginationTable.js"></script>
+    <script>    
+        Paginator.init({tableID:"table-one", rows:5, headers:2, navRange:5,navStyle:'default'});
+    </script>
 
     <script>
             let refreshList = () => {
@@ -89,6 +101,6 @@
                 }
             }
         </script>
-    
+       
 </div>>
 {% endblock %}
