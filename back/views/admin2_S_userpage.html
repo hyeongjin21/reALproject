@@ -6,7 +6,7 @@
     <title>등록가게</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/admin2.css">
-    <link rel="stylesheet" href="assets/css/paginationTable.css">
+    <link rel="stylesheet" href="/assets/css/pagenationTable.css">
 </head>
 <div style="flex-grow: 9;">
     <!-- Header -->
@@ -24,7 +24,7 @@
 
 
     <div class="table-container">
-        <table>
+        <table id="table-one">
             <tr>
                 <th>일련번호</th>
                 <th>사업자명</th>
@@ -39,7 +39,7 @@
             </tr>
 
         <form method="post" action="/manager/shopDelete">
-            <tbody id="table-one">
+            <tbody>
 
                 {% for i in list %}
                 <tr>
@@ -69,7 +69,7 @@
 
         </table>
     </div>
-    <script src="./assets/js/paginationTable.js"></script>
+    <script src="./assets/js/pagenationTable.js"></script>
     <script>    
         Paginator.init({tableID:"table-one", rows:5, headers:2, navRange:5,navStyle:'default'});
     </script>
