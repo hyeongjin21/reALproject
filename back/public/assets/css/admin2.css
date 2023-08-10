@@ -18,7 +18,20 @@ header {
     justify-content: center;
     position: relative;
     top: 100px; */
+
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
 }
+
+.user {
+    font-size: 32px;
+    font-weight: bold; /* 글씨를 굵게 설정 */
+
+}
+
+
 
 /* Body 스타일링 */
 body {

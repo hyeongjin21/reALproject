@@ -36,6 +36,9 @@ module.exports = {
     // 가게 모두 가져오기
     shopAll: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_seq, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop`,
 
+    // 가게 수정
+    shopModify : `update al_shop set shop_name='주리스카페', shop_bno='123-123', shop_addr1='여수', shop_addr2='바다가보이는마을', shop_tel='010-111', shop_owner='이주리' where shop_seq=?`,
+
     // 가게 검색
     shopNameSearch: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_seq, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop where shop_name like ?`,
     
