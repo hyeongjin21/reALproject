@@ -7,8 +7,11 @@ module.exports = {
   searchId: `select * from al_user where user_id = ? and user_pw = ?`,
 
   // 메뉴정보 전체 출력
-  menuInfoAll: `select *from al_menu`,
+  menuInfoAll: `select * from al_menu`,
 
+  // 메뉴 전체 검색
+  searchMenuAll : ``,
+  
   //메뉴검색 & 카테고리(전체 선택)
   searchMenu: `select * from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.menu_name like ?`,
 
@@ -33,40 +36,6 @@ module.exports = {
   // 회원 관리 - 사용자 삭제
   userDelete: `delete from al_user where user_seq = ?`,
 
-    // 가게 모두 가져오기
-    shopAll: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_seq, shop_img, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop`,
-
-    // 가게 수정
-    shopModify : `update al_shop set shop_name=?, shop_bno=?, shop_addr1=?, shop_addr2=?, shop_tel=?, shop_owner=? where shop_seq=?`,
-
-    // 가게 검색
-    shopNameSearch: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_seq, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop where shop_name like ?`,
-    
-    // 가게 삭제
-    shopDelete : `delete from al_shop where shop_seq = ?`,
-    
-    // 메뉴 등록하기
-    insertMenu:'INSERT INTO al_menu (shop_seq, menu_name, menu_price, menu_desc, menu_type, menu_options, menu_category, menu_ingredient_tag, menu_img) VALUES(?,?,?,?,?,?,?,?,?)',
-    
-    
-    
-    //// 카페관리 ////
-    // 가게 등록하기
-    insertShop : `INSERT INTO al_shop (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner,shop_img) VALUES(?, ?, ?, ?, ?, ?, ?)`,
-    
-    // 가게 위치 정보 가져오기
-    shopLocationAll : `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_addr1, lat, lng FROM al_shop `,
-    
-    // 가게 위치 검색
-    shopLocationSearch : `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_addr1, lat, lng FROM al_shop where shop_name like ?`,
-
-  // 가게 삭제
-  shopDelete: `delete from al_shop where shop_seq = ?`,
-
-  // 메뉴 등록하기
-  insertMenu: 'INSERT INTO al_menu (shop_seq, menu_name, menu_price, menu_desc, menu_type, menu_options, menu_category, menu_ingredient_tag, menu_img) VALUES(?,?,?,?,?,?,?,?,?)',
-
-
 
   //// 카페관리 ////
   // 가게 등록하기
@@ -77,20 +46,24 @@ module.exports = {
 
   // 가게 위치 검색
   shopLocationSearch: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_addr1, lat, lng FROM al_shop where shop_name like ?`,
-
-  // 가게 등록하기
-  insertShop: `INSERT INTO al_shop (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner) VALUES(?, ?, ?, ?, ?, ?)`,
   // (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner) 
 
   // 메뉴 등록하기
   insertMenu: 'INSERT INTO al_menu (shop_seq, menu_name, menu_price, menu_desc, menu_type, menu_options, menu_category, menu_ingredient_tag, menu_img) VALUES(?,?,?,?,?,?,?,?,?)',
 
-  // 가게 위치 정보 가져오기
-  shopLocationAll: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_addr1, lat, lng FROM al_shop `,
+  // 가게 모두 가져오기
+  shopAll: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_seq, shop_img, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop`,
 
-  // 가게 위치 검색
-  shopLocationSearch: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_addr1, lat, lng FROM al_shop where shop_name like ?`,
+  // 가게 수정
+  shopModify: `update al_shop set shop_name=?, shop_bno=?, shop_addr1=?, shop_addr2=?, shop_tel=?, shop_owner=? where shop_seq=?`,
 
+  // 가게 검색
+  shopNameSearch: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_seq, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop where shop_name like ?`,
+
+  // 가게 삭제
+  shopDelete: `delete from al_shop where shop_seq = ?`,
+
+  selectLocationAll : `SELECT lat, lng from al_shop`,
   // 리뷰 관리 - 전체 검색
   reviewAll: `select row_number() over (order by c.created_at) as rownum, 
 	a.shop_name, b.menu_name, c.user_id, c.created_at, c.review_content, c.review_seq

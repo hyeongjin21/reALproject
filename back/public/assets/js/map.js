@@ -95,11 +95,20 @@ fetch(gMenu, {
     .then(res => {
         console.log('fetch.res:', res.list)
         menuResult = res.list
-        printMenu();
+        printMenu1(menuResult);
     })
     .catch((error) => {
         console.log("fetch err")
     })
+
+const printMenu1 = (menuResult) => {
+    const menuWrap = document.getElementById('menu_wrap')
+    for ( i=0; i < menuResult.length; i++) {
+        console.log(menuResult[i].menu_name)
+        itemEl = `<span>${menuResult[i].menu_name} </span>`;
+        menuWrap.appendChild(itemEl)
+    }
+}
 
 const printMenu = () => {
     console.log('실행됨?')
