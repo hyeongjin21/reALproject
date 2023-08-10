@@ -40,9 +40,9 @@ nav li:nth-child(4) a {
 
 /* Footer 스타일 */
 footer {
-    background-color: #ac7c15; /* 커피 색상 배경 */
+    /* background-color: #ac7c15; 커피 색상 배경 */
     color: black; /* 텍스트 색상을 검은색으로 변경 */
-    padding: 10px;
+    /* padding: 10px; */
     text-align: center;
     height: 15vh; /* 푸터 높이를 뷰포트 높이의 15%로 설정 */
     margin-top: 20%; /* div와 nav 태그 간격 조정 */
@@ -57,14 +57,14 @@ main h2 {
 nav {
     font-family: 'Orbit', sans-serif;
     display: inline-block;
-    width: 200px;
+    /* width: 200px; */
     height: 500px;
-    border: 5px solid #0a0a09;
-    padding: 10px;
+    /* border: 5px solid #0a0a09; */
+    /* padding: 10px; */
     /* margin-right: 10px; 오른쪽으로 10px 이동 */
     border-radius: 20px;
     font-size: 16px;
-    margin: auto;
+    /* margin: auto; */
     text-align: center;
     
     /* position: relative; */

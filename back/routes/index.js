@@ -47,6 +47,15 @@ router.get('/admin1_userpage',(req,res)=>{
     })
 })
 
+router.get('/ranking',(req,res)=>{
+    res.render('ranking')
+})
+
+// 회원관리 - 사용자 삭제
+router.post('/admin1_userpage',(req,res)=>{
+    res.render('admin1_userpage')
+})
+
 // 회원관리 - 등록가게 페이지로 이동
 router.get('/admin2_S_userpage',(req,res)=>{
     const shopInfo = queries.shopAll
@@ -70,6 +79,16 @@ router.get('/admin3_S_info',(req,res)=>{
     //     }
     // })
     res.render('admin3_S_info')
+})
+
+// 회원관리 - 사용자 삭제
+router.post('/admin2_S_userpage',(req,res)=>{
+    res.render('admin2_S_userpage')
+})
+
+// 회원관리 - 사용자 삭제
+router.post('/admin2_S_userpage',(req,res)=>{
+    res.render('admin2_S_userpage')
 })
 
 // 카페관리 - 가게 메뉴 등록 페이지로 이동

@@ -23,6 +23,20 @@ router.get('/',(req,res)=>{
     }
 })
 
+// 회원관리 - 사용자 삭제
+router.post('/userDelete', (req, res) => {
+    let deleteId = req.body.seq
+    console.log(deleteId)
+
+    conn.query(queries.userDelete,[deleteId],(err, rows)=>{
+        // console.log(rows)
+        res.send(`<script>alert("삭제되었습니다.");</script>`)
+    })
+
+})
+
+
+
 // 회원관리 - 등록가게 라우터
 router.get('/admin2_S_userpage',(req,res)=>{
     let shopSearch = "%" + req.query.shopSearch + "%"
@@ -42,6 +56,17 @@ router.get('/admin2_S_userpage',(req,res)=>{
             }       
         })
     }
+})
+
+// 회원관리 - 가게 삭제
+router.post('/shopDelete', (req, res) => {
+    let deleteshop = req.body.seq
+    // console.log(deleteshop)
+
+    conn.query(queries.shopDelete,[deleteshop],(err, rows)=>{
+        // console.log(rows)
+        res.send(`<script>alert("삭제되었습니다.");</script>`)
+    })
 })
 
 
@@ -132,16 +157,12 @@ router.get('/reviewSearch', (req, res) => {
 router.post('/reviewDelete', (req, res) => {
     let deleteSeq = req.body.seq
     // console.log(deleteSeq)
-    // let rs = confirm("삭제하시겠습니까?")
-    // if(rs == true){
+
     conn.query(queries.reviewDelete,[deleteSeq],(err, rows)=>{
         // console.log(rows)
-        // res.send(`<script>alert("삭제되었습니다.");location.href='http://localhost:3333/admin8_review_manage'</script>`)
-        // res.send(`<script>alert("삭제되었습니다.");location.href='http://localhost:3333/admin8_review_manage'</script>`)
-        
         res.send(`<script>alert("삭제되었습니다.");</script>`)
     })
-// }
+
 })
 
 

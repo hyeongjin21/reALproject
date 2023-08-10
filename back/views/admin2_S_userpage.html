@@ -6,6 +6,7 @@
     <title>등록가게</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/admin2.css">
+    <link rel="stylesheet" href="assets/css/paginationTable.css">
 </head>
 <div style="flex-grow: 9;">
     <!-- Header -->
@@ -34,8 +35,15 @@
                 <th>전화번호</th>
                 <th>대표자명</th>
                 <th>등록일자</th>
-                <th></th>
+                <th>수정</th>
+                <th>삭제</th>
             </tr>
+
+        <form method="post" action="/manager/shopDelete">
+            <tbody id="table-one">
+
+        <form method="post" action="/manager/shopDelete">
+            <tbody id="table-one">
 
             {% for i in list %}
             <tr>
@@ -45,25 +53,50 @@
                         {{i.shop_name}}
                     </a>
                 </th>
-                <td>{{i.shop_bno}}</td>
-                <td>{{i.shop_addr1}}</td>
-                <td>{{i.shop_addr2}}</td>
-                <td>{{i.shop_tel}}</td>
-                <td>{{i.shop_owner}}</td>
-                <td>{{i.created_at}}</td>
-                <td>
-                    <button>수정</button>
-                    <button>삭제</button>
-                </td>
-
+                <th>{{i.shop_bno}}</th>
+                <th>{{i.shop_addr1}}</th>
+                <th>{{i.shop_addr2}}</th>
+                <th>{{i.shop_tel}}</th>
+                <th>{{i.shop_owner}}</th>
+                <th>{{i.created_at}}</th>
             </tr>
             {% endfor %}
 
-        
-            <tr>
-                <td colspan="8">가게 정보 : 카페 사업자 + 메뉴에 대한 정보</td>
-            </tr>
+
         </table>
     </div>
+    <script src="./assets/js/paginationTable.js"></script>
+    <script>    
+        Paginator.init({tableID:"table-one", rows:5, headers:2, navRange:5,navStyle:'default'});
+    </script>
+
+    <script>
+            let refreshList = () => {
+                location.reload()
+            }
+            let url = "/manager/shopDelete"
+            const deleteShopRow = (shop_seq) => {
+                let rs = confirm("삭제하시겠습니까?")
+                if (rs == true) {
+                    fetch(url, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            seq : shop_seq
+    
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(res => {})
+    
+    
+                    alert("삭제되었습니다.");
+                    refreshList();
+                }
+            }
+        </script>
+       
 </div>>
 {% endblock %}

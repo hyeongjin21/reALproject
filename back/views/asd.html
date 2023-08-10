@@ -27,8 +27,9 @@
     <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#712cf9">
 
-    <link href="/assets/css/hf.css" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/login.css">
+    <!-- Custom styles for this template -->
+    <link href="/css/bsHeader.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/join.css">
 </head>
 
 <body>
@@ -155,53 +156,67 @@
                 </ul>
             </header>
         </div>
-        <div class="main_container">
-            <div id="con">
-                <div id="login">
-                    <div id="login_form">
-                        <!-- 로그인 폼 -->
-                        <form action="">
-                            <h3 class="login" style="letter-spacing: -1px;"> AFTER LUNCH </h3>
-                            <hr>
-                            <label for="">
-                                <!-- ID -->
-                                <p style="text-align: left; font: size 12px; color:#666"> 아이디 </p>
-                                <input type="text" placeholder="아이디를 입력하세요" class="size">
-                            </label>
 
-                            <label for="">
-                                <!-- ID -->
-                                <p style="text-align: left; font: size 12px; color:#666"> 비밀번호 </p>
-                                <input type="text" placeholder="비밀번호를 입력하세요" class="size">
-                            </label>
-
-                            <p>
-                                <input type="submit" value="로그인" class="btn">
-                            </p>
-                        </form>
+        <!-- 본문 -->
+        <div class="main-container">
+            <div id="join">
+                <div id="join_form">
+                    <!-- 일반 회원가입 폼 -->
+                    <form action="">
+                        <h3 class="login" style="letter-spacing: -1px;"> 회원가입 </h3>
                         <hr>
-                        <p class="find">
-                            <span><a href="">아이디 찾기</a></span>
-                            <span><a href="">비밀번호 찾기</a></span>
-                            <span><a href="">회원가입</a></span>
+
+                        <!-- NAME -->
+                        <label for="">
+                            <p style="text-align: left; font: size 12px; color:#666"> 이름 </p>
+                            <input type="text" placeholder="이름을 입력하세요" class="size">
+                        </label>
+
+
+                        <!-- ID -->
+                        <label for="">
+                            <p style="text-align: left; font: size 12px; color:#666"> 아이디 </p>
+                            <input type="text" placeholder="아이디를 입력하세요" class="size" id="id_len">
+                            <input type="button" value="중복확인" class="db_check" style="text-align: right;">
+                        </label>
+
+                        <!-- PW -->
+                        <label for="">
+                            <p style="text-align: left; font: size 12px; color:#666"> 비밀번호 </p>
+                            <input type="text" placeholder="비밀번호를 입력하세요" class="size">
+                        </label>
+
+                        <!-- NICKNAME -->
+                        <label for="">
+                            <p style="text-align: left; font: size 12px; color:#666"> 닉네임 </p>
+                            <input type="text" placeholder="닉네임을 입력하세요" class="size">
+                        </label>
+
+
+                        <!-- RE_PW -->
+                        <label for="">
+                            <p style="text-align: left; font: size 12px; color:#666"> 비밀번호 확인 </p>
+                            <input type="text" placeholder="비밀번호를 다시 입력하세요" class="size">
+                        </label>
+
+                        <!-- TEL -->
+                        <label for="">
+                            <p style="text-align: left; font: size 12px; color:#666"> 전화번호 </p>
+                            <input type="text" placeholder="전화번호를 입력하세요" class="size">
+                        </label>
+
+                        <p>
+                            <input type="submit" value="가입하기" class="btn">
                         </p>
-                    </div>
+                    </form>
+                    <hr>
+                    <p class="find">
+                        <span><a href="">HOME</a></span>
+                    </p>
                 </div>
             </div>
-
-            <ul>
-                <li onclick="kakaoLogin();">
-                    <a href="javascript:void(0)">
-                        <span>카카오 로그인</span>
-                    </a>
-                </li>
-                <li onclick="kakaoLogout();">
-                    <a href="javascript:void(0)">
-                        <span>카카오 로그아웃</span>
-                    </a>
-                </li>
-            </ul>
         </div>
+
 
         <!-- 푸터 -->
         <div class="container">
@@ -220,13 +235,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
             crossorigin="anonymous"></script>
-
-        <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-        <script>
-            Kakao.init('c1b7cc23c48477786fcb69b68f5862e5'); //발급받은 키 중 javascript키를 사용해준다.
-        //console.log(Kakao.isInitialized()); // sdk초기화여부판단
-        </script>
-        <script src="assets/js/click.js"></script>
 
 </body>
 

@@ -26,27 +26,53 @@
                 <th>닉네임</th>
                 <th>전화번호</th>
                 <th>가입일자</th>
-                <th></th>
+                <th>사용자 삭제</th>
             </tr>
 
+        <form method="post" action="/manager/userDelete">
             {% for i in list %}
             <tr>
-                <td>{{i.rownum}}</td>
-                <td>{{i.user_id}}</td>
-                <td>{{i.user_pw}}</td>
-                <td>{{i.user_name}}</td>
-                <td>{{i.user_nick}}</td>
-                <td>{{i.user_phone}}</td>
-                <td>{{i.created_at}}</td>
-                <td>
-                    <button>수정</button>
-                    <button>삭제</button>
-                </td>
-
+                <th>{{i.rownum}}</th>
+                <th>{{i.user_id}}</th>
+                <th>{{i.user_pw}}</th>
+                <th>{{i.user_name}}</th>
+                <th>{{i.user_nick}}</th>
+                <th>{{i.user_phone}}</th>
+                <th>{{i.created_at}}</th>
             </tr>
             {% endfor %}
-        </table>
-    </div>
+        </form>
+        
+    </table>
+</div>
 
+<script>
+    // document.getElementById("deleteRow").addEventListener("click", deleteRow);
+        let refreshList = () => {
+            location.reload()
+        }
+        let url = "/manager/userDelete"
+        const deleteUserRow = (user_seq) => {
+            let rs = confirm("삭제하시겠습니까?")
+            if (rs == true) {
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        seq : user_seq
+
+                    })
+                })
+                    .then(res => res.json())
+                    .then(res => {})
+
+
+                alert("삭제되었습니다.");
+                refreshList();
+            }
+        }
+    </script>
 </div>
 {% endblock %}
