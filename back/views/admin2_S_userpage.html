@@ -33,8 +33,10 @@
                 <th>전화번호</th>
                 <th>대표자명</th>
                 <th>등록일자</th>
+                <th>가게 삭제</th>
             </tr>
 
+        <form method="post" action="/manager/shopDelete">
             {% for i in list %}
             <tr>
                 <th>{{i.rownum}}</th>
@@ -49,14 +51,44 @@
                 <th>{{i.shop_tel}}</th>
                 <th>{{i.shop_owner}}</th>
                 <th>{{i.created_at}}</th>
+                <th>
+                    <button type="button" onclick="deleteShopRow({{i.shop_seq}})">삭제</button>
+                </th>
             </tr>
             {% endfor %}
+        </form>
 
 
-            <tr>
-                <td colspan="8">가게 정보 : 카페 사업자 + 메뉴에 대한 정보</td>
-            </tr>
         </table>
     </div>
+
+    <script>
+            let refreshList = () => {
+                location.reload()
+            }
+            let url = "/manager/shopDelete"
+            const deleteShopRow = (shop_seq) => {
+                let rs = confirm("삭제하시겠습니까?")
+                if (rs == true) {
+                    fetch(url, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            seq : shop_seq
+    
+                        })
+                    })
+                        .then(res => res.json())
+                        .then(res => {})
+    
+    
+                    alert("삭제되었습니다.");
+                    refreshList();
+                }
+            }
+        </script>
+    
 </div>>
 {% endblock %}
