@@ -38,6 +38,9 @@ module.exports = {
 
     // 가게 수정
     shopModify : `update al_shop set shop_name=?, shop_bno=?, shop_addr1=?, shop_addr2=?, shop_tel=?, shop_owner=? where shop_seq=?`,
+    
+    // 하나의 가게정보 가져오기
+    shopMenu: `SELECT * FROM al_menu where shop_seq = ? `,
 
     // 가게 검색
     shopNameSearch: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_seq, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop where shop_name like ?`,

@@ -1,66 +1,77 @@
 {% extends 'm_layout.html' %}
 
 {% block content %}
-    <!-- Body --> 
-    <div class="main-container">
-        <table class="info-table">
-            <tr>
-                <th>카페 이름</th>
-                <td>
-                    <output name="result">카페 이름이 출력</output>
-                </td>
-            </tr>
-            <tr>
-                <th>매장 사진</th>
-                <td>
-                    <img src="https://i.ibb.co/3493r17/cat.jpg" title="고양이" />
-                </td>
-                <td>
-                    <input type="file">
-                </td>
-            </tr>
-            <tr>
-                <th>카페 메뉴</th>
-                <td colspan="2">
-                    <button>메뉴 등록</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-        <div class="table-container">
-            <table>
-                <tr>
-                    <th>일련번호</th>
-                    <th>메뉴이름</th>
-                    <th>이미지등록여부</th>
-                    <th>메뉴가격</th>
-                    <th>제공형식</th>
-                    <th>추가옵션</th>
-                    <th>메뉴설명</th>
-                    <th>카테고리</th>
-                    <th>메뉴특징</th>
-                </tr>
+<!-- Body -->
+<div class="main-container">
+    <table class="info-table">
+        <tr>
+            <th>카페 이름</th>
+            <td>
+                {{name}}
+            </td>
+        </tr>
+        <tr>
+            <th>카페 메뉴</th>
+            <td colspan="2">
+                <button>메뉴 등록</button>
+            </td>
+        </tr>
+    </table>
+</div>
+<div class="table-container">
+    <table>
+        <tr>
+            <th>일련번호</th>
+            <th>메뉴이름</th>
+            <th>메뉴가격</th>
+            <th>제공형식</th>
+            <th>추가옵션</th>
+            <th>메뉴설명</th>
+            <th>카테고리</th>
+            <th>메뉴특징</th>
+            <th>이미지등록여부</th>
+        </tr>
 
-                <tr>
-                    {% for i in list %}
-                    <tr>
-                        <th>{{i.menu_seq}}</th>
-                        <th>{{i.menu_name}}</th>
-                        <th>{{i.menu_price}}</th>
-                        <th>{{i.menu_desc}}</th>
-                        <th>{{i.menu_type}}</th>
-                        <th>{{i.menu_option}}</th>
-                        <th>{{i.menu_category}}</th>
-                        <th>{{i.menu_ingredient_tag}}</th>
-                    </tr>
-                    {% endfor %}
-                    <th>
-                        <button>수정</button>
-                        <button>삭제</button>
-                    </th>
-                </tr>
-    
-            </table>
-        </div>
-    </div>
-    {% endblock %}
+        {% for i in list %}
+        <tr>
+            <th>{{i.menu_seq}}</th>
+            <th>{{i.menu_name}}</th>
+            <th>{{i.menu_price}}</th>
+            <th>{{i.menu_desc}}</th>
+            <th>{{i.menu_type}}</th>
+            <th>{{i.menu_option}}</th>
+            <th>{{i.menu_category}}</th>
+            <th>{{i.menu_ingredient_tag}}</th>
+            {% if i.menu_img != null %}
+            <th>있음</th>
+            {%else%}
+            <th>없음</th>
+            {%endif%}
+            <th>
+                <button onclick="menuUpdate({{ i }})">수정</button>
+                <button>삭제</button>
+            </th>
+        </tr>
+        {% endfor %}
+
+    </table>
+</div>
+</div>
+<script>
+    function menuUpdate() {
+        let url = ""
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                seq: user_s
+
+            })
+        })
+            .then(res => res.json())
+            .then(res => { })
+    }
+</script>
+{% endblock %}

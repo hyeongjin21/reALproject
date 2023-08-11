@@ -13,10 +13,8 @@
         <h1>가게 정보 수정</h1>
     </header>
 
-
-
     <!-- Body --> 
-    <form method='post' action="/manager/shopRegister">
+    <form method='post' action="/img/shopRegister" encType="multipart/form-data">
     <div class="main-container">
         <table class="info-table">
             <tr>
@@ -54,6 +52,13 @@
                 <td>
                     <input type="text" name="ownername" >
                 </td>
+            </tr>
+            <tr>
+                <th>가게이미지등록</th>
+                <td>
+                    <input type="file" id="profileFile" name="shop_img" accept="image/*">
+                </td>
+            </tr>
         </table>
     </div>
         <div class="table-container">

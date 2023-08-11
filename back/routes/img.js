@@ -90,5 +90,20 @@ router.post('/shop_register', uploads.single('shop_img'), (req, res) => {
         }
 })
 
-
+//가게이미지 등록수정
+router.post('/shopinfo_Modify', uploads.single('shop_img'),(req, res) => {
+    let { shopname, bno, addr1, addr2, tel, ownername} = req.body
+    if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '')
+        {
+            res.send(`<script>
+            alert("빈칸을 빠짐없이 입력해주세요");
+            location.href='http://localhost:3333/admin6_shop_register'
+            </script>`)
+            // res.render('/admin6_shop_register')
+        }else{
+            conn.query(queries.insertShop, [shopname, bno, addr1, addr2, tel, ownername, req.file.filename], (err, rows)=>{
+            res.send(`<script>alert("${shopname} 카페가 등록되었습니다.");location.href='http://localhost:3333/admin2_S_userpage'</script>`)
+            })
+        }
+})
 module.exports = router;

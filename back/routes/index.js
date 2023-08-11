@@ -80,14 +80,20 @@ router.post('/shopModify',(req,res)=>{
 
 // 카페관리 - 가게 정보 수정 페이지로 이동
 router.get('/admin3_S_info',(req,res)=>{
-    // const menuInfo = queries.menuInfoAll
-    // conn.query(menuInfo,(err,result)=>{
-    //     if(err){
-    //         console.log(err)
-    //     }else{
-    //         res.render('admin3_S_info', {list : result})
-    //     }
-    // })
+   // res.render('admin3_S_info')
+    const menuInfo = queries.shopMenu
+    console.log("reqqury:", req.query)
+    conn.query(menuInfo,[req.query.shop_seq],(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            console.log("result : ",result)
+            res.render('admin3_S_info', {
+                list : result,
+                name : req.query.shop_name
+            })
+        }
+    })
 })
 
 // 회원관리 - 사용자 삭제
