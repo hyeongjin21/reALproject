@@ -89,7 +89,8 @@ router.get('/admin3_S_info',(req,res)=>{
             console.log("result : ",result)
             res.render('admin3_S_info', {
                 list : result,
-                name : req.query.shop_name
+                //name : req.query.shop_name,
+                shop_seq : req.query.shop_seq
             })
         }
     })

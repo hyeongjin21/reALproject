@@ -26,7 +26,7 @@
                 <th>카페 메뉴</th>
                 <td colspan="2">
                     <button><a
-                            href="/admin4_menu_register?shop_seq={{i.shop_seq}}&shop_name={{i.shop_name}}">메뉴등록</a></button>
+                            href="/admin4_menu_register?shop_seq={{shop_seq}}">메뉴등록</a></button>
                 </td>
             </tr>
         </table>
@@ -72,7 +72,7 @@
     </div>
 
 
-    <script src="./assets/js/pagenationTable.js"></script>
+    <script src="/assets/js/pagenationTable.js"></script>
     <script>
         Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
     </script>
