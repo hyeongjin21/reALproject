@@ -73,6 +73,37 @@ router.post('/upload', upload.single('menu_img'), (req, res) => {
     })
 })
 
+// 회원관리 - 가게 수정버튼 -> 수정페이지로 이동
+// router.post('/shopInfo_Modify', (req, res) => {
+//     // console.log("{ tlqkf:}",req.body)
+//     // console.log("{ dlalkdgf:}",req.file.filename)
+//     // conn.query(queries.insertMenu,
+//     //     [
+//     //     req.body.shop_seq, 
+//     //     req.body.menu_name, 
+//     //     req.body.price,
+//     //     req.body.info, 
+//     //     req.body.temperature, 
+//     //     req.body.option, 
+//     //     req.body.category,
+//     //     req.body.tags, 
+//     //     req.file.filename
+//     // ],(err,result)=>{
+//     //     if(err){
+//     //         console.log(err)
+//     //     }else{
+//     //         conn.query(queries.menuInfoAll,(e,r)=>{
+
+//     //             console.log()
+//     //             console.log(r)
+//                 res.render('menu_list', {list: r})
+//     //             return;
+
+//     //         })
+//     //     }
+//     // })
+// })
+
 // 가게이미지 등록
 router.post('/shop_register', uploads.single('shop_img'), (req, res) => {
     let { shopname, bno, addr1, addr2, tel, ownername} = req.body

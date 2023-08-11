@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'm_layout.html' %}
 
+{% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>리뷰관리</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/admin8.css">
 </head>
+<div style="flex-grow: 9;">
 
-<body>
+
     <!-- Header -->
-    <header>
-        <h1>리뷰 관리</h1>
+    <header style="display: flex; justify-content: center; flex-direction: row;">
+        <div class="user">리뷰 관리</div>
     </header>
 
     <!-- Body -->
@@ -91,6 +89,5 @@
             }
         }
     </script>
-</body>
-
-</html>
+</div>
+{% endblock %}

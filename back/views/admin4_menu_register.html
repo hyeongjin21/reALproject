@@ -7,7 +7,11 @@
     <link rel="stylesheet" href="/assets/css/admin4.css">
 </head>
 
-<body>
+<div style="flex-grow: 9;">
+    <!-- Header -->
+    <header style="display: flex; justify-content: center; flex-direction: row;">
+        <div class="user">메뉴 등록</div>
+    </header>
 
     <!-- Body --> 
     <form ref='uploadForm' 
@@ -120,5 +124,6 @@
     console.log("slslsl : ",  document.getElementById('shop_seq').value)
 
 </script>
-</body>
+</div>
+
 {% endblock %}

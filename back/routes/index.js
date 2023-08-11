@@ -28,7 +28,6 @@ router.get('/join_user',(req,res)=>{
     res.render('join_user')
 })
 
-
 // 마이 페이지 이동
 router.get('/mypage',(req,res)=>{
     res.render('mypage')
@@ -73,26 +72,15 @@ router.get('/admin2_S_userpage',(req,res)=>{
     })
 })
 
-// 회원관리 - 가게 수정버튼 -> 수정페이지로 이동
-router.post('/shopModify',(req,res)=>{
-    res.render('shopModify')
-})
-
-// 카페관리 - 가게 정보 수정 페이지로 이동
-router.get('/admin3_S_info',(req,res)=>{
-    // const menuInfo = queries.menuInfoAll
-    // conn.query(menuInfo,(err,result)=>{
-    //     if(err){
-    //         console.log(err)
-    //     }else{
-    //         res.render('admin3_S_info', {list : result})
-    //     }
-    // })
-})
 
 // 회원관리 - 사용자 삭제
 router.post('/admin2_S_userpage',(req,res)=>{
     res.render('admin2_S_userpage')
+})
+
+// 카페관리 - 가게 세부 메뉴 페이지로 이동
+router.get('/admin3_S_info',(req,res)=>{
+    res.render('admin3_S_info')
 })
 
 // 카페관리 - 가게 메뉴 등록 페이지로 이동

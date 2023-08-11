@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'm_layout.html' %}
+
+{% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메뉴수정</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/admin5.css">
 </head>
-<body>
+<div style="flex-grow: 9;">
     <!-- Header -->
-    <header>
-        <h1>메뉴 수정과식혜</h1>
+    <header style="display: flex; justify-content: center; flex-direction: row;">
+        <div class="user">메뉴 수정</div>
     </header>
 
 
@@ -104,11 +102,7 @@
             </table>
         </div>
     </div>
-    <!-- Footer -->
-    <!-- <footer>
-        <p>Footer content goes here.</p>
-    </footer> -->
-</body>
 
-</body>
-</html>
+
+</div>
+{% endblock %}

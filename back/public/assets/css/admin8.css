@@ -1,4 +1,4 @@
-전체 페이지 스타일링
+/* 전체 페이지 스타일링 */
 html, body {
     height: 100%;
     margin: 0;
@@ -13,12 +13,24 @@ header {
     height: 30px;
     background-color: #ffffff;
     color: #0f0d0d;
-    display: flex;
+    /* display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    top: 100px;
+    top: 100px; */
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
 }
+
+.user {
+    font-size: 32px;
+    font-weight: bold; /* 글씨를 굵게 설정 */
+
+}
+
 
 /* Body 스타일링 */
 body {
@@ -31,7 +43,7 @@ body {
 
 /* Search 섹션 스타일링 */
 .search-section {
-    height: 25%;
+    /* height: 25%; */
     width: 100%;
     display: flex;
     align-items: center;
@@ -80,16 +92,17 @@ table, th, td {
 }
 
 th, td {
-    border: 2px solid black; /* 테두리 굵기 설정 */
+    border: 3px solid black; /* 테두리 굵기 설정 */
     border-radius: 10px; /* 테두리 둥글기 설정 */
-    padding: 15px;
+    padding: 10px;
     text-align: center;
 }
 /* 추가적인 스타일 */
 .table-container {
-    position: relative;
+    /* position: relative; */
     bottom: 200px;
-    width: 50%;
+                /* 중요 */
+    width: 95%;
     margin: 0 auto;
     margin-top: 10px;
 }
@@ -97,8 +110,8 @@ th, td {
 
 /* Footer 스타일링 */
 footer {
-    height: 15%;
-    background-color: brown;
+    /* height: 15%; */
+    /* background-color: brown; */
     color: #fff;
     display: flex;
     align-items: center;
@@ -112,12 +125,12 @@ footer {
 }
 .search-section button {
     /* ... */
-    width: 50px; /* 원하는 가로 크기 */
-    height: 55px; /* 원하는 세로 크기 */
+    width: 70px; /* 원하는 가로 크기 */
+    height: 50px; /* 원하는 세로 크기 */
 }
 .search-section {
     /* ... */
-    padding: 250px; /* 원하는 패딩 사이즈 */
+    /* padding: 250px; 원하는 패딩 사이즈 */
     margin: 20px 0; /* 원하는 마진 사이즈 - 여기서 상하 여백을 20px로 설정합니다. 좌우 여백은 원하시는대로 조절해주세요. */
 }
 
@@ -136,7 +149,8 @@ footer {
     background-color: #d69812; /* 원하는 배경색 */
     color: #ffffff; /* 원하는 글씨 색 */
     font-family: 'Orbitron', sans-serif; /* Orbitron 폰트 */
-    border: 3px solid #333; /* 원하는 테두리 굵기 */
+    /* border: 3px solid #333;  */
+    /* 원하는 테두리 굵기 */
     cursor: pointer;
 }
 .search-section {
@@ -148,9 +162,11 @@ footer {
 .search-section select,
 .search-section input,
 .search-section button {
-    min-width: 100px;
+    /* min-width: 100px; */
     height: 45px;
     font-size: 16px;
+    border: 3px solid black;
+    
 }
 
 .search-section button {
@@ -163,3 +179,4 @@ footer {
         position: relative;
         left: 10px;
     }
+
