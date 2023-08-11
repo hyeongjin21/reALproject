@@ -1,88 +1,99 @@
 {% extends 'm_layout.html' %}
 
 {% block content %}
+
 <head>
     <link rel="stylesheet" href="/assets/css/admin3.css">
+    <link rel="stylesheet" href="/assets/css/pagenationTable.css">
 </head>
 
 <div style="flex-grow: 9;">
-<!-- Header -->
+    <!-- Header -->
     <header style="display: flex; justify-content: center; flex-direction: row;">
         <div class="user">가게 정보</div>
     </header>
-</div>
 
-<!-- Body -->
-<div class="main-container">
-    <table class="info-table">
-        <tr>
-            <th>카페 이름</th>
-            <td>
-                {{name}}
-            </td>
-        </tr>
-        <tr>
-            <th>카페 메뉴</th>
-            <td colspan="2">
-                <button>메뉴 등록</button>
-            </td>
-        </tr>
-    </table>
-</div>
-<div class="table-container">
-    <table>
-        <tr>
-            <th>일련번호</th>
-            <th>메뉴이름</th>
-            <th>메뉴가격</th>
-            <th>제공형식</th>
-            <th>추가옵션</th>
-            <th>메뉴설명</th>
-            <th>카테고리</th>
-            <th>메뉴특징</th>
-            <th>이미지등록여부</th>
-        </tr>
+    <!-- Body -->
+    <div class="main-container">
+        <table class="info-table" id="table-two">
+            <tr>
+                <th>카페 이름</th>
+                <td>
+                    {{name}}
+                </td>
+            </tr>
+            <tr>
+                <th>카페 메뉴</th>
+                <td colspan="2">
+                    <button><a
+                            href="/admin4_menu_register?shop_seq={{i.shop_seq}}&shop_name={{i.shop_name}}">메뉴등록</a></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="table-container">
+        <table id="table-one">
+            <tr>
+                <th>일련번호</th>
+                <th>메뉴이름</th>
+                <th>메뉴가격</th>
+                <th>제공형식</th>
+                <th>추가옵션</th>
+                <th>메뉴설명</th>
+                <th>카테고리</th>
+                <th>메뉴특징</th>
+                <th>이미지등록여부</th>
+            </tr>
 
-        {% for i in list %}
-        <tr>
-            <th>{{i.menu_seq}}</th>
-            <th>{{i.menu_name}}</th>
-            <th>{{i.menu_price}}</th>
-            <th>{{i.menu_desc}}</th>
-            <th>{{i.menu_type}}</th>
-            <th>{{i.menu_option}}</th>
-            <th>{{i.menu_category}}</th>
-            <th>{{i.menu_ingredient_tag}}</th>
-            {% if i.menu_img != null %}
-            <th>있음</th>
-            {%else%}
-            <th>없음</th>
-            {%endif%}
-            <th>
-                <button onclick="menuUpdate({{ i }})">수정</button>
-                <button>삭제</button>
-            </th>
-        </tr>
-        {% endfor %}
+            <tbody>
+                {% for i in list %}
+                <tr>
+                    <td>{{i.menu_seq}}</td>
+                    <td>{{i.menu_name}}</td>
+                    <td>{{i.menu_price}}</td>
+                    <td>{{i.menu_desc}}</td>
+                    <td>{{i.menu_type}}</td>
+                    <td>{{i.menu_option}}</td>
+                    <td>{{i.menu_category}}</td>
+                    <td>{{i.menu_ingredient_tag}}</td>
+                    {% if i.menu_img != null %}
+                    <td>O</td>
+                    {%else%}
+                    <td>X</td>
+                    {%endif%}
+                    <td>
+                        <button onclick="menuUpdate({{ i }})">수정</button>
+                        <button>삭제</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    </table>
-</div>
-</div>
-<script>
-    function menuUpdate() {
-        let url = ""
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                seq: user_s
 
+    <script src="./assets/js/pagenationTable.js"></script>
+    <script>
+        Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
+    </script>
+
+    <script>
+        function menuUpdate() {
+            let url = ""
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    seq: user_s
+
+                })
             })
-        })
-            .then(res => res.json())
-            .then(res => { })
-    }
-</script>
+                .then(res => res.json())
+                .then(res => { })
+        }
+    </script>
+</div>
+
 {% endblock %}

@@ -1,9 +1,11 @@
 {% extends 'm_layout.html' %}
 
 {% block content %}
+
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/admin8.css">
+    <link rel="stylesheet" href="/assets/css/pagenationTable.css">
 </head>
 <div style="flex-grow: 9;">
 
@@ -31,7 +33,7 @@
     </form>
     <a href="https://naver.com?if:erere"></a>
     <div class="table-container">
-        <table>
+        <table id="table-one">
 
             <tr>
                 <th>일련번호</th>
@@ -44,24 +46,29 @@
             </tr>
 
             <form method="post" action="/manager/reviewDelete">
-                {% for i in list %}
-                <tr>
-                    <th>{{i.rownum}}</th>
-                    <th>{{i.shop_name}}</th>
-                    <th>{{i.menu_name}}</th>
-                    <th>{{i.user_id}}</th>
-                    <th>{{i.created_at}}</th>
-                    <th>{{i.review_content}}</th>
-                    <th>
-                        <button type="button" onclick="deleteRow({{i.review_seq}})">삭제</button>
-                    </th>
-                </tr>
-                {% endfor %}
+                <tbody>
+                    {% for i in list %}
+                    <tr>
+                        <th>{{i.rownum}}</th>
+                        <th>{{i.shop_name}}</th>
+                        <th>{{i.menu_name}}</th>
+                        <th>{{i.user_id}}</th>
+                        <th>{{i.created_at}}</th>
+                        <th>{{i.review_content}}</th>
+                        <th>
+                            <button type="button" onclick="deleteRow({{i.review_seq}})">삭제</button>
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </form>
 
         </table>
     </div>
-
+    <script src="./assets/js/pagenationTable.js"></script>
+    <script>
+        Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
+    </script>
     <script>
         let refreshList = () => {
             location.reload()

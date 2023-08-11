@@ -33,6 +33,13 @@ router.get('/mypage',(req,res)=>{
     res.render('mypage')
 })
 
+router.get('/ranking',(req,res)=>{
+    res.render('ranking')
+})
+
+
+
+/////////////////////////////관리자페이지/////////////////////////////////
 
 // 회원관리 - 사용자 페이지로 이동
 router.get('/admin1_userpage',(req,res)=>{
@@ -45,13 +52,6 @@ router.get('/admin1_userpage',(req,res)=>{
         }
     })
 })
-
-router.get('/ranking',(req,res)=>{
-    res.render('ranking')
-})
-
-
-/////////////////////////////관리자페이지/////////////////////////////////
 
 
 
@@ -128,8 +128,17 @@ router.get('/admin7_location_manage',(req,res)=>{
 
 // 카페관리 - 리뷰관리 페이지로 이동
 router.get('/admin8_review_manage',(req,res)=>{
-    res.render('admin8_review_manage')
-})
+    const reviewInfo = queries.reviewAll
+    conn.query(reviewInfo,(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            res.render('admin8_review_manage', {list : result})
+        }
+    })
+    })
+
+
 
 // 카페관리 - 삭제
 router.post('/admin8_review_manage',(req,res)=>{
