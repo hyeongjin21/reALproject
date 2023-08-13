@@ -95,7 +95,8 @@ router.post('/checkId', (req, res) => {
 
 // 로그아웃
 router.get('/logout', (req, res) => {
-    req.session.user.user_name = ''
+    req.session.user = ''
+    req.session.user = {user_name:''}
     // req.session.destroy();
     res.send(`
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  

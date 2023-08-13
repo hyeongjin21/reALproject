@@ -54,6 +54,8 @@ app.use((req,res,next)=>{
     next()
 })
 
+
+
 // 6. 라우팅 처리
 app.use('/',indexRouter);
 app.use('/user',userRouter);

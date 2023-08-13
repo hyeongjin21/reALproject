@@ -6,7 +6,7 @@ const multer = require('multer')
 
 // 메인 페이지 이동
 router.get('/',(req,res)=>{
-    console.log('kakao user_name:',req.query.user_name)
+    // console.log('kakao user_name:',req.query.user_name)
     if(req.query.user_name != undefined){
         req.session.user.user_name = req.query.user_name
     }
@@ -153,4 +153,11 @@ router.post('/upload', upload.single('image'), (req, res) => {
       res.status(400).send('Error uploading file.');
     }
   });
+
+
+
+
+  router.get('/test',(req,res)=>{
+    res.render('test')
+  })
 module.exports = router;

@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
     let category = req.query.category
     let searchCategory = req.query.category
     let menu = "%" + req.query.inputmenu + "%"
-
+    
     if (category == 'all') {
         conn.query(queries.searchMenu, [menu], (err, rows) => {
             if (rows.length > 0) {
@@ -95,18 +95,20 @@ router.post('/review', (req, res) => {
     let shopseq = req.body.shopseq
     // console.log(menuseq)
     // console.log('userid',req.session.user.user_id)
-    let userid = req.session.user.user_id
+    let userid = ''
     let shopLikeCheck = 0
+    console.log('called')
     conn.query(queries.shopLikeSearch, [userid], (err, rows) => {
+        console.log("{err :}",err)
+        console.log('efjieofjeg',rows)
         for (let i = 0; i < rows.length; i++) {
-            if (rows[i].shop_seq === shopseq) {
+            if (rows[i].shop_like_yn === 'Y') {
                 shopLikeCheck = 1
                 break;
             }else{
                 shopLikeCheck = 0
-            }
+            }   
         }
-        console.log('rows',rows.length)
         if(rows.length == 0){
             conn.query(queries.shopInsertLike,[userid,shopseq],(err,rows)=>{
                 console.log('첫 좋아요 쿼리 실행')
@@ -123,25 +125,26 @@ router.post('/review', (req, res) => {
 router.post('/inputreview', (req, res) => {
     console.log('req :', req.body)
     console.log('name :', req.session)
-    let menuseq = req.body.menuseq;
-    let review = req.body.review;
+    let menuseq = req.body.getmenuseq;
+    let review = req.body.inputreview;
     let userid = req.session.user.user_id;
-    let islogin = false
+    console.log('리뷰')
     if (req.session.user.user_name == '') {
         console.log('로그인해')
-        islogin = false;
-        res.json({ login: islogin })
-        // res.send(`<script>alert('로그인 후 사용 할 수 있습니다!');location.href='http://localhost:3333/login';</script>`)
+        // islogin = false;
+        // res.json({ login : islogin})
+        res.send(`<script>alert('로그인 후 사용 할 수 있습니다!');location.href='http://localhost:3333/login';</script>`)
     } else {
         // console.log('로그인했음')
         conn.query(queries.addReview, [menuseq, review, userid], (err, rows) => {
-            console.log('리뷰쿼리 작동함', rows)
-            // res.render('search')
-            islogin = true
-            res.json({ login: islogin, menu_seq: menuseq })
+            console.log('리뷰쿼리 작동함')
+            res.render('search')
         })
+        // islogin = true
+        // res.json({ login : islogin})
     }
 })
+
 
 //가게 좋아요
 router.get('/shoplike', (req, res) => {
@@ -150,16 +153,16 @@ router.get('/shoplike', (req, res) => {
     let userId = req.session.user.user_id
     let shopseq = req.query.shop_seq
     let likecheck = req.query.likeCheck
-    let shopLike = ''
+    let likeyn = ''
     // console.log('likecheck',req.query.likeCheck)
     if(likecheck == 0){
-        shopLike = 'N'
-        conn.query(queries.shopLike,[shopLike,userId,shopseq],(err,rows)=>{
+        likeyn = 'N'
+        conn.query(queries.shopLike,[likeyn,userId,shopseq],(err,rows)=>{
             console.log('좋아요 지우기')
         })
     }else{
-        shopLike = 'Y'
-        conn.query(queries.shopLike, [shopLike,userId, shopseq], (err, rows) => {
+        likeyn = 'Y'
+        conn.query(queries.shopLike, [likeyn,userId, shopseq], (err, rows) => {
             console.log('좋아요 추가')
         })
     }

@@ -9,9 +9,6 @@ module.exports = {
   // 메뉴정보 전체 출력
   menuInfoAll: `select * from al_menu`,
 
-  // 메뉴 전체 검색
-  searchMenuAll : ``,
-  
   //메뉴검색 & 카테고리(전체 선택)
   searchMenu: `select * from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.menu_name like ?`,
 
@@ -21,6 +18,9 @@ module.exports = {
   //검색 - 메뉴선택 - 지도 위도 경도가져오기
   shopLocation: `select a.lat, a.lng from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.shop_seq = ?`,
 
+
+  //리뷰 등록
+  addReview:`insert into al_review (menu_seq, review_content, user_id) values (?,?,?)`,
 
 
 
@@ -63,7 +63,14 @@ module.exports = {
   // 가게 삭제
   shopDelete: `delete from al_shop where shop_seq = ?`,
 
-  selectLocationAll : `SELECT lat, lng from al_shop`,
+  selectLocationAll: `select lat, lng,shop_name,shop_addr1,shop_addr2,shop_tel,shop_img from al_shop`,
+
+  // // 메뉴 리뷰 가져오기
+  // getMenuReview:`select b.menu_seq,b.user_id,b.review_content,c.shop_img from al_menu a inner join al_review b on (a.menu_seq = b.menu_seq) inner join al_shop c on(a.shop_seq = c.shop_seq ) where b.menu_seq = ? `,
+
+  getMenuReview:`select a.menu_name,a.menu_img,a.menu_desc,a.menu_price,a.menu_options,a.shop_seq,b.menu_seq,b.user_id,b.review_content,c.shop_name from al_menu a left outer join al_review b on (a.menu_seq = b.menu_seq) inner join al_shop c on(a.shop_seq = c.shop_seq ) where a.menu_seq = ?`,
+
+
   // 리뷰 관리 - 전체 검색
   reviewAll: `select row_number() over (order by c.created_at) as rownum, 
 	a.shop_name, b.menu_name, c.user_id, c.created_at, c.review_content, c.review_seq
@@ -91,6 +98,29 @@ module.exports = {
  where c.review_content like ?`,
 
   // 리뷰 관리 - 삭제
-  reviewDelete: `delete from al_review where review_seq = ?`
+  reviewDelete: `delete from al_review where review_seq = ?`,
 
+
+  //좋아요
+
+  //가게 좋아요 누른지 확인할때
+  shopLikeSearch : `select * from al_favorite_shop where user_id = ?`,
+
+  //가게 좋아요 처음
+  shopInsertLike : `insert into al_favorite_shop (user_id, shop_seq) value (?,?)`,
+
+  //가게 좋아요 누를때
+  shopLike : `update set al_favorite_shop shop_like_yn set shop_like_yn = ? where user_id = ? and shop_seq = ?`,
+
+  //가게 좋아요 지우기
+  shopDeleteLike : `delete from al_favorite_shop where user_id = ? and shop_seq = ?`,
+
+  //메뉴 좋아요 누른지 확인할때
+  menuLikeSearch : `select * from al_favorite_menu where user_id = ?`,
+
+  //메뉴 좋아요 누를때
+  menuInsertLike : `insert into al_favorite_menu (user_id, menu_seq) values (?,?)`,
+
+  //가게 좋아요 지우기
+  menuDeleteLike : `delete from al_favorite_menu where user_id = ? and menu_seq = ?`,
 }
