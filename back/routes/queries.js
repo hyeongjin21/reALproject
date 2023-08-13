@@ -43,7 +43,7 @@ module.exports = {
     shopModify : `update al_shop set shop_name=?, shop_bno=?, shop_addr1=?, shop_addr2=?, shop_tel=?, shop_owner=? where shop_seq=?`,
     
     // 하나의 가게정보 가져오기
-    shopMenu: `SELECT * FROM al_menu where shop_seq = ? `,
+    shopMenu: `SELECT row_number() over (order by menu_seq) as rownum, shop_seq, menu_seq, menu_name, menu_price, menu_desc, menu_type, menu_options, menu_category, menu_ingredient_tag, menu_img FROM al_menu where shop_seq = ? `,
 
     // 가게 검색
     shopNameSearch: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_seq, shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, created_at FROM al_shop where shop_name like ?`,
@@ -107,6 +107,11 @@ module.exports = {
  where c.review_content like ?`,
 
     // 리뷰 관리 - 삭제
-    reviewDelete : `delete from al_review where review_seq = ?`
+    reviewDelete : `delete from al_review where review_seq = ?`,
 
+
+
+
+      //////// 마이페이지 ..///////////////
+  myShop: `select b.menu_img from al_favorite_menu a inner join al_menu b on (a.menu_seq = b.menu_seq) where a.user_id = ?`
 }

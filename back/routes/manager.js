@@ -70,15 +70,6 @@ router.post('/shopDelete', (req, res) => {
 })
 
 
-// 카페관리 - 가게정보수정
-
-// 카페관리 - 메뉴 등록
-// router.post('/shop_register', (req, res) => {
-//     let {  } = req.body
-// })
-// 카페관리 - 메뉴 수정
-
-
 // 카페관리 - 카페 등록
 router.post('/shopRegister', (req, res) => {
     let { shopname, bno, addr1, addr2, tel, ownername } = req.body

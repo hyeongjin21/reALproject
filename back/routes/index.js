@@ -4,6 +4,7 @@ const queries = require('./queries')
 const conn = require('../config/database')
 const multer = require('multer')
 
+///////
 // 메인 페이지 이동
 router.get('/',(req,res)=>{
     console.log('kakao user_name:',req.query.user_name)
@@ -11,7 +12,7 @@ router.get('/',(req,res)=>{
         req.session.user.user_name = req.query.user_name
     }
     console.log('session :',req.session.user.user_name)
-    if(req.session.user.user_name == ''){
+    if(req.session.user === undefined){
         res.render('index')
     }else{
         res.render('index',{name:req.session.user.user_name})
@@ -28,14 +29,7 @@ router.get('/join_user',(req,res)=>{
     res.render('join_user')
 })
 
-// 마이 페이지 이동
-router.get('/mypage',(req,res)=>{
-    res.render('mypage')
-})
 
-router.get('/ranking',(req,res)=>{
-    res.render('ranking')
-})
 
 
 
@@ -195,4 +189,46 @@ router.post('/upload', upload.single('image'), (req, res) => {
       res.status(400).send('Error uploading file.');
     }
   });
+
+
+
+
+
+/////////////////////////  mypage 페이지  //////////////////////////////
+
+// mypage 
+router.get('/mypage',(req,res)=>{
+    // res.render('mypage')
+    const currentUser = req.session
+    const myShop = queries.myShop
+    if(currentUser != undefined){
+    conn.query(myShop,[currentUser.user.user_id],(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            
+            res.render('mypage', {
+                list : result,
+                user_id : currentUser.user.user_id,
+            })}
+        }
+    )} else {
+        res.render('mypage')
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;

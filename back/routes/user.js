@@ -32,7 +32,6 @@ router.post('/join', (req, res) => {
 
 // 로그인
 router.post('/login', (req, res) => {
-    console.log(req.body)
     let { id, pw } = req.body
     conn.query(queries.searchId, [id, pw], (err, rows) => {
         if (rows.length > 0) {
