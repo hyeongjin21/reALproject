@@ -89,7 +89,7 @@ router.get('/admin3_S_info',(req,res)=>{
             console.log("result : ",result)
             res.render('admin3_S_info', {
                 list : result,
-                //name : req.query.shop_name,
+                name : req.query.shop_name,
                 shop_seq : req.query.shop_seq
             })
         }
@@ -106,6 +106,19 @@ router.get('/admin3_S_info',(req,res)=>{
     res.render('admin3_S_info')
 })
 
+// 카페관리 - 가게 수정페이지 이동
+router.get('/shopinfo_modify',(req,res)=>{
+    console.log("modify : ",req.query.shop_seq)
+    conn.query(queries.selectShop, [req.query.shop_seq], (err, rows)=>{
+    console.log("rows :", rows);
+    res.render('shopinfo_modify',{ 
+        cols : rows[0],
+        shop_seq : req.query.shop_seq
+    })
+    })
+
+})
+
 // 카페관리 - 가게 메뉴 등록 페이지로 이동
 router.get('/admin4_menu_register',(req,res)=>{
     console.log(req.query)
@@ -114,8 +127,23 @@ router.get('/admin4_menu_register',(req,res)=>{
 
 // 카페관리 - 가게 메뉴 수정 페이지로 이동
 router.get('/admin5_menu_modify',(req,res)=>{
-    res.render('admin5_menu_modify')
-})
+    const menuInfo = queries.menuInfo
+    console.log("reqqury:", req.query)
+    conn.query(menuInfo,[req.query.menu_seq],(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            console.log("result : ",result)        
+            res.render('admin5_menu_modify',{ 
+                cols : result[0],
+                shop_name : req.query.shop_name,
+                shop_seq : req.query.shop_seq
+                
+            })
+            }
+        })
+    })
+
 
 // 카페관리 - 신규 가게 등록 페이지로 이동
 router.get('/admin6_shop_register',(req,res)=>{

@@ -97,23 +97,15 @@ router.post('/shopRegister', (req, res) => {
     }
 })
 
-// 카페관리 - 카페 수정
-router.post('/shopModify', (req, res) => {
-    let { shopname, bno, addr1, addr2, tel, ownername } = req.body
-
-    if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '')
-    {
-        res.send(`<script>
-        alert("빈칸을 빠짐없이 입력해주세요");
-        location.href='http://localhost:3333/shopInfo_Modify'
-        </script>`)
-        // res.render('/admin6_shop_register')
-    }else{
-        conn.query(queries.shopModify, [shopname, bno, addr1, addr2, tel, ownername], (err, rows)=>{
-        res.send(`<script>alert("${shopname} 카페의 정보가 수정되었습니다.");location.href='http://localhost:3333/shopInfo_Modify'</script>`)
-        })
-    }
-})
+// // 카페관리 - 카페 수정버튼
+// router.post('/shopModify', (req, res) => {
+//     console.log("modify : ",req.body);
+//     let { shopname, bno, addr1, addr2, tel, ownername, shop_img } = req.body
+//     conn.query(queries.selectShop, [req.body.shop_seq], (err, rows)=>{
+//     console.log("rows :", rows);
+//     res.json(rows)
+//     })
+// })
 
 // // 카페관리 - 위치정보관리 
 // router.get('/shopLocation', (req, res) => {
@@ -138,6 +130,17 @@ router.post('/shopModify', (req, res) => {
 //     // 삭제 기능
 
 // })
+
+// 회원관리 - 메뉴 삭제
+router.post('/menuDelete', (req, res) => {
+    let deleteMenu = req.body.seq
+    console.log("deleteMenu",deleteMenu)
+
+    conn.query(queries.menuDelete,[deleteMenu],(err, rows)=>{
+        console.log(rows)
+        res.send(`<script>alert("삭제되었습니다.");</script>`)
+    })
+})
 
 
 // 카페관리 - 리뷰관리

@@ -19,7 +19,7 @@
             <tr>
                 <th>카페 이름</th>
                 <td>
-                    {{name}}
+                    {{ name }}
                 </td>
             </tr>
             <tr>
@@ -37,12 +37,14 @@
                 <th>일련번호</th>
                 <th>메뉴이름</th>
                 <th>메뉴가격</th>
-                <th>제공형식</th>
-                <th>추가옵션</th>
                 <th>메뉴설명</th>
+                <th>제공형식</th>
                 <th>카테고리</th>
                 <th>메뉴특징</th>
+                <th>추가옵션</th>
                 <th>이미지등록여부</th>
+                <th>수정</th>
+                <th>삭제</th>
             </tr>
 
             <tbody>
@@ -62,8 +64,10 @@
                     <td>X</td>
                     {%endif%}
                     <td>
-                        <button onclick="menuUpdate({{ i }})">수정</button>
-                        <button>삭제</button>
+                        <button onclick="menuUpdate('{{i.menu_seq}}','{{ name }}','{{ shop_seq }}')">수정</button>
+                    </td>
+                    <td>
+                        <button onclick="menuDelete('{{i.menu_seq}}')">삭제</button>
                     </td>
                 </tr>
                 {% endfor %}
@@ -71,28 +75,45 @@
         </table>
     </div>
 
-
+    <!--페이지네이션-->
     <script src="/assets/js/pagenationTable.js"></script>
     <script>
         Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
     </script>
-
+    <!--수정페이지 이동-->
     <script>
-        function menuUpdate() {
-            let url = ""
-            fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    seq: user_s
-
-                })
-            })
-                .then(res => res.json())
-                .then(res => { })
+        const menuUpdate = (menu_seq,name,shop_seq) => {
+            location.href = `http://localhost:3333/admin5_menu_modify?menu_seq=${menu_seq}&shop_name=${name}&shop_seq=${shop_seq}`
         }
+    </script>
+    <!--메뉴삭제-->
+    <script>
+         let refreshList = () => {
+            location.reload()
+        }
+        let url = "/manager/menuDelete"
+         const menuDelete = (menu_seq) => {
+            let rs = confirm("삭제하시겠습니까?")
+            if (rs == true) {
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        seq: menu_seq
+
+                    })
+                })
+                    .then(res => res.json())
+                    .then(res => { })
+
+
+                alert("삭제되었습니다.");
+                refreshList();
+            }
+        }
+
     </script>
 </div>
 
