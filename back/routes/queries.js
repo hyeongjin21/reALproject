@@ -55,7 +55,7 @@ module.exports = {
   menuInfo: `SELECT * FROM al_menu where menu_seq = ? `,
 
   // 메뉴 등록하기
-  insertMenu: 'INSERT INTO al_menu (shop_seq, menu_name, menu_price, menu_desc, menu_type, menu_options, menu_category, menu_ingredient_tag, menu_img) VALUES(?,?,?,?,?,?,?,?,?)',
+  insertMenu:'INSERT INTO al_menu (shop_seq, menu_name, menu_img, menu_price, menu_type, menu_options, menu_desc, menu_category, menu_ingredient_tag) VALUES(?,?,?,?,?,?,?,?,?)',
 
   // 메뉴 수정하기
   updateManu : `UPDATE al_menu SET menu_name = ?, menu_price = ?, menu_desc =?, menu_type =?, menu_options =?, menu_category =?, menu_ingredient_tag =?, menu_img =? where menu_seq = ?`,

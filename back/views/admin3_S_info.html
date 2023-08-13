@@ -92,7 +92,7 @@
             location.reload()
         }
         let url = "/manager/menuDelete"
-        const menuDelete = (menu_seq) => {
+        const deletemenuRow = (menu_seq) => {
             let rs = confirm("삭제하시겠습니까?")
             if (rs == true) {
                 fetch(url, {
@@ -115,6 +115,9 @@
         }
 
     </script>
+</div>
+
+{% endblock %}
 
     <!-- <script> //삭제할 메뉴 seq 가져오는 비동기fetch
         let refreshList = () => {
@@ -142,7 +145,3 @@
             }
         }
     </script> -->
-
-</div>
-
-{% endblock %}
