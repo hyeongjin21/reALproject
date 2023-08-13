@@ -96,9 +96,9 @@ router.post('/admin2_S_userpage',(req,res)=>{
 })
 
 // 카페관리 - 가게 세부 메뉴 페이지로 이동
-// router.get('/admin3_S_info',(req,res)=>{
-//     res.render('admin3_S_info')
-// })
+router.get('/admin3_S_info',(req,res)=>{
+    res.render('admin3_S_info')
+})
 
 // 카페관리 - 가게 수정페이지 이동
 router.get('/shopinfo_modify',(req,res)=>{
@@ -217,23 +217,7 @@ router.get('/mypage',(req,res)=>{
     }
 })
 
-// 
-// router.get('/admin3_S_info',(req,res)=>{
-//     // res.render('admin3_S_info')
-//      const menuInfo = queries.shopMenu
-//      console.log("reqqury:", req.query)
-//      conn.query(menuInfo,[req.query.shop_seq],(err,result)=>{
-//          if(err){
-//              console.log(err)
-//          }else{
-//              console.log("result : ",result)
-//              res.render('admin3_S_info', {
-//                  list : result,
-//                  name : req.query.shop_name
-//              })
-//          }
-//      })
-//  })
+
 
 
 

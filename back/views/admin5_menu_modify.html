@@ -1,6 +1,7 @@
 {% extends 'm_layout.html' %}
 
 {% block content %}
+
 <head>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/admin5.css">
@@ -11,127 +12,129 @@
         <div class="user">메뉴 수정</div>
     </header>
 
-    <!-- Body --> 
+    <!-- Body -->
     <form method='post' action="/img/admin5_menu_modify" encType="multipart/form-data">
-    <div class="main-container">
-        <table class="info-table">
-            <tr>
-                <th>메뉴 이름</th>
-                <td>
-                    <input type="text" name="menuname" value="{{cols.menu_name}}">
-                    <!-- <output name="result">카페 이름이 출력</output> -->
-                </td>
-            </tr>
-            <tr>
-                <th>이미지등록</th>
-                <td>
-                    <img src="./uploads/{{cols.menu_img}}" id="previewImage" alt="Preview Image" style="height: 200px; width: 200px;"/>
-                </td>
-                <td>
-                    <div class="previewProfile">
-                        <input type="file" id="profileFile" name="menu_img" value="{{cols.menu_img}}" accept="image/*">
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <th>메뉴 가격</th>
-                <td>
-                    <input type="text" name="price" value="{{cols.menu_price}}">
-                </td>
-            </tr>
-            <tr>
-                <th>제공 형식</th>
-                <td>
-                    <label>
-                        {%if cols.menu_type %}
-                        <input type="radio" name="temperature" value="ALL" checked>
-                        {% else %}
-                        <input type="radio" name="temperature" value="ALL">
-                        {% endif %}
-                        ALL
-                    </label>
-                    <label>
-                        {%if cols.menu_type%}
-                        <input type="radio" name="temperature" value="ICE" checked>
-                        {% else %}
-                        <input type="radio" name="temperature" value="ICE">
-                        {% endif %}
-                        ICE
-                    </label>
-                    <label>
-                        <input type="radio" name="temperature" value="HOT">
-                        HOT
-                    </label>
-                </td>
-            </tr>
-            <tr>
-                <th>추가 옵션</th>
-                <td>
-                    <input type="text" name="option" value="{{cols.menu_options}}">
-                </td>
-            </tr>
-            <tr>
-                <th>메뉴 설명</th>
-                <td>
-                    <input type="text" name="info" value="{{cols.menu_desc}}">
-                </td>
-            </tr>
-            <tr>
-                <th>카테고리</th>
-                <td>
-                    <select name="category" class="category">
-                        {%if cols.menu_category =='smoothie'%}
-                        <option value="smoothie" selected>스무디</option>
-                        <option value="coffee">커피</option>
-                        <option value="tea">티</option>
-                        <option value="ade">에이드</option>
-                        <option value="etc">그외순서</option>
-                        {%elif cols.menu_categor=='coffee'%}
-                        <option value="smoothie">스무디</option>
-                        <option value="coffee" selected>커피</option>
-                        <option value="tea">티</option>
-                        <option value="ade">에이드</option>
-                        <option value="etc">그외순서</option>
-                        {%elif cols.menu_category=='tea'%}
-                        <option value="smoothie">스무디</option>
-                        <option value="coffee">커피</option>
-                        <option value="tea" selected>티</option>
-                        <option value="ade">에이드</option>
-                        <option value="etc">그외순서</option>
-                        {%elif cols.menu_category==ade%}
-                        <option value="smoothie">스무디</option>
-                        <option value="coffee">커피</option>
-                        <option value="tea">티</option>
-                        <option value="ade" selected>에이드</option>
-                        <option value="etc">그외순서</option>
-                        {%elif cols.menu_category=='etc'%}
-                        <option value="smoothie">스무디</option>
-                        <option value="coffee">커피</option>
-                        <option value="tea">티</option>
-                        <option value="ade">에이드</option>
-                        <option value="etc" selected>그외순서</option>
-                        <!-- {%else%}
+        <div class="main-container">
+            <table class="info-table">
+                <tr>
+                    <th>메뉴 이름</th>
+                    <td>
+                        <input type="text" name="menuname" value="{{cols.menu_name}}">
+                        <!-- <output name="result">카페 이름이 출력</output> -->
+                    </td>
+                </tr>
+                <tr>
+                    <th>이미지등록</th>
+                    <td>
+                        <img src="./uploads/{{cols.menu_img}}" id="previewImage" alt="Preview Image"
+                            style="height: 200px; width: 200px;" />
+                    </td>
+                    <td>
+                        <div class="previewProfile">
+                            <input type="file" id="profileFile" name="menu_img" value="{{cols.menu_img}}"
+                                accept="image/*">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th>메뉴 가격</th>
+                    <td>
+                        <input type="text" name="price" value="{{cols.menu_price}}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>제공 형식</th>
+                    <td>
+                        <label>
+                            {%if cols.menu_type %}
+                            <input type="radio" name="temperature" value="ALL" checked>
+                            {% else %}
+                            <input type="radio" name="temperature" value="ALL">
+                            {% endif %}
+                            ALL
+                        </label>
+                        <label>
+                            {%if cols.menu_type%}
+                            <input type="radio" name="temperature" value="ICE" checked>
+                            {% else %}
+                            <input type="radio" name="temperature" value="ICE">
+                            {% endif %}
+                            ICE
+                        </label>
+                        <label>
+                            <input type="radio" name="temperature" value="HOT">
+                            HOT
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th>추가 옵션</th>
+                    <td>
+                        <input type="text" name="option" value="{{cols.menu_options}}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>메뉴 설명</th>
+                    <td>
+                        <input type="text" name="info" value="{{cols.menu_desc}}">
+                    </td>
+                </tr>
+                <tr>
+                    <th>카테고리</th>
+                    <td>
+                        <select name="category" class="category">
+                            {%if cols.menu_category =='smoothie'%}
+                            <option value="smoothie" selected>스무디</option>
+                            <option value="coffee">커피</option>
+                            <option value="tea">티</option>
+                            <option value="ade">에이드</option>
+                            <option value="etc">그외순서</option>
+                            {%elif cols.menu_categor=='coffee'%}
+                            <option value="smoothie">스무디</option>
+                            <option value="coffee" selected>커피</option>
+                            <option value="tea">티</option>
+                            <option value="ade">에이드</option>
+                            <option value="etc">그외순서</option>
+                            {%elif cols.menu_category=='tea'%}
+                            <option value="smoothie">스무디</option>
+                            <option value="coffee">커피</option>
+                            <option value="tea" selected>티</option>
+                            <option value="ade">에이드</option>
+                            <option value="etc">그외순서</option>
+                            {%elif cols.menu_category==ade%}
+                            <option value="smoothie">스무디</option>
+                            <option value="coffee">커피</option>
+                            <option value="tea">티</option>
+                            <option value="ade" selected>에이드</option>
+                            <option value="etc">그외순서</option>
+                            {%elif cols.menu_category=='etc'%}
+                            <option value="smoothie">스무디</option>
+                            <option value="coffee">커피</option>
+                            <option value="tea">티</option>
+                            <option value="ade">에이드</option>
+                            <option value="etc" selected>그외순서</option>
+                            <!-- {%else%}
                         <option value="smoothie">스무디</option>
                         <option value="coffee">커피</option>
                         <option value="tea">티</option>
                         <option value="ade">에이드</option>
                         <option value="etc">그외순서</option> -->
-                        {% endif %}
-                    </select>
-                    <!-- 원하는 만큼 카테고리를 추가할 수 있습니다 -->
-                </td>
-            </tr>
-                        <tr>
-                <th>태그(메뉴특징)</th>
-                <td>
-                    <input type="text" name="tags" value="{{cols.menu_ingredient_tag}}">
-                </td>
-                <td>
-                </td>
-                
-            </tr>
-        </table>
-    </div>
+                            {% endif %}
+                        </select>
+                        <!-- 원하는 만큼 카테고리를 추가할 수 있습니다 -->
+                    </td>
+                </tr>
+                <tr>
+                    <th>태그(메뉴특징)</th>
+                    <td>
+                        <input type="text" name="tags" value="{{cols.menu_ingredient_tag}}">
+                    </td>
+                    <td>
+                    </td>
+
+                </tr>
+            </table>
+        </div>
         <div class="table-container">
             <table>
                 <tr>
@@ -145,8 +148,8 @@
                 </tr>
             </table>
         </div>
-    </div>
+</div>
 
-    <script src="assets/js/menuImg.js"></script>
+<script src="assets/js/menuImg.js"></script>
 </div>
 {% endblock %}

@@ -22,20 +22,10 @@
                     {{ name }}
                 </td>
             </tr>
-                        <tr>
-                <th>매장 사진</th>
-                <td>
-                    <img src="https://i.ibb.co/3493r17/cat.jpg" title="고양이" />
-                </td>
-                <td>
-                    <input type="file">
-                </td>
-            </tr>
             <tr>
                 <th>카페 메뉴</th>
                 <td colspan="2">
-                    <button><a
-                            href="/admin4_menu_register?shop_seq={{shop_seq}}">메뉴등록</a></button>
+                    <button><a href="/admin4_menu_register?shop_seq={{shop_seq}}">메뉴등록</a></button>
                 </td>
             </tr>
         </table>
@@ -57,7 +47,6 @@
                 <th>삭제</th>
             </tr>
 
-            <form method="post" action="/manager/menuDelete">
                 <tbody>
                     {% for i in list %}
                     <tr>
@@ -75,14 +64,14 @@
                         <td>X</td>
                         {%endif%}
                         <td>
-                            <button onclick="menuUpdate({{ i }})">수정</button>
+                            <button onclick="menuUpdate('{{i.menu_seq}}','{{ name }}','{{ shop_seq }}')">수정</button>
+                        </td>
+                        <td>
                             <button type="button" onclick="deletemenuRow({{i.menu_seq}})">삭제</button>
                         </td>
                     </tr>
                     {% endfor %}
                 </tbody>
-            </form>
-
         </table>
     </div>
 
@@ -93,17 +82,17 @@
     </script>
     <!--수정페이지 이동-->
     <script>
-        const menuUpdate = (menu_seq,name,shop_seq) => {
+        const menuUpdate = (menu_seq, name, shop_seq) => {
             location.href = `http://localhost:3333/admin5_menu_modify?menu_seq=${menu_seq}&shop_name=${name}&shop_seq=${shop_seq}`
         }
     </script>
     <!--메뉴삭제-->
     <script>
-         let refreshList = () => {
+        let refreshList = () => {
             location.reload()
         }
         let url = "/manager/menuDelete"
-         const menuDelete = (menu_seq) => {
+        const menuDelete = (menu_seq) => {
             let rs = confirm("삭제하시겠습니까?")
             if (rs == true) {
                 fetch(url, {
@@ -127,7 +116,7 @@
 
     </script>
 
-    <script> //삭제할 메뉴 seq 가져오는 비동기fetch
+    <!-- <script> //삭제할 메뉴 seq 가져오는 비동기fetch
         let refreshList = () => {
             location.reload()
         }
@@ -152,34 +141,8 @@
                 refreshList();
             }
         }
-    </script>
+    </script> -->
 
-    <script> //삭제할 메뉴 seq 가져오는 비동기fetch
-        let refreshList = () => {
-            location.reload()
-        }
-        let url = "/manager/menuDelete"
-        const deletemenuRow = (menu_seq) => {
-            let rs = confirm("메뉴를 삭제하시겠습니까?")
-            if (rs == true) {
-                fetch(url, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        seq: menu_seq
-
-                    })
-                })
-                    .then(res => res.json())
-                    .then(res => { })
-
-                alert("삭제되었습니다.");
-                refreshList();
-            }
-        }
-    </script>
 </div>
 
 {% endblock %}

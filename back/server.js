@@ -16,9 +16,6 @@ const indexRouter = require('./routes');
 const userRouter = require('./routes/user')
 const searchRouter = require('./routes/search')
 const managerRouter = require('./routes/manager')
-
-
-// const mypageRouter = require('./routes/mypage')
 const imgRouter = require('./routes/img')
 
 app.use(express.json()) // json 변환에 필요한것
@@ -58,7 +55,6 @@ app.use(session({
 //     }
 //     next()
 // })
-
 
 // 6. 라우팅 처리
 app.use('/',indexRouter);
