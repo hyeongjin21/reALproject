@@ -22,6 +22,15 @@
                     {{name}}
                 </td>
             </tr>
+                        <tr>
+                <th>매장 사진</th>
+                <td>
+                    <img src="https://i.ibb.co/3493r17/cat.jpg" title="고양이" />
+                </td>
+                <td>
+                    <input type="file">
+                </td>
+            </tr>
             <tr>
                 <th>카페 메뉴</th>
                 <td colspan="2">
@@ -37,37 +46,41 @@
                 <th>일련번호</th>
                 <th>메뉴이름</th>
                 <th>메뉴가격</th>
-                <th>제공형식</th>
-                <th>추가옵션</th>
                 <th>메뉴설명</th>
                 <th>카테고리</th>
+                <th>제공형식</th>
+                <th>추가옵션</th>
                 <th>메뉴특징</th>
                 <th>이미지등록여부</th>
+                <th>삭제</th>
             </tr>
 
-            <tbody>
-                {% for i in list %}
-                <tr>
-                    <td>{{i.menu_seq}}</td>
-                    <td>{{i.menu_name}}</td>
-                    <td>{{i.menu_price}}</td>
-                    <td>{{i.menu_desc}}</td>
-                    <td>{{i.menu_type}}</td>
-                    <td>{{i.menu_option}}</td>
-                    <td>{{i.menu_category}}</td>
-                    <td>{{i.menu_ingredient_tag}}</td>
-                    {% if i.menu_img != null %}
-                    <td>O</td>
-                    {%else%}
-                    <td>X</td>
-                    {%endif%}
-                    <td>
-                        <button onclick="menuUpdate({{ i }})">수정</button>
-                        <button>삭제</button>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
+            <form method="post" action="/manager/menuDelete">
+                <tbody>
+                    {% for i in list %}
+                    <tr>
+                        <td>{{i.rownum}}</td>
+                        <td>{{i.menu_name}}</td>
+                        <td>{{i.menu_price}}</td>
+                        <td>{{i.menu_desc}}</td>
+                        <td>{{i.menu_category}}</td>
+                        <td>{{i.menu_type}}</td>
+                        <td>{{i.menu_options}}</td>
+                        <td>{{i.menu_ingredient_tag}}</td>
+                        {% if i.menu_img != null %}
+                        <td>O</td>
+                        {%else%}
+                        <td>X</td>
+                        {%endif%}
+                        <td>
+                            <button onclick="menuUpdate({{ i }})">수정</button>
+                            <button type="button" onclick="deletemenuRow({{i.menu_seq}})">삭제</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </form>
+
         </table>
     </div>
 
@@ -77,7 +90,7 @@
         Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
     </script>
 
-    <script>
+    <script> // 
         function menuUpdate() {
             let url = ""
             fetch(url, {
@@ -92,6 +105,33 @@
             })
                 .then(res => res.json())
                 .then(res => { })
+        }
+    </script>
+
+    <script> //삭제할 메뉴 seq 가져오는 비동기fetch
+        let refreshList = () => {
+            location.reload()
+        }
+        let url = "/manager/menuDelete"
+        const deletemenuRow = (menu_seq) => {
+            let rs = confirm("메뉴를 삭제하시겠습니까?")
+            if (rs == true) {
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        seq: menu_seq
+
+                    })
+                })
+                    .then(res => res.json())
+                    .then(res => { })
+
+                alert("삭제되었습니다.");
+                refreshList();
+            }
         }
     </script>
 </div>

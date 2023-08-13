@@ -32,17 +32,16 @@ router.post('/join', (req, res) => {
 
 // 로그인
 router.post('/login', (req, res) => {
-    console.log(req.body)
     let { id, pw } = req.body
     conn.query(queries.searchId, [id, pw], (err, rows) => {
         if (rows.length > 0) {
             req.session.user = rows[0]
-            res.send(`<script>alert('어서오세요~ ${req.session.user.user_name}님');location.href='http://localhost:3333';</script>`)
+            res.send(`<script>alert('어서오세요~ ${req.session.user.user_name}님');location.href='http://localhost:3333/mypage';</script>`)
         }
         else {
             res.send('<script>alert("로그인에 실패했습니다.");location.href="http://localhost:3333/login";</script>')
         }
-    })
+    })  
 })
 
 // 구글로그인

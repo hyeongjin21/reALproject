@@ -160,13 +160,18 @@ footer {
 }
 
 .search-section select,
-.search-section input,
 .search-section button {
     /* min-width: 100px; */
     height: 45px;
     font-size: 16px;
     border: 3px solid black;
     
+}
+
+.search-section input[type="text"] {
+    padding: 5px;
+    margin-right: 30px;
+    width: 300px; /* 원하는 크기로 조정하세요 */
 }
 
 .search-section button {
@@ -179,4 +184,10 @@ footer {
         position: relative;
         left: 10px;
     }
+/* 
+    #search-btn {
+        width: 40.8px;
+        height: 22.27px;
+        padding: 1px 6px;
 
+    } */

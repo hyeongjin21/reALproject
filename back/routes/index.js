@@ -4,14 +4,15 @@ const queries = require('./queries')
 const conn = require('../config/database')
 const multer = require('multer')
 
+/////////////////////////  user 페이지  //////////////////////////////
 // 메인 페이지 이동
 router.get('/',(req,res)=>{
     console.log('kakao user_name:',req.query.user_name)
     if(req.query.user_name != undefined){
         req.session.user.user_name = req.query.user_name
     }
-    console.log('session :',req.session.user.user_name)
-    if(req.session.user.user_name == ''){
+    // console.log('session :',req.session.user.user_name)
+    if(req.session.user === undefined){
         res.render('index')
     }else{
         res.render('index',{name:req.session.user.user_name})
@@ -28,14 +29,7 @@ router.get('/join_user',(req,res)=>{
     res.render('join_user')
 })
 
-// 마이 페이지 이동
-router.get('/mypage',(req,res)=>{
-    res.render('mypage')
-})
 
-router.get('/ranking',(req,res)=>{
-    res.render('ranking')
-})
 
 
 
@@ -101,9 +95,9 @@ router.post('/admin2_S_userpage',(req,res)=>{
 })
 
 // 카페관리 - 가게 세부 메뉴 페이지로 이동
-router.get('/admin3_S_info',(req,res)=>{
-    res.render('admin3_S_info')
-})
+// router.get('/admin3_S_info',(req,res)=>{
+//     res.render('admin3_S_info')
+// })
 
 // 카페관리 - 가게 메뉴 등록 페이지로 이동
 router.get('/admin4_menu_register',(req,res)=>{
@@ -166,4 +160,62 @@ router.post('/upload', upload.single('image'), (req, res) => {
       res.status(400).send('Error uploading file.');
     }
   });
+
+
+
+
+
+/////////////////////////  mypage 페이지  //////////////////////////////
+
+// mypage 
+router.get('/mypage',(req,res)=>{
+    // res.render('mypage')
+    const currentUser = req.session
+    const myShop = queries.myShop
+    if(currentUser != undefined){
+    conn.query(myShop,[currentUser.user.user_id],(err,result)=>{
+        if(err){
+            console.log(err)
+        }else{
+            
+            res.render('mypage', {
+                list : result,
+                user_id : currentUser.user.user_id,
+            })}
+        }
+    )} else {
+        res.render('mypage')
+    }
+})
+
+// 
+// router.get('/admin3_S_info',(req,res)=>{
+//     // res.render('admin3_S_info')
+//      const menuInfo = queries.shopMenu
+//      console.log("reqqury:", req.query)
+//      conn.query(menuInfo,[req.query.shop_seq],(err,result)=>{
+//          if(err){
+//              console.log(err)
+//          }else{
+//              console.log("result : ",result)
+//              res.render('admin3_S_info', {
+//                  list : result,
+//                  name : req.query.shop_name
+//              })
+//          }
+//      })
+//  })
+
+
+
+
+
+
+
+
+
+
+
+
+
 module.exports = router;

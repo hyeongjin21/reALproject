@@ -62,8 +62,7 @@ router.post('/upload', upload.single('menu_img'), (req, res) => {
             console.log(err)
         }else{
             conn.query(queries.menuInfoAll,(e,r)=>{
-
-                console.log()
+                // console.log()
                 console.log(r)
                 res.render('menu_list', {list: r})
                 return;
@@ -106,8 +105,8 @@ router.post('/upload', upload.single('menu_img'), (req, res) => {
 
 // 가게이미지 등록
 router.post('/shop_register', uploads.single('shop_img'), (req, res) => {
-    let { shopname, bno, addr1, addr2, tel, ownername} = req.body
-    if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '')
+    let { shopname, bno, addr1, addr2, tel, ownername, shop_img} = req.body
+    if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '' || shop_img == '')
         {
             res.send(`<script>
             alert("빈칸을 빠짐없이 입력해주세요");
@@ -115,7 +114,7 @@ router.post('/shop_register', uploads.single('shop_img'), (req, res) => {
             </script>`)
             // res.render('/admin6_shop_register')
         }else{
-            conn.query(queries.insertShop, [shopname, bno, addr1, addr2, tel, ownername, req.file.filename], (err, rows)=>{
+            conn.query(queries.insertShop, [shopname, bno, addr1, addr2, tel, ownername, shop_img], (err, rows)=>{
             res.send(`<script>alert("${shopname} 카페가 등록되었습니다.");location.href='http://localhost:3333/admin2_S_userpage'</script>`)
             })
         }

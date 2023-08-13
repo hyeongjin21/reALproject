@@ -98,9 +98,9 @@ nav {
 }
 
 /* 검색(Search) 버튼의 글꼴 크기 증가 */
-.search-nav-container button {
-    font-size: 50px; /* 필요에 따라 값 조정 가능 */
-}
+/* .search-nav-container button {
+    font-size: 50px; 필요에 따라 값 조정 가능
+} */
 
 /* article 요소에 대한 스타일 추가 */
 article {

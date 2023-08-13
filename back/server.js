@@ -16,6 +16,9 @@ const indexRouter = require('./routes');
 const userRouter = require('./routes/user')
 const searchRouter = require('./routes/search')
 const managerRouter = require('./routes/manager')
+
+
+// const mypageRouter = require('./routes/mypage')
 const imgRouter = require('./routes/img')
 
 app.use(express.json()) // json 변환에 필요한것
@@ -43,16 +46,19 @@ app.use(session({
     httpOnly : true,
     resave : false,
     secret : 'secret',
-    store : new fileStore()
+    store : new fileStore,
+    saveUninitialized: false,
+    expires: new Date(Date.now() + (60 * 60 * 24 * 7 * 1000)),
 }))
-app.use((req,res,next)=>{
-    if(req.session.user === undefined){
-        req.session.user = {
-            user_name:''
-        }
-    }
-    next()
-})
+// app.use((req,res,next)=>{
+//     if(req.session.user === undefined){
+//         req.session.user = {
+
+//         }
+//     }
+//     next()
+// })
+
 
 // 6. 라우팅 처리
 app.use('/',indexRouter);
