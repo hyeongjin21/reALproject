@@ -1,5 +1,24 @@
-<!-- 관리자 페이지 -->
-{% extends 'm_layout.html' %}
+<!-- 관리자 로그인 페이지 -->
 {% block content %}
 <h1>관리자 페이지</h1>
+<!-- 관리자 로그인 폼 -->
+<form action="/admin1_userpage">
+    <h3 class="login" style="letter-spacing: -1px;"> AFTER LUNCH </h3>
+    <hr>
+    <label for="">
+        <!-- ID -->
+        <p style="text-align: left; font: size 12px; color:#666"> 아이디 </p>
+        <input type="text" placeholder="아이디를 입력하세요" class="size">
+    </label>
+
+    <label for="">
+        <!-- ID -->
+        <p style="text-align: left; font: size 12px; color:#666"> 비밀번호 </p>
+        <input type="text" placeholder="비밀번호를 입력하세요" class="size">
+    </label>
+
+    <p>
+        <input type="submit" value="로그인" class="btn">
+    </p>
+</form>
 {% endblock %}
