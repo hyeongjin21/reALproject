@@ -118,11 +118,12 @@
     <body>
 
         <!-- 즐찾 메뉴 들어올 자리 ! -->
-        <div class="container mymenu" style="display: flex; flex-direction:column;">
+        <div class="container mymenu" style="display: flex;">
             <button class="arbtn" id="leftbtn">❮</button>
             <div>
                 
                 <h1>MY MENU</h1> <br />
+
                 {% if list %}
                 <div class="row menu_card">
                     {% for i in list %}
@@ -130,14 +131,13 @@
                         <div class="card" style="width:100%;">
                             <img src="/uploads/{{i.menu_img}}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">메뉴이름 들어갈 자리</h5>
-                                <p class="card-text">메뉴설명 들어갈 자리</p>
+                                <h5 class="card-title">{{i.menu_name}}</h5>
+                                <p class="card-text">{{i.shop_name}}</p>
                             </div>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
-                
                 {% endif %}
             </div>
             <button class="arbtn" id="rightbtn">❯</button>
@@ -149,71 +149,27 @@
             <button class="arbtn" id="cafe_leftbtn">❮</button>
             <div>
                 <h1>MY CAFE</h1> <br />
+                {% if list %}
                 <div class="row cafe_card">
+                    {% for i in list %}
                     <div class="col-md-4">
                         <div class="card" style="width:100%;">
-                            <img src="/assets/img/cafe1.jpg" class="card-img-top" alt="...">
+                            <img src="/uploads/{{i.shop_img}}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <h5 class="card-title">카페이름 들어갈 자리</h5>
+                                <h5 class="card-title">{{i.shop_name}}</h5>
                                 <p class="card-text">카페설명 들어갈 자리</p>
                                 <a href="#" class="btn btn-primary">GO MY CAFE</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="card" style="width:100%;">
-                            <img src="/assets/img/cafe3.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">카페이름 들어갈 자리</h5>
-                                <p class="card-text">카페설명 들어갈 자리</p>
-                                <a href="#" class="btn btn-primary">GO MY CAFE</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card" style="width:100%;">
-                            <img src="/assets/img/cafe4.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">카페이름 들어갈 자리</h5>
-                                <p class="card-text">카페설명 들어갈 자리</p>
-                                <a href="#" class="btn btn-primary">GO MY CAFE</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card" style="width:100%;">
-                            <img src="/assets/img/menu1.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">카페이름 들어갈 자리</h5>
-                                <p class="card-text">카페설명 들어갈 자리</p>
-                                <a href="#" class="btn btn-primary">GO MY CAFE</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card" style="width:100%;">
-                            <img src="/assets/img/menu2.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">카페이름 들어갈 자리</h5>
-                                <p class="card-text">카페설명 들어갈 자리</p>
-                                <a href="#" class="btn btn-primary">GO MY CAFE</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card" style="width:100%;">
-                            <img src="/assets/img/menu3.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">카페이름 들어갈 자리</h5>
-                                <p class="card-text">카페설명 들어갈 자리</p>
-                                <a href="#" class="btn btn-primary">GO MY CAFE</a>
-                            </div>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
+                {% endif %}
             </div>
             <button class="arbtn" id="cafe_rightbtn">❯</button>
         </div>
+
+
         <!-- 리뷰 들어올 자리 ! my review -->
         <div class="container myreview" style="display: flex;">
             <button class="arbtn" id="review_leftbtn">❮</button>

@@ -200,19 +200,43 @@ router.post('/upload', upload.single('image'), (req, res) => {
 router.get('/mypage',(req,res)=>{
     // res.render('mypage')
     const currentUser = req.session
-    const myShop = queries.myShop
+    const myMenu = queries.myMenu
     if(currentUser != undefined){
-    conn.query(myShop,[currentUser.user.user_id],(err,result)=>{
+
+    // 내가 찜한 메뉴
+    conn.query(myMenu,[currentUser.user.user_id],(err,result)=>{
         if(err){
             console.log(err)
         }else{
-            
             res.render('mypage', {
                 list : result,
-                user_id : currentUser.user.user_id,
+                user_id : currentUser.user.user_id
             })}
-        }
-    )} else {
+        })
+
+    // // 내가 찜한 카페
+    // conn.query(myShop,[currentUser.user.user_id],(err,result)=>{
+    //     if(err){
+    //         console.log(err)
+    //     }else{
+    //         res.render('mypage', {
+    //             list : result,
+    //             user_id : currentUser.user.user_id
+    //         })}
+    //     })
+
+    // // 내 리뷰
+    // conn.query(myShop,[currentUser.user.user_id],(err,result)=>{
+    //     if(err){
+    //         console.log(err)
+    //     }else{
+    //         res.render('mypage', {
+    //             list : result,
+    //             user_id : currentUser.user.user_id
+    //         })}
+    //     })
+
+    } else {
         res.render('mypage')
     }
 })

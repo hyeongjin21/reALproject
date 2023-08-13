@@ -113,7 +113,16 @@ module.exports = {
 
 
   //////// 마이페이지 ..///////////////
-  myShop: `select b.menu_img from al_favorite_menu a inner join al_menu b on (a.menu_seq = b.menu_seq) where a.user_id = ?`
+  // 내가 찜한 메뉴
+  myMenu: `select b.menu_img, b.menu_name, c.shop_name from al_favorite_menu a inner join al_menu b on (a.menu_seq = b.menu_seq) inner join al_shop c on (b.shop_seq = c.shop_seq) where a.user_id = ?`,
+  
+  // 내가 찜한 카페
+  myShop: `select b.menu_img, b.menu_name, c.shop_name from al_favorite_shop a inner join al_menu b on (a.menu_seq = b.menu_seq) inner join al_shop c on (b.shop_seq = c.shop_seq) where a.user_id = ?`
+
+
+
+
+
 }
 
 
