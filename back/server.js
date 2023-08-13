@@ -50,7 +50,6 @@ app.use(session({
 // app.use((req,res,next)=>{
 //     if(req.session.user === undefined){
 //         req.session.user = {
-//             user_name:''
 //         }
 //     }
 //     next()

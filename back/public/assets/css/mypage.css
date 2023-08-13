@@ -1,0 +1,21 @@
+.b {
+    border: solid 1px black;
+}
+
+.mycafe, .mymenu, .myreview {
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+
+.arbtn {
+    height: 50px;
+    margin-top: 300px;
+    background-color: white;
+    border-color: beige;
+    border-style: none;
+    font-size: 30px;
+}
+
+.btn {
+   background-color: #006633;
+}

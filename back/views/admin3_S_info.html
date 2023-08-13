@@ -25,8 +25,7 @@
             <tr>
                 <th>카페 메뉴</th>
                 <td colspan="2">
-                    <button><a
-                            href="/admin4_menu_register?shop_seq={{shop_seq}}">메뉴등록</a></button>
+                    <button><a href="/admin4_menu_register?shop_seq={{shop_seq}}">메뉴등록</a></button>
                 </td>
             </tr>
         </table>
@@ -38,8 +37,9 @@
                 <th>메뉴이름</th>
                 <th>메뉴가격</th>
                 <th>메뉴설명</th>
-                <th>제공형식</th>
                 <th>카테고리</th>
+                <th>제공형식</th>
+                <th>추가옵션</th>
                 <th>메뉴특징</th>
                 <th>추가옵션</th>
                 <th>이미지등록여부</th>
@@ -47,31 +47,31 @@
                 <th>삭제</th>
             </tr>
 
-            <tbody>
-                {% for i in list %}
-                <tr>
-                    <td>{{i.menu_seq}}</td>
-                    <td>{{i.menu_name}}</td>
-                    <td>{{i.menu_price}}</td>
-                    <td>{{i.menu_desc}}</td>
-                    <td>{{i.menu_type}}</td>
-                    <td>{{i.menu_option}}</td>
-                    <td>{{i.menu_category}}</td>
-                    <td>{{i.menu_ingredient_tag}}</td>
-                    {% if i.menu_img != null %}
-                    <td>O</td>
-                    {%else%}
-                    <td>X</td>
-                    {%endif%}
-                    <td>
-                        <button onclick="menuUpdate('{{i.menu_seq}}','{{ name }}','{{ shop_seq }}')">수정</button>
-                    </td>
-                    <td>
-                        <button onclick="menuDelete('{{i.menu_seq}}')">삭제</button>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
+                <tbody>
+                    {% for i in list %}
+                    <tr>
+                        <td>{{i.rownum}}</td>
+                        <td>{{i.menu_name}}</td>
+                        <td>{{i.menu_price}}</td>
+                        <td>{{i.menu_desc}}</td>
+                        <td>{{i.menu_category}}</td>
+                        <td>{{i.menu_type}}</td>
+                        <td>{{i.menu_options}}</td>
+                        <td>{{i.menu_ingredient_tag}}</td>
+                        {% if i.menu_img != null %}
+                        <td>O</td>
+                        {%else%}
+                        <td>X</td>
+                        {%endif%}
+                        <td>
+                            <button onclick="menuUpdate('{{i.menu_seq}}','{{ name }}','{{ shop_seq }}')">수정</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="deletemenuRow({{i.menu_seq}})">삭제</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
         </table>
     </div>
 
@@ -82,17 +82,17 @@
     </script>
     <!--수정페이지 이동-->
     <script>
-        const menuUpdate = (menu_seq,name,shop_seq) => {
+        const menuUpdate = (menu_seq, name, shop_seq) => {
             location.href = `http://localhost:3333/admin5_menu_modify?menu_seq=${menu_seq}&shop_name=${name}&shop_seq=${shop_seq}`
         }
     </script>
     <!--메뉴삭제-->
     <script>
-         let refreshList = () => {
+        let refreshList = () => {
             location.reload()
         }
         let url = "/manager/menuDelete"
-         const menuDelete = (menu_seq) => {
+        const menuDelete = (menu_seq) => {
             let rs = confirm("삭제하시겠습니까?")
             if (rs == true) {
                 fetch(url, {
@@ -115,6 +115,34 @@
         }
 
     </script>
+
+    <!-- <script> //삭제할 메뉴 seq 가져오는 비동기fetch
+        let refreshList = () => {
+            location.reload()
+        }
+        let url = "/manager/menuDelete"
+        const deletemenuRow = (menu_seq) => {
+            let rs = confirm("메뉴를 삭제하시겠습니까?")
+            if (rs == true) {
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        seq: menu_seq
+
+                    })
+                })
+                    .then(res => res.json())
+                    .then(res => { })
+
+                alert("삭제되었습니다.");
+                refreshList();
+            }
+        }
+    </script> -->
+
 </div>
 
 {% endblock %}
