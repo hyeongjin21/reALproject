@@ -66,7 +66,7 @@ function kakaoLogout() {
             },
         })
         Kakao.Auth.setAccessToken(undefined)
-}
+}}
 
 
 //상점 좋아요 눌렀을때 반응
@@ -121,12 +121,3 @@ const addreview = () => {
         })
 
 }
-
-// const addreview = () =>{
-//     let check = confirm('등록하시겠습니까?')
-//     if(check){
-//         alert('등록 함')
-//     }else{
-//         alert('등록 안함')
-//     }
-// }
