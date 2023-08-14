@@ -9,18 +9,18 @@ body .main {
 }
 
 .tables {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 100px;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 100px;
 }
 
 .tables .hot-menu {
-  margin-right: 50px;
+margin-right: 50px;
 }
 
 .tables .review-menu {
-  margin-left: 50px;
+margin-left: 50px;
 }
 
 .two-three-img {

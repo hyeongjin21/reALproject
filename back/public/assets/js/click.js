@@ -66,43 +66,58 @@ function kakaoLogout() {
             },
         })
         Kakao.Auth.setAccessToken(undefined)
-    }
-}
+}}
 
-//좋아요 표시
-let islike = false;
-let likearea = document.getElementById('likearea')
-let unlike = document.getElementById('unlike')
-let like = document.getElementById('like')
-like.style.display = 'none'
-likearea.addEventListener('click', () => {
-    if (islike) {
+
+//상점 좋아요 눌렀을때 반응
+const shopLike = () => {
+    // let likearea = document.getElementById('menulikearea')
+    let like = document.getElementById('shoplike')
+    let unlike = document.getElementById('shopunlike')
+    let getShopSeq = document.getElementsByName('getshopseq')[0]
+    // like.style.display = 'none'
+    let likeCheck = 0
+    console.log('shopseq:',getShopSeq.value)
+    if (like.style.display == 'none') {
         like.style.display = 'inline'
         unlike.style.display = 'none'
-        islike = false;
+        likeCheck = 1
     } else {
         like.style.display = 'none'
         unlike.style.display = 'inline'
-        islike = true;
+        likeCheck = 0
     }
-})
+    let shop_seq =  getShopSeq.value
+    // console.log(shop_seq)
+    //user_id, shop_seq get쿼리로보내기
+    const shopLikeChange = `http://localhost:3333/search/shoplike?shop_seq=${ shop_seq }&&likeCheck=${likeCheck}`
+    fetch(shopLikeChange,{
+    })
+        .then(res => res.json())
+        .then(res => {
 
-//리뷰 등록 이벤트
-//menu_seq,review_contant,user_id
-const addreview = () =>{
-    console.log('클릭',sessionStorage)
-    let check = 0
-    if(check == 1){
-
-    }
+        })
 }
 
+const input = 'http://localhost:3333/search/inputreview'
+//리뷰 등록 이벤트
+//menu_seq,review_contant,user_id
+const addreview = () => {
+    // console.log('test')
+    let seq = document.getElementsByName('getmenuseq')[0].value
+    let review = document.getElementById('review').value
+    fetch(input, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            menuseq: seq,
+            review: review
+        })
+    })
+        .then(res => res.json())
+        .then(res => {
+            // console.log('login:', res)
+            popreview(res)
+        })
 
-// const addreview = () =>{
-//     let check = confirm('등록하시겠습니까?')
-//     if(check){
-//         alert('등록 함')
-//     }else{
-//         alert('등록 안함')
-//     }
-// }
+}

@@ -27,10 +27,10 @@
     <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#712cf9">
 
-    <link rel="stylesheet" href="/CSS/layout.css">
-    <link rel="stylesheet" href="/CSS/mypage.css">
-    <script defer type="text/javascript" src="/JS/mapage.js"></script>
-
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="/assets/css/layout.css">
+    <link rel="stylesheet" href="/assets/css/mypage.css">
+    <script defer type="text/javascript" src="/assets/js/mypage.js"></script>
 </head>
 
 <body>
@@ -43,6 +43,7 @@
             <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
         </symbol>
         <symbol id="moon-stars-fill" viewBox="0 0 16 16">
+        
             <path
                 d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
             <path
@@ -86,27 +87,33 @@
     </svg>
 
     <!-- 헤더 -->
-    <div class="header-area">
-        <h1 class="visually-hidden">Header</h1>
-        <div class="container">
-            <!-- **삭제**header calss 맨 뒤에 border 속성 삭제했습니다 -->
-            <header class="d-flex flex-wrap justify-content-center py-3 mb-4">
-                <a href="/"
-                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                    <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
-                    <span class="fs-4">AFTER LUNCH</span>
-                </a>
+    <div class="header-area"></div>
+    <h1 class="visually-hidden">Headers examples</h1>
 
-                <ul class="nav nav-pills">
-                    <!-- 로고 자리 -->
-                    <!-- <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li> -->
-                    <li class="nav-item head-nav"><a href="지도페이지" class="nav-link">FIND MENU</a></li>
-                    <li class="nav-item head-nav"><a href="/HTML/ranking.html" class="nav-link">RANKING</a></li>
-                    <li class="nav-item head-nav"><a href="/HTML/mypage.html" class="nav-link">MY PAGE</a></li>
-                    <li class="nav-item head-nav"><a href="/HTML/signin.html" class="nav-link">LOG IN</a></li>
-                </ul>
-            </header>
-        </div>
+    <div class="container">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4">
+            <a href="/"
+                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
+                <span class="fs-4">AFTER LUNCH</span>
+            </a>
+
+            <ul class="nav nav-pills">
+                <!-- 로고 자리 -->
+
+                <!-- <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li> -->
+                <li class="nav-item"><a href="search" class="nav-link">FIND MENU</a></li>
+                <li class="nav-item"><a href="ranking" class="nav-link">RANKING</a></li>
+                <li class="nav-item"><a href="mypage" class="nav-link">MY PAGE</a></li>
+                {% if user_id == undefined%}
+                <li class="nav-item"><a href="login" class="nav-link">LOG IN</a></li>
+                {% else %}
+                <li class="nav-item"><a href="login" class="nav-link">{{user_id}}</a></li>
+                {% endif %}
+
+            </ul>
+        </header>
+    </div>
     </div>
 
     <body>
@@ -124,10 +131,10 @@
                     <div class="col-md-4">
                         <div class="card" style="width:100%;">
                             <img src="/uploads/{{i.menu_img}}" class="card-img-top" alt="...">
-                                    <!-- 빈 하트입니다 -->
-                      <button><img src="/assets/img/whiteheart.png" alt="빈하트" class="white-like"></button>
-                      <!-- 채워진 하트입니다 -->
-                      <button><img src="/assets/img/fullheart.png" alt="채워진하트" class="full-like"></button>
+                            <!-- 빈 하트입니다 -->
+                            <button><img src="/assets/img/whiteheart.png" alt="빈하트" class="white-like"></button>
+                            <!-- 채워진 하트입니다 -->
+                            <button><img src="/assets/img/fullheart.png" alt="채워진하트" class="full-like"></button>
                             <div class="card-body">
                                 <h5 class="card-title">{{i.menu_name}}</h5>
                                 <p class="card-text">{{i.shop_name}}</p>
@@ -154,10 +161,10 @@
                     <div class="col-md-4">
                         <div class="card" style="width:100%;">
                             <img src="/shop_uploads/{{i.shop_img}}" class="card-img-top" alt="...">
-                              <!-- 빈 하트입니다 -->
-                      <button><img src="/IMG/whiteheart.png" alt="빈하트" class="white-like"></button>
-                      <!-- 채워진 하트입니다 -->
-                      <button><img src="/IMG/fullheart.png" alt="채워진하트" class="full-like"></button>
+                            <!-- 빈 하트입니다 -->
+                            <button><img src="/assets/img/whiteheart.png" alt="빈하트" class="white-like"></button>
+                            <!-- 채워진 하트입니다 -->
+                            <button><img src="/assets/img/fullheart.png" alt="채워진하트" class="full-like"></button>
                             <div class="card-body">
                                 <h5 class="card-title">{{i.shop_name}}</h5>
                                 <p class="card-text">{{i.shop_addr1}}</p>

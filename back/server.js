@@ -50,11 +50,12 @@ app.use(session({
 // app.use((req,res,next)=>{
 //     if(req.session.user === undefined){
 //         req.session.user = {
-
 //         }
 //     }
 //     next()
 // })
+
+
 
 // 6. 라우팅 처리
 app.use('/',indexRouter);
