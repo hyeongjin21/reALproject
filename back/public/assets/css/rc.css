@@ -1,0 +1,131 @@
+#reviewcontainer {
+    width: 25%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    display: block;
+    /* display: none; */
+    border-radius: 20px;
+    overflow: auto;
+    position: fixed;
+    z-index: 1;
+    left: 20%;
+    top: 135.2604217529297px;
+    /* bottom: 100px; */
+}
+
+
+#reviews {
+    height: 100px;
+    overflow: auto;
+}
+
+#reviewitem{
+    display: block;
+    width: 98%;
+    height: 35px;
+    resize: none;
+    border-radius: 10px; /* 원하는 테두리 둥글기 값을 설정 */
+    border: 1px solid #ccc; /* 테두리 색과 두께를 설정 */
+
+}
+
+.reviews h1 {
+    font-size: 2em; /* 또는 원하는 크기 (예: 24px, 36px 등)으로 설정하세요 */
+    text-align: center; /* 텍스트를 중앙 정렬합니다 */
+}
+
+.reviews {
+    margin: top_margin right_margin bottom_margin left_margin; 
+    /* 위의 값들을 원하는 마진 값으로 변경하세요 */
+    /* 예: margin: 10px 20px 15px 25px; */
+    margin: 20px; /* 모든 방향에 20px 마진을 적용 */
+
+}
+
+#likearea {
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+    justify-content: center; /* 수평 중앙 정렬 */
+}
+
+#likearea a {
+    margin-top: 1%;
+    margin-left: 1%;
+    position: absolute;
+    left: 0;
+    display: inline-block;  /* a 태그를 인라인 블록 요소로 만들어 줍니다 */
+    width: 50px;  /* 원하는 너비로 설정 */
+    height: 50px; /* 원하는 높이로 설정 */
+}
+
+.pushreview {
+    position: absolute; /* 절대 위치 지정 */
+    bottom: 10px;      /* `textarea`의 하단에서 10px */
+    right: 10px;       /* `textarea`의 오른쪽에서 10px */
+    padding: 5px 10px; /* 패딩 적용 */
+    background-color: #4C883E; /* 배경색 지정 */
+    color: #FFF;      /* 텍스트 색상 지정 */
+    border: none;     /* 테두리 제거 */
+    border-radius: 5px; /* 모서리 둥글게 */
+    cursor: pointer;  /* 마우스 포인터 변경 */
+    text-decoration: none; /* 밑줄 제거 */
+}
+
+#likearea h1 {
+    color: rgb(52, 50, 197); /* 빨간색으로 변경 */
+    margin: 0 10px;
+    font-size: 40px; /* 원하는 크기로 조절 */
+}
+p.float-left {
+    float: left;
+    margin-right: 10px;  /* 사이의 간격을 조정하려면 마진 값을 조절하세요 */
+    font-size: 17px;  /* 원하는 크기로 변경 */
+}
+p, p.float-left {
+    font-size: 19px;  /* 원하는 크기로 변경 */
+}
+    
+.thumb {
+        float: right;
+        margin-right: 200px;
+    }
+    
+.like-count {
+    margin-left: 5px;  /* 👍와의 간격 조절 */
+    font-size: 0.9rem; /* 폰트 크기 조절 */
+    vertical-align: middle; /* 👍와 수직 중앙 정렬 */
+}
+
+.review_write {
+    position: relative; /* 상대적인 위치 지정 */
+}
+
+
+#likearea a img {
+    width: 100%;  /* 이미지를 a 태그의 너비에 맞게 조절 */
+    height: auto; /* 이미지를 a 태그의 높이에 맞게 조절 */
+}
+
+#likearea > span {
+    /* height: 25px; */
+    margin-left: 20px;
+    margin-right: 3px;
+    font-size: 40px;
+}
+.menulikearea > span {
+    font-size: 50px;  /* 이 값을 원하는 크기로 조절할 수 있습니다. */
+}
+
+#menulikearea > span {
+    display: inline-block;
+    /* height: 25px; */
+    margin-left: 20px;
+    margin-right: 3px;
+    font-size: 40px;
+}
+
+#shoplike, #shopunlike {
+    margin-right: 10px; /* 필요하면 간격을 추가 */
+}
+
+

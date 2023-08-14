@@ -98,6 +98,7 @@ router.post('/review', (req, res) => {
     let userid = req.session.user.user_id
     let shopLikeCheck = 0
     let menuLikeCheck = 0
+    let isReviewCheck = 0
     conn.query(queries.LikeSearch, [userid], (err, rows) => {
         console.log('likesearch',rows[0].review_like_yn)
         for (let i = 0; i < rows.length; i++) {
@@ -109,13 +110,24 @@ router.post('/review', (req, res) => {
             }
         }
         for(let i = 0; i < rows.length; i++){
-            if(rows[i].menu_seq === menuseq && rows[i].menu_like_yn =='N'){
+            if(rows[i].menu_seq === menuseq && rows[i].menu_like_yn =='Y'){
                 menuLikeCheck = 1
                 break;
             }else{
                 menuLikeCheck = 0
             }
         }
+        // for(let i = 0; i < rows.length; i++){
+        //     if(rows[i].shop_seq === shopseq && rows[i].menu_seq === menuseq){
+        //         if(rows.length == 0)
+        //         {
+        //             isReviewCheck = 0
+        //         }else{
+        //             isReviewCheck = 1
+        //         }
+        //         console.log('리뷰들이다gggggggg',rows[i])
+        //     }
+        // }
         if(rows.length == 0 && shopLikeCheck == 0){
             conn.query(queries.shopInsertLike,[userid,shopseq],(err,rows)=>{
                 console.log('첫 좋아요 쿼리 실행')
@@ -182,6 +194,22 @@ router.get('/shoplike', (req, res) => {
 //메뉴 좋아요
 router.get('/menulike',(req,res)=>{
     console.log('menulikeRouter:',req.query)
+    console.log('user',req.session.user)
+    let userId = req.session.user.user_id
+    let menuseq = req.query.menu_seq
+    let likecheck = req.query.likeCheck
+    let menuLike = ''
+    if(likecheck == 0){
+        menuLike = 'N'
+        conn.query(queries.menuLike,[menuLike,userId,menuseq],(err,rows)=>{
+            console.log('메뉴 좋아요 지우기')
+        })
+    }else{
+        menuLike = 'Y'
+        conn.query(queries.menuLike,[menuLike,userId,menuseq],(err,rows)=>{
+            console.log('메뉴 좋아요')
+        })
+    }
 })
 
 module.exports = router; 

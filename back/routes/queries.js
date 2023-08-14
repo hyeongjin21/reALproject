@@ -165,8 +165,11 @@ module.exports = {
   //메뉴 좋아요 누른지 확인할때
   menuLikeSearch: `select * from al_favorite_menu where user_id = ?`,
 
-  //메뉴 좋아요 누를때
+  //메뉴 좋아요 처음 볼때
   menuInsertLike: `insert into al_favorite_menu (user_id, menu_seq) values (?,?)`,
+
+  //메뉴 좋아요 누를때
+  menuLike : `update al_favorite_menu set menu_like_yn = ? where user_id = ? and menu_seq = ?`,
 
 
 }

@@ -206,7 +206,6 @@ const popreview =  (data) => {
             document.getElementById('review').value = ''
             document.getElementById('cafename').innerText = result[0].shop_name
             document.getElementById('menuname').innerText = result[0].menu_name
-            console.log('menuseqplzfffff',document.getElementsByName('getmenuseq')[0].value)
             console.log('shopLikeCheck',shopLikeCheck)
             if(shopLikeCheck == 1){
                 document.getElementById('shoplike').style.display = 'inline'
