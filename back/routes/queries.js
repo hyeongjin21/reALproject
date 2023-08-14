@@ -146,6 +146,10 @@ module.exports = {
 
   //좋아요
 
+  //좋아요 모두 찾기
+  LikeSearch : `select a.user_id ,a.shop_seq, a.shop_like_yn , b.menu_seq, b.menu_like_yn, c.review_seq, c.review_like_yn  from al_favorite_shop a inner join al_favorite_menu b on (a.user_id = b.user_id) inner join al_like c on (b.user_id = c.user_id) where a.user_id = ?`,
+
+
   //가게 좋아요 누른지 확인할때
   shopLikeSearch: `select * from al_favorite_shop where user_id = ?`,
 
@@ -153,7 +157,7 @@ module.exports = {
   shopInsertLike: `insert into al_favorite_shop (user_id, shop_seq) value (?,?)`,
 
   //가게 좋아요 누를때
-  shopLike: `update set al_favorite_shop shop_like_yn set shop_like_yn = ? where user_id = ? and shop_seq = ?`,
+  shopLike: `update al_favorite_shop set shop_like_yn = ? where user_id = ? and shop_seq = ?`,
 
   //가게 좋아요 지우기
   menuDeleteLike: `delete from al_favorite_menu where user_id = ? and menu_seq = ?`,

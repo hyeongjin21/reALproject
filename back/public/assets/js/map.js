@@ -196,6 +196,7 @@ const popreview =  (data) => {
         .then(res => {
             let result = res.result
             let shopLikeCheck = res.shopLikeCheck
+            let menuLikeCheck = res.menuLikeCheck
             console.log('result:', result)
             while (reviews.firstChild) {
                 reviews.removeChild(reviews.firstChild);
@@ -205,6 +206,7 @@ const popreview =  (data) => {
             document.getElementById('review').value = ''
             document.getElementById('cafename').innerText = result[0].shop_name
             document.getElementById('menuname').innerText = result[0].menu_name
+            console.log('menuseqplzfffff',document.getElementsByName('getmenuseq')[0].value)
             console.log('shopLikeCheck',shopLikeCheck)
             if(shopLikeCheck == 1){
                 document.getElementById('shoplike').style.display = 'inline'
@@ -213,6 +215,15 @@ const popreview =  (data) => {
                 document.getElementById('shoplike').style.display = 'none'
                 document.getElementById('shopunlike').style.display = 'inline'
             }
+
+            if(menuLikeCheck == 1){
+                document.getElementById('menulike').style.display = 'inline'
+                document.getElementById('menuunlike').style.display = 'none'
+            }else{
+                document.getElementById('menulike').style.display = 'none'
+                document.getElementById('menuunlike').style.display = 'inline'
+            }
+
             if (result[0].menu_desc == null) {
                 document.getElementById('menudesc').innerText = '설명없음'
             } else {

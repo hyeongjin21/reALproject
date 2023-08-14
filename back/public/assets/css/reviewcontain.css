@@ -74,6 +74,17 @@
     font-size: 25px;
 }
 
+#menulikearea{
+    display: inline-block;
+}
+
+#menulikearea > span{
+    display: inline-block;
+    height: 25px;
+    margin-left: 5px;
+    font-size: 25px;
+}
+
 /* #menulikearea {
     display: inline-block;
 }
