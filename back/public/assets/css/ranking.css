@@ -1,3 +1,13 @@
+@font-face {
+    src : url("/FONTS/BMJUA_ttf.ttf");
+    font-family: "jua"
+}
+
+/* 구글폰트 css입니다 */
+body .main {
+  font-family: "jua"
+}
+
 .tables {
   display: flex;
   justify-content: center;
@@ -12,3 +22,77 @@
 .tables .review-menu {
   margin-left: 50px;
 }
+
+.two-three-img {
+  display: flex;
+}
+
+.ranking-one {
+  margin-left: 82px;
+}
+
+.rkimg {
+  width: 120px;
+  height: 120px;
+  margin: 10px 10px 10px 10px;
+  border-radius: 60px;
+}
+
+.two-three-img {
+  margin-top: 5px;
+  margin-bottom: 50px;
+
+}
+
+.review-imgs {
+  margin-left: 100px;
+  margin-bottom: 50px;
+}
+
+.ranking-two {
+  margin-right: 30px;
+}
+
+.ranking-three {
+  margin-left: 30px;
+}
+
+#num-1 {
+  margin-left: 150px;
+}
+
+.num-two-three {
+  display: flex;
+}
+
+#num-2 {
+  margin-left: 55px;
+
+}
+
+#num-3 {
+  margin-left: 165px;
+}
+
+/* .table-title {
+  text-align: center;
+} */
+
+.table-title .title-menu {
+  width: 37.97px !important; 
+  height: 39.99px !important;
+}
+
+/* .review-col {
+  margin-left: 30px !important;
+} */
+
+.rk-one,
+.rv-one {
+  width: 150px;
+  height: 150px;
+  border-radius: 80px;
+
+}
+
+
