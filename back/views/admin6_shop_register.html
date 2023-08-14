@@ -1,24 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'm_layout.html' %}
 
+{% block content %}
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>신규가게등록</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/assets/css/admin6.css">
 </head>
+<div style="flex-grow: 9;">
 
-<body>
-    <!-- Header -->
-    <header>
-        <h1>신규 가게 등록</h1>
+    <header style="display: flex; justify-content: center; flex-direction: row;">
+        <div class="user">신규 가게 등록</div>
     </header>
 
 
 
     <!-- Body --> 
-    <form method='post' action="/img/shop_register" encType="multipart/form-data">
+    <form method='post' action="/img/shop_register"  encType="multipart/form-data">
     <div class="main-container">
         <table class="info-table">
             <tr>
@@ -61,13 +57,13 @@
                 <th>가게이미지등록</th>
                 <td>
                         <input type="file" id="profileFile" name="shop_img" accept="image/*">
-                </td>
+                </td>   
             </tr>
         </table>
     </div>
         <div class="table-container">
             <table>
-                <tr>
+                <tr>    
                     <th>
                         <button type="submit" id="join">저장</button>
                         <button type="button"
@@ -76,8 +72,7 @@
                 </tr>
             </table>
         </div>
-        </div>
-    </form>
-</body>
+    </div>
 
-</html>
+</div>
+{% endblock %}

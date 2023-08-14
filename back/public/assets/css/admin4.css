@@ -13,30 +13,54 @@ html, body {
      height: 30px;
      background-color: #ffffff;
      color: #0f0d0d;
-     /* display: flex; */
-     /* align-items: center; */
-     /* justify-content: center; */
-     /* position: relative; */
-     /* top: 100px; */
+     /* display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+     top: 100px; */
+     
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
     }
+
+    
+.user {
+    font-size: 32px;
+    font-weight: bold; /* 글씨를 굵게 설정 */
+
+}
+
     
     /* Body 스타일링 */
     body {
-        /* height: 70%;  */
+        height: 70%; /* 50%로 변경 */
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
     }
     
     .main-container {
-        width: 40%;
+        /* 중요 */
+
+        width: 95%;
         margin: auto;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-top: 200px; /* Move down by 50 pixels */
+        margin-top: 70px; /* Move down by 50 pixels */
+}
+/* Footer 스타일링 */
+footer {
+    /* height: 15%; */
+    /* background-color: brown; */
+    color: #fff; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Table 섹션 스타일링 */
@@ -82,7 +106,9 @@ html, body {
 /* Table 스타일 */
 table {
     border-collapse: collapse;
-    width: 40%;
+/* 중요 */
+
+    width: 95%;
     margin: auto;
     border: 2px solid black;
 }

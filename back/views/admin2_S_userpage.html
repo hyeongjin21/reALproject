@@ -17,8 +17,8 @@
     <!-- Body -->
     <form action="/manager/admin2_S_userpage">
         <div class="search-section">
-        <input type="text" name = 'shopSearch' placeholder="검색어를 입력해주세요">
-        <input type="submit" value="검색">
+            <input type="text" name='shopSearch' placeholder="사업자명을 입력해주세요">
+            <input type="submit" value="검색">
         </div>
     </form>
 
@@ -38,92 +38,76 @@
                 <th>삭제</th>
             </tr>
 
-        <form method="post" action="/manager/shopDelete">
-            <tbody>
+            <form method="post" action="/manager/shopDelete">
+                <tbody>
 
-                {% for i in list %}
-                <tr>
-                    <td>{{i.rownum}}</td>
-                    <td>
-                        <a href="/admin4_menu_register?shop_seq={{i.shop_seq}}">
-                            {{i.shop_name}}
-                        </a>
-                    </td>
-                    <td>{{i.shop_bno}}</td>
-                    <td>{{i.shop_addr1}}</td>
-                    <td>{{i.shop_addr2}}</td>
-                    <td>{{i.shop_tel}}</td>
-                    <td>{{i.shop_owner}}</td>
-                    <td>{{i.created_at}}</td>
-                    <td>
-                        <button type="button" onclick="modifyShopRow({{i.shop_seq}})">수정</button>
-                    </td>
-                    <td>
-                        <button type="button" onclick="deleteShopRow({{i.shop_seq}})">삭제</button>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
+                    {% for i in list %}
+                    <tr>
+                        <td>{{i.rownum}}</td>
+                        <td>
+                            <a href="/admin3_S_info?shop_seq={{i.shop_seq}}&shop_name={{i.shop_name}}">
+                                {{i.shop_name}}
+                            </a>
+                        </td>
+                        <td>{{i.shop_bno}}</td>
+                        <td>{{i.shop_addr1}}</td>
+                        <td>{{i.shop_addr2}}</td>
+                        <td>{{i.shop_tel}}</td>
+                        <td>{{i.shop_owner}}</td>
+                        <td>{{i.created_at}}</td>
+                        <td>
+                            <button type="button" onclick="modifyShopRow({{ i.shop_seq }})">수정</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="deleteShopRow({{i.shop_seq}})">삭제</button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
             </form>
 
 
         </table>
     </div>
-    <script src="./assets/js/pagenationTable.js"></script>
-    <script>    
-        Paginator.init({tableID:"table-one", rows:5, headers:2, navRange:5,navStyle:'default'});
+    <script src="/assets/js/pagenationTable.js"></script>
+    <script>
+        Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
     </script>
 
     <script>
-    // 가게 목록에서 가게 삭제하는 fetch
-            let refreshList = () => {
-                location.reload()
-            }
-            let url = "/manager/shopDelete"
-            const deleteShopRow = (shop_seq) => {
-                let rs = confirm("삭제하시겠습니까?")
-                if (rs == true) {
-                    fetch(url, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            seq : shop_seq
-    
-                        })
-                    })
-                        .then(res => res.json())
-                        .then(res => {})
-    
-    
-                    alert("삭제되었습니다.");
-                    refreshList();
-                }
-            }
-
-    // 가게 목록에서 가게 정보 수정하는 fetch
-        let sm_url = "/manager/shopModify"
-        const modifyShopRow = (shop_seq) => {
-                fetch(sm_url, {
+        // 가게 목록에서 가게 삭제하는 fetch
+        let refreshList = () => {
+            location.reload()
+        }
+        let url = "/manager/shopDelete"
+        const deleteShopRow = (shop_seq) => {
+            let rs = confirm("삭제하시겠습니까?")
+            if (rs == true) {
+                fetch(url, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        seq : shop_seq
+                        seq: shop_seq
 
                     })
                 })
                     .then(res => res.json())
-                    .then(res => {})
-    
-    
-                    //alert("삭제되었습니다.");
-                    //refreshList();
+                    .then(res => { })
+
+
+                alert("삭제되었습니다.");
+                refreshList();
+            }
         }
-                 
+
+        // 가게 목록에서 가게 정보 수정하는 fetch
+        const modifyShopRow = (i) => {
+            location.href = `http://localhost:3333/shopinfo_modify?shop_seq=${i}`
+        }
+
     </script>
-       
+
 </div>
 {% endblock %}

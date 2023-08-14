@@ -1,6 +1,11 @@
 {% extends 'm_layout.html' %}
 
 {% block content %}
+
+<head>
+    <link rel="stylesheet" href="/assets/css/admin1.css">
+    <link rel="stylesheet" href="/assets/css/pagenationTable.css">
+</head>
 <div style="flex-grow: 9;">
     <!-- Header -->
     <header style="display: flex; justify-content: center; flex-direction: row;">
@@ -11,13 +16,13 @@
     <!-- Body -->
     <form action="/manager">
         <div class="search-section">
-            <input type="text" name='userSearch' placeholder="검색어를 입력해주세요">
+            <input type="text" name='userSearch' placeholder="아이디를 입력해주세요">
             <input type="submit" value="검색">
         </div>
     </form>
 
     <div class="table-container">
-        <table>
+        <table id="table-one">
             <tr>
                 <th>일련번호</th>
                 <th>아이디</th>
@@ -29,28 +34,34 @@
                 <th>사용자 삭제</th>
             </tr>
 
-        <form method="post" action="/manager/userDelete">
-            {% for i in list %}
-            <tr>
-                <th>{{i.rownum}}</th>
-                <th>{{i.user_id}}</th>
-                <th>{{i.user_pw}}</th>
-                <th>{{i.user_name}}</th>
-                <th>{{i.user_nick}}</th>
-                <th>{{i.user_phone}}</th>
-                <th>{{i.created_at}}</th>
-                <th>
-                    <button type="button" onclick="deleteUserRow({{i.user_seq}})">삭제</button>
-                </th>
-            </tr>
-            {% endfor %}
-        </form>
-        
-    </table>
-</div>
+            <form method="post" action="/manager/userDelete">
+                <tbody>
+                    {% for i in list %}
+                    <tr>
+                        <th>{{i.rownum}}</th>
+                        <th>{{i.user_id}}</th>
+                        <th>{{i.user_pw}}</th>
+                        <th>{{i.user_name}}</th>
+                        <th>{{i.user_nick}}</th>
+                        <th>{{i.user_phone}}</th>
+                        <th>{{i.created_at}}</th>
+                        <th>
+                            <button type="button" onclick="deleteUserRow({{i.user_seq}})">삭제</button>
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </form>
 
-<script>
-    // document.getElementById("deleteRow").addEventListener("click", deleteRow);
+        </table>
+    </div>
+    <script src="./assets/js/pagenationTable.js"></script>
+    <script>
+        Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
+    </script>
+
+    <script>
+        // document.getElementById("deleteRow").addEventListener("click", deleteRow);
         let refreshList = () => {
             location.reload()
         }
@@ -64,12 +75,12 @@
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        seq : user_seq
+                        seq: user_seq
 
                     })
                 })
                     .then(res => res.json())
-                    .then(res => {})
+                    .then(res => { })
 
 
                 alert("삭제되었습니다.");

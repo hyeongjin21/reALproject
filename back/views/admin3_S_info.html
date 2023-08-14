@@ -1,75 +1,146 @@
 {% extends 'm_layout.html' %}
 
 {% block content %}
+
 <head>
     <link rel="stylesheet" href="/assets/css/admin3.css">
+    <link rel="stylesheet" href="/assets/css/pagenationTable.css">
 </head>
+
 <div style="flex-grow: 9;">
     <!-- Header -->
     <header style="display: flex; justify-content: center; flex-direction: row;">
-        <div>가게 정보</div>
+        <div class="user">가게 정보</div>
     </header>
-    <!-- Body --> 
+
+    <!-- Body -->
     <div class="main-container">
-        <table class="info-table">
+        <table class="info-table" id="table-two">
             <tr>
                 <th>카페 이름</th>
                 <td>
-                    <output name="result">카페 이름이 출력</output>
-                </td>
-            </tr>
-            <tr>
-                <th>매장 사진</th>
-                <td>
-                    <img src="https://i.ibb.co/3493r17/cat.jpg" title="고양이" />
-                </td>
-                <td>
-                    <input type="file">
+                    {{ name }}
                 </td>
             </tr>
             <tr>
                 <th>카페 메뉴</th>
                 <td colspan="2">
-                    <button>메뉴 등록</button>
+                    <button><a href="/admin4_menu_register?shop_seq={{shop_seq}}">메뉴등록</a></button>
                 </td>
             </tr>
         </table>
     </div>
-        <div class="table-container">
-            <table>
-                <tr>
-                    <th>일련번호</th>
-                    <th>메뉴이름</th>
-                    <th>이미지등록여부</th>
-                    <th>메뉴가격</th>
-                    <th>제공형식</th>
-                    <th>추가옵션</th>
-                    <th>메뉴설명</th>
-                    <th>카테고리</th>
-                    <th>메뉴특징</th>
-                </tr>
+    <div class="table-container">
+        <table id="table-one">
+            <tr>
+                <th>일련번호</th>
+                <th>메뉴이름</th>
+                <th>메뉴가격</th>
+                <th>메뉴설명</th>
+                <th>카테고리</th>
+                <th>제공형식</th>
+                <th>추가옵션</th>
+                <th>메뉴특징</th>
+                <th>이미지등록여부</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
 
-                <tr>
+                <tbody>
                     {% for i in list %}
                     <tr>
-                        <th>{{i.menu_seq}}</th>
-                        <th>{{i.menu_name}}</th>
-                        <th>{{i.menu_price}}</th>
-                        <th>{{i.menu_desc}}</th>
-                        <th>{{i.menu_type}}</th>
-                        <th>{{i.menu_option}}</th>
-                        <th>{{i.menu_category}}</th>
-                        <th>{{i.menu_ingredient_tag}}</th>
+                        <td>{{i.rownum}}</td>
+                        <td>{{i.menu_name}}</td>
+                        <td>{{i.menu_price}}</td>
+                        <td>{{i.menu_desc}}</td>
+                        <td>{{i.menu_category}}</td>
+                        <td>{{i.menu_type}}</td>
+                        <td>{{i.menu_options}}</td>
+                        <td>{{i.menu_ingredient_tag}}</td>
+                        {% if i.menu_img != null %}
+                        <td>O</td>
+                        {%else%}
+                        <td>X</td>
+                        {%endif%}
+                        <td>
+                            <button onclick="menuUpdate('{{i.menu_seq}}','{{ name }}','{{ shop_seq }}')">수정</button>
+                        </td>
+                        <td>
+                            <button type="button" onclick="deletemenuRow({{i.menu_seq}})">삭제</button>
+                        </td>
                     </tr>
-                    <th>
-                        <button>수정</button>
-                        <button>삭제</button>
-                    </th>
                     {% endfor %}
-                </tr>
-    
-            </table>
-        </div>
+                </tbody>
+        </table>
     </div>
+
+    <!--페이지네이션-->
+    <script src="/assets/js/pagenationTable.js"></script>
+    <script>
+        Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
+    </script>
+    <!--수정페이지 이동-->
+    <script>
+        const menuUpdate = (menu_seq, name, shop_seq) => {
+            location.href = `http://localhost:3333/admin5_menu_modify?menu_seq=${menu_seq}&shop_name=${name}&shop_seq=${shop_seq}`
+        }
+    </script>
+    <!--메뉴삭제-->
+    <script>
+        let refreshList = () => {
+            location.reload()
+        }
+        let url = "/manager/menuDelete"
+        const deletemenuRow = (menu_seq) => {
+            let rs = confirm("삭제하시겠습니까?")
+            if (rs == true) {
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        seq: menu_seq
+
+                    })
+                })
+                    .then(res => res.json())
+                    .then(res => { })
+
+
+                alert("삭제되었습니다.");
+                refreshList();
+            }
+        }
+
+    </script>
 </div>
+
 {% endblock %}
+
+    <!-- <script> //삭제할 메뉴 seq 가져오는 비동기fetch
+        let refreshList = () => {
+            location.reload()
+        }
+        let url = "/manager/menuDelete"
+        const deletemenuRow = (menu_seq) => {
+            let rs = confirm("메뉴를 삭제하시겠습니까?")
+            if (rs == true) {
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        seq: menu_seq
+
+                    })
+                })
+                    .then(res => res.json())
+                    .then(res => { })
+
+                alert("삭제되었습니다.");
+                refreshList();
+            }
+        }
+    </script> -->

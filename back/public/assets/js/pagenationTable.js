@@ -227,9 +227,9 @@ const Paginator = ((modelCtrl,viewCtrl) => {
     //loop through all the objects in the array and setup model states for table
     let initTable = data => {                
         initDataset(data);                
-    
+        
         //if only one page is present then no need for pagination else continue        
-        if(data.maxPages == 1){return}
+        // if(data.maxPages == 1){return}
 
         viewCtrl.setupTableStyle(data);        
         setupPaginatedTable(data.tableID);                

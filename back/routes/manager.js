@@ -70,18 +70,24 @@ router.post('/shopDelete', (req, res) => {
 })
 
 
-// 카페관리 - 가게정보수정
+// 카페관리 - 가게 - 메뉴 삭제
+router.post('/menuDelete', (req, res) => {
+    let deleteMenu = req.body.seq
+    console.log("deleteMenu",deleteMenu)
 
-// 카페관리 - 메뉴 등록
-// router.post('/shop_register', (req, res) => {
-//     let {  } = req.body
-// })
+    conn.query(queries.menuDelete,[deleteMenu],(err, rows)=>{
+        console.log(rows)
+        res.send(`<script>alert("삭제되었습니다.");</script>`)
+    })
+})
+
+
 // 카페관리 - 메뉴 수정
 
 
-// 카페관리 - 카페 등록
+// 카페관리 - 가게 등록
 router.post('/shopRegister', (req, res) => {
-    let { shopname, bno, addr1, addr2, tel, ownername } = req.body
+    let { shopname, bno, addr1, addr2, tel, ownername} = req.body
 
     if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '')
     {
@@ -97,47 +103,16 @@ router.post('/shopRegister', (req, res) => {
     }
 })
 
-// 카페관리 - 카페 수정
-router.post('/shopModify', (req, res) => {
-    let { shopname, bno, addr1, addr2, tel, ownername } = req.body
+// 회원관리 - 메뉴 삭제
+router.post('/menuDelete', (req, res) => {
+    let deleteMenu = req.body.seq
+    console.log("deleteMenu",deleteMenu)
 
-    if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '')
-    {
-        res.send(`<script>
-        alert("빈칸을 빠짐없이 입력해주세요");
-        location.href='http://localhost:3333/shopInfo_Modify'
-        </script>`)
-        // res.render('/admin6_shop_register')
-    }else{
-        conn.query(queries.shopModify, [shopname, bno, addr1, addr2, tel, ownername], (err, rows)=>{
-        res.send(`<script>alert("${shopname} 카페의 정보가 수정되었습니다.");location.href='http://localhost:3333/shopInfo_Modify'</script>`)
-        })
-    }
+    conn.query(queries.menuDelete,[deleteMenu],(err, rows)=>{
+        console.log(rows)
+        res.send(`<script>alert("삭제되었습니다.");</script>`)
+    })
 })
-
-// // 카페관리 - 위치정보관리 
-// router.get('/shopLocation', (req, res) => {
-//     let name = "%" + req.query.shopname + "%"
-//     console.log(name)
-
-//     if(name == ''){
-//         conn.query(queries.shopLocationAll,[],(err, rows)=>{
-//             if(rows.length > 0){
-//                 res.render('admin7_location_manage',{list:rows})
-//             }
-//         })
-//     }else{
-//         conn.query(queries.shopLocationSearch,[name],(err, rows)=>{
-//             if(rows.length > 0){
-//                 res.render('admin7_location_manage',{list:rows})
-//             }       
-//         })
-//     }
-
-
-//     // 삭제 기능
-
-// })
 
 
 // 카페관리 - 리뷰관리
