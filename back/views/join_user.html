@@ -28,7 +28,7 @@
     <meta name="theme-color" content="#712cf9">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="/assets/css/hf.css">
+    <link rel="stylesheet" href="/assets/css/layout.css">
     <link rel="stylesheet" href="/assets/css/join_user.css">
 </head>
 
@@ -88,7 +88,7 @@
     <div class="header-area">
         <h1 class="visually-hidden">Headers examples</h1>
         <div class="container">
-            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 ">
                 <a href="/"
                     class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                     <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
@@ -113,10 +113,10 @@
         </h2>
         <form method='post' action="../user/join">
             <!-- NAME -->
-            <input type="text" placeholder="Enter your user name" class="input-tag" name="name" required>
+            <input class="input-tag" type="text" placeholder="Enter your user name"  name="name" required>
 
             <!-- TEL -->
-            <input type="text" placeholder="Enter your phone number" class="input-tag" name="tel" required>
+            <input class="input-tag" type="text" placeholder="Enter your phone number" name="tel" required>
 
             <!-- ID -->
             <input type="text" placeholder="Enter your ID" autocomplete="off" class="id-len" id="id" required>
@@ -124,12 +124,12 @@
             <input type="hidden" name="checking" value="0">
 
             <!-- PW -->
-            <input type="text" placeholder="Enter your Password" class="input-tag" name="pw" required>
+            <input class="input-tag" type="text" placeholder="Enter your Password" name="pw" required>
 
             <!-- RE_PW -->
-            <input type="text" placeholder="Confrim your Password" class="input-tag psw-len" name="pw2" required>
+            <input class="input-tag psw-len" type="text" placeholder="Confrim your Password" name="pw2" required>
 
-            <input type="submit" value="SIGN UP" class="input-tag btn" id="join">
+            <input class="input-tag btn" type="submit" value="SIGN UP" id="join">
             <p>
                 <br>
                 Find your menu , <br>

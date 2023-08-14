@@ -5,7 +5,8 @@
 
 .signin__card {
   width: 500px;
-  margin: 0 auto;
+  /* margin 0 -> 60px 변경했습니다. */
+  margin: 60px auto;
   border-radius: 6px;
   background-color: #f6f5f0;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, .3);
@@ -77,12 +78,4 @@
   outline: none;
   box-sizing: border-box;
   font-size: 14px;
-}
-
-.signin__card #join { /* [속성 선택자] */
-  background-color: #006633;
-  border: none;
-  color: #fff;
-  font-size: 20px;
-  cursor: pointer;
 }

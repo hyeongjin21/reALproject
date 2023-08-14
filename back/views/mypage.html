@@ -28,7 +28,7 @@
     <meta name="theme-color" content="#712cf9">
 
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="/assets/css/hf.css">
+    <link rel="stylesheet" href="/assets/css/layout.css">
     <link rel="stylesheet" href="/assets/css/mypage.css">
     <script defer type="text/javascript" src="/assets/js/mypage.js"></script>
 </head>
@@ -43,7 +43,7 @@
             <path d="M8 15A7 7 0 1 0 8 1v14zm0 1A8 8 0 1 1 8 0a8 8 0 0 1 0 16z" />
         </symbol>
         <symbol id="moon-stars-fill" viewBox="0 0 16 16">
-        
+
             <path
                 d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278z" />
             <path
@@ -87,11 +87,11 @@
     </svg>
 
     <!-- 헤더 -->
-
+    <div class="header-area"></div>
     <h1 class="visually-hidden">Headers examples</h1>
 
     <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <header class="d-flex flex-wrap justify-content-center py-3 mb-4">
             <a href="/"
                 class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                 <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
@@ -114,6 +114,7 @@
             </ul>
         </header>
     </div>
+    </div>
 
     <body>
 
@@ -121,7 +122,7 @@
         <div class="container mymenu" style="display: flex;">
             <button class="arbtn" id="leftbtn">❮</button>
             <div>
-                
+
                 <h1>MY MENU</h1> <br />
                 {% if list %}
                 <div class="row menu_card">
@@ -129,6 +130,10 @@
                     <div class="col-md-4">
                         <div class="card" style="width:100%;">
                             <img src="/uploads/{{i.menu_img}}" class="card-img-top" alt="...">
+                            <!-- 빈 하트입니다 -->
+                            <button><img src="/assets/img/whiteheart.png" alt="빈하트" class="white-like"></button>
+                            <!-- 채워진 하트입니다 -->
+                            <button><img src="/assets/img/fullheart.png" alt="채워진하트" class="full-like"></button>
                             <div class="card-body">
                                 <h5 class="card-title">{{i.menu_name}}</h5>
                                 <p class="card-text">{{i.shop_name}}</p>
@@ -154,6 +159,10 @@
                     <div class="col-md-4">
                         <div class="card" style="width:100%;">
                             <img src="/uploads/{{i.shop_img}}" class="card-img-top" alt="...">
+                            <!-- 빈 하트입니다 -->
+                            <button><img src="/assets/img/whiteheart.png" alt="빈하트" class="white-like"></button>
+                            <!-- 채워진 하트입니다 -->
+                            <button><img src="/assets/img/fullheart.png" alt="채워진하트" class="full-like"></button>
                             <div class="card-body">
                                 <h5 class="card-title">{{i.shop_name}}</h5>
                                 <p class="card-text">카페설명 들어갈 자리</p>
@@ -174,11 +183,16 @@
             <button class="arbtn" id="review_leftbtn">❮</button>
             <div>
                 <h1>MY REVIEW</h1> <br />
+                <div class="division-line"></div> <br />
                 <div class="row review_card">
                     <div class="col-md-4">
                         <div class="card" style="width:100%;">
                             <!-- 아래 이미지태그는 리뷰에 해당하는 메뉴 사진 자리 입니다 -->
                             <img src="/assets/img/jmade.jpeg" class="card-img-top" alt="...">
+                            <!-- 빈 하트입니다 -->
+                            <button><img src="/assets/img/whiteheart.png" alt="빈하트" class="white-like"></button>
+                            <!-- 채워진 하트입니다 -->
+                            <button><img src="/assets/img/fullheart.png" alt="채워진하트" class="full-like"></button>
                             <div class="card-body">
                                 <h5 class="card-title">메뉴이름 들어갈 자리</h5>
                                 <p class="card-text">리뷰 들어올 자리</p>

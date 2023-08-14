@@ -69,6 +69,9 @@ module.exports = {
   // 가게 삭제
   shopDelete: `delete from al_shop where shop_seq = ?`,
 
+  //가게 정보 가져오기
+  selectLocationAll: `select lat, lng,shop_name,shop_addr1,shop_addr2,shop_tel,shop_img from al_shop`,
+
   // 메뉴 정보
   menuInfo: `SELECT * FROM al_menu where menu_seq = ? `,
 
@@ -97,6 +100,10 @@ module.exports = {
 
   // 가게 위치 검색
   shopLocationSearch: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_addr1, lat, lng FROM al_shop where shop_name like ?`,
+
+
+  // 메뉴 리뷰 가져오기
+  getMenuReview:`select a.menu_name,a.menu_img,a.menu_desc,a.menu_price,a.menu_options,a.shop_seq,b.menu_seq,b.user_id,b.review_content,c.shop_name from al_menu a left outer join al_review b on (a.menu_seq = b.menu_seq) inner join al_shop c on(a.shop_seq = c.shop_seq ) where a.menu_seq = ?`,
 
   // 리뷰 관리 - 전체 검색
   reviewAll: `select row_number() over (order by c.created_at) as rownum, 

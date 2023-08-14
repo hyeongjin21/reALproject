@@ -47,7 +47,9 @@ router.get('/admin1_userpage',(req,res)=>{
     })
 })
 
-
+router.get('/ranking',(req,res)=>{
+    res.render('ranking')
+})
 
 // 회원관리 - 사용자 삭제
 router.post('/admin1_userpage',(req,res)=>{
@@ -240,7 +242,6 @@ router.get('/mypage',(req,res)=>{
         res.render('mypage')
     }
 })
-
 
 
 
