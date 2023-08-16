@@ -147,12 +147,16 @@ const menuLike=()=>{
         .then(res => {
 
         })
-    // const shopLikeChange = `http://localhost:3333/search/shoplike?shop_seq=${ shop_seq }&&likeCheck=${likeCheck}`
-    // fetch(shopLikeChange,{
-    // })
-    //     .then(res => res.json())
-    //     .then(res => {
-
-    //     })
 
 }
+
+
+document.querySelector("#likearea a").addEventListener("click", function(event) {
+    event.preventDefault();  // a 태그의 기본 동작을 중지합니다.
+    const shopWrap = document.querySelector("#reviewcontainer");
+    if (shopWrap.style.display === "block") {
+        shopWrap.style.display = "none";
+    } else {
+        shopWrap.style.display = "block";
+    }
+});

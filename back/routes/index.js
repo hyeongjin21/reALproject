@@ -251,7 +251,9 @@ router.get('/mypage',(req,res)=>{
 
 
 
-
+router.get('/test',(req,res)=>{
+    res.render('search1')
+})
 
 
 

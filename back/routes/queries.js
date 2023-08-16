@@ -7,13 +7,13 @@ module.exports = {
   searchId: `select * from al_user where user_id = ? and user_pw = ?`,
 
   // 메뉴정보 전체 출력
-  menuInfoAll: `select * from al_menu`,
+  menuInfoAll: `select * from al_menu a left join al_shop b on(a.shop_seq = b.shop_seq)`,
 
   //메뉴검색 & 카테고리(전체 선택)
   searchMenu: `select * from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.menu_name like ?`,
 
   //메뉴검색 - 카테고리별 선택
-  searchMenuCategory: `select * from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.menu_name like ? and b.menu_category = ?`,
+  searchMenuCategory: `select * from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.menu_name like ? and b.menu_category like ?`,
 
   //검색 - 메뉴선택 - 지도 위도 경도가져오기
   shopLocation: `select a.lat, a.lng from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.shop_seq = ?`,
@@ -103,7 +103,7 @@ module.exports = {
 
 
   // 메뉴 리뷰 가져오기
-  getMenuReview:`select a.menu_name,a.menu_img,a.menu_desc,a.menu_price,a.menu_options,a.shop_seq,b.menu_seq,b.user_id,b.review_content,c.shop_name from al_menu a left outer join al_review b on (a.menu_seq = b.menu_seq) inner join al_shop c on(a.shop_seq = c.shop_seq ) where a.menu_seq = ?`,
+  getMenuReview:`select a.menu_name,a.menu_img,a.menu_desc,a.menu_price,a.menu_options,a.shop_seq,b.menu_seq,b.user_id,b.review_seq,b.review_content,c.shop_name from al_menu a left outer join al_review b on (a.menu_seq = b.menu_seq) inner join al_shop c on(a.shop_seq = c.shop_seq ) where a.menu_seq = ?`,
 
   // 리뷰 관리 - 전체 검색
   reviewAll: `select row_number() over (order by c.created_at) as rownum, 
@@ -171,5 +171,13 @@ module.exports = {
   //메뉴 좋아요 누를때
   menuLike : `update al_favorite_menu set menu_like_yn = ? where user_id = ? and menu_seq = ?`,
 
+  //리뷰 전체 확인용
+  allReviewLikeSearch : `select * from al_like where user_id = ?`,
+
+  //리뷰 좋아요 처음 누를때
+  insertLikeReview : `insert into al_like (review_seq,user_id,review_like_yn) values (?,?,?)`,
+
+  //리뷰 좋아요 누를때
+  updateLikeReview : `update al_like set review_like_yn = ? where user_id = ? and review_seq = ?`,
 
 }

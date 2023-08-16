@@ -42,8 +42,23 @@ fetch(url)
                 for (let i = 0; i < menuResult.length; i++) {
                     // console.log('메뉴결과값',menuResult[i])
                     let li = document.createElement('li')
-                    li.innerText = `메뉴 이름 : ${menuResult[i].menu_name} 
-                    가격 : ${menuResult[i].menu_price}`
+                    li.innerHTML = `
+                    <div class='menuList'>
+                        <div class='menuImg'>
+                            <img src="../uploads/1_아메리카노.png"
+                        </div>
+                        <div class='menuInfo'>
+                            <div class='shopname'>
+                                ${menuResult[i].shop_name}
+                            </div>
+                            <div class='menuName'>
+                                메뉴 이름 : ${menuResult[i].menu_name}<br> 
+                            </div>
+                            <div class='menuPrice'>
+                                ${menuResult[i].menu_price} 원
+                            </div>
+                        </div>
+                    </div>`
                     li.addEventListener('click', function () {
                         popreview(menuResult[i])
                     })
@@ -56,6 +71,8 @@ fetch(url)
         useShoploca();
     })
 
+
+
 const searchEvent = () => {
     fetch(url)
         .then(res => res.json())
@@ -63,29 +80,47 @@ const searchEvent = () => {
             shoploca = res.result
             // console.log('test')
             // 목록에 메뉴 출력용 fetch
-            fetch(gMenu)
+            let categoryvalue = category.options[category.selectedIndex]
+            menuResult = res.list
+            let cate = categoryvalue.value
+            let name = searchname.value
+            const searchmenu = `http://localhost:3333/search/getMenu?category=${cate}&&inputmenu=${name}`
+            fetch(searchmenu)
                 .then(res => res.json())
                 .then(res => {
-                    let categoryvalue = category.options[category.selectedIndex]
-                    menuResult = res.list
-                    let cate = categoryvalue.value
-                    let name = searchname.value
+                    let menuResult = res.list
+                    // console.log('menuResultmenuResult',menuResult)
                     // console.log('클릭실행함',cate,name)
                     let ul = document.getElementById("placesList")
                     ul.innerHTML = ''
                     for (let i = 0; i < menuResult.length; i++) {
-                        console.log('메뉴결과값',menuResult[i].menu_name)
+                        // console.log('메뉴결과값',menuResult[i].menu_name)
                         // console.log("T,F",menuResult[i].menu_name.indexOf(name))
-                        if (menuResult[i].menu_name.indexOf(name) >= 0 &&
-                            menuResult[i].menu_category == cate) {
-                            let li = document.createElement('li')
-                            li.innerText = `메뉴 이름 : ${menuResult[i].menu_name} 
-                            가격 : ${menuResult[i].menu_price}`
-                            li.addEventListener('click', function () {
-                                popreview(menuResult[i])
-                            })
-                            ul.appendChild(li)
-                        }
+                        // if (menuResult[i].menu_name.indexOf(name) >= 0 &&
+                        //     menuResult[i].menu_category == cate) {
+                        let li = document.createElement('li')
+                        li.innerHTML = `
+                        <div class='menuList'>
+                            <div class='menuImg'>
+                                <img src="../uploads/1_아메리카노.png"
+                            </div>
+                            <div class='menuInfo'>
+                                <div class='shopname'>
+                                    ${menuResult[i].shop_name}
+                                </div>
+                                <div class='menuName'>
+                                    메뉴 이름 : ${menuResult[i].menu_name}<br> 
+                                </div>
+                                <div class='menuPrice'>
+                                    ${menuResult[i].menu_price} 원
+                                </div>
+                            </div>
+                        </div>`
+                        li.addEventListener('click', function () {
+                            popreview(menuResult[i])
+                        })
+                        ul.appendChild(li)
+                        // }
                     }
                 })
             useShoploca();
@@ -177,12 +212,12 @@ const useShoploca = () => {
 }
 
 //리뷰창 띄우기
-const popreview =  (data) => {
-    console.log('리뷰띄우기')
+const popreview = (data) => {
+    // console.log('리뷰띄우기')
     let getMenu = 'http://localhost:3333/search/review'
     let reviews = document.getElementById('reviews')
     let review = document.getElementById('reviewcontainer')
-    console.log('popupdata',data)
+    // console.log('popupdata',data)
     review.style.display = 'inline-block';
     fetch(getMenu, {
         method: 'POST',
@@ -197,7 +232,10 @@ const popreview =  (data) => {
             let result = res.result
             let shopLikeCheck = res.shopLikeCheck
             let menuLikeCheck = res.menuLikeCheck
-            console.log('result:', result)
+            let reviewListCheck = res.getReviewLike
+            let reviewyn = res.getreviewlikeyn
+            // console.log('result:', result)
+            console.log('reviewyn', reviewyn)
             while (reviews.firstChild) {
                 reviews.removeChild(reviews.firstChild);
             }
@@ -206,19 +244,19 @@ const popreview =  (data) => {
             document.getElementById('review').value = ''
             document.getElementById('cafename').innerText = result[0].shop_name
             document.getElementById('menuname').innerText = result[0].menu_name
-            console.log('shopLikeCheck',shopLikeCheck)
-            if(shopLikeCheck == 1){
+            console.log('reviewseqLIst', reviewListCheck)
+            if (shopLikeCheck == 1) {
                 document.getElementById('shoplike').style.display = 'inline'
                 document.getElementById('shopunlike').style.display = 'none'
-            }else{
+            } else {
                 document.getElementById('shoplike').style.display = 'none'
                 document.getElementById('shopunlike').style.display = 'inline'
             }
 
-            if(menuLikeCheck == 1){
+            if (menuLikeCheck == 1) {
                 document.getElementById('menulike').style.display = 'inline'
                 document.getElementById('menuunlike').style.display = 'none'
-            }else{
+            } else {
                 document.getElementById('menulike').style.display = 'none'
                 document.getElementById('menuunlike').style.display = 'inline'
             }
@@ -228,13 +266,67 @@ const popreview =  (data) => {
             } else {
                 document.getElementById('menudesc').innerText = result[0].menu_desc
             }
+            let cnt = 0
             for (let i = 0; i < result.length; i++) {
                 let div = document.createElement('div')
-                div.innerHTML = `<div class="reviewitem">${result[i].user_id} : ${result[i].review_content}</div>`
+                div.innerHTML = `
+                <div class="reviewitem">
+                <p class='float-left'>${result[i].user_id}</p><br>
+                <p>${result[i].review_content}</p>
+                <p class='reviewLikeUp'>
+                    <div id="reviewlikearea" onclick="reviewlikeclick('${result[i].user_id}','${cnt}','${result[i].review_seq}')">
+                        <span class="${result[i].user_id} ${cnt} like" id="reviewlike">❤️</span>
+                        <span class="${result[i].user_id} ${cnt} unlike" id="reviewunlike">🤍</span>
+                        </div>
+                    </p>
+                </div>
+                `
+                // console.log('reviewListCheck',reviewListCheck)
+                // console.log('리뷰시퀀스',result[i].review_seq)
+                // console.log('인덱스오브',reviewListCheck.indexOf(result[i].review_seq))
                 reviews.appendChild(div)
+                console.log('123123123', reviewListCheck.indexOf(result[i].review_seq))
+                if (reviewListCheck.indexOf(result[i].review_seq) == -1 || reviewyn[reviewListCheck.indexOf(result[i].review_seq)] == 'N') {
+                    document.getElementsByClassName(`${result[i].user_id} ${cnt} like`)[0].style.display = 'none'
+                    document.getElementsByClassName(`${result[i].user_id} ${cnt} unlike`)[0].style.display = 'block'
+                } else if (reviewyn[reviewListCheck.indexOf(result[i].review_seq)] == 'Y') {
+                    document.getElementsByClassName(`${result[i].user_id} ${cnt} like`)[0].style.display = 'block'
+                    document.getElementsByClassName(`${result[i].user_id} ${cnt} unlike`)[0].style.display = 'none'
+                }
+                cnt++
             }
         }
-    )
-        
+        )
+
+}
+
+const reviewlikeclick = (id, cnt, seq) => {
+    // console.log('id,cnt',id,cnt)
+    let like = document.getElementsByClassName(`${id} ${cnt} like`)[0]
+    let unlike = document.getElementsByClassName(`${id} ${cnt} unlike`)[0]
+    let likecheck = 0
+
+    if (like.style.display == 'none') {
+        like.style.display = 'block'
+        unlike.style.display = 'none'
+        likecheck = 1
+    } else {
+        like.style.display = 'none'
+        unlike.style.display = 'block'
+        likecheck = 0
+    }
+    // const menuLikeChange = `http://localhost:3333/search/menulike?menu_seq=${ menuSeq.value }&&likeCheck=${ mlike }`
+    // fetch(menuLikeChange,{
+    // })
+    //     .then(res => res.json())
+    //     .then(res => {
+
+    //     })
+    const reviewlikechange = `http://localhost:3333/search/reviewlike?reviewseq=${seq}&&reviewLike=${likecheck}`
+    fetch(reviewlikechange, {
+    })
+        .then(res => res.json())
+        .then(res => {
+        })
 }
 

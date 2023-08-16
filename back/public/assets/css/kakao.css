@@ -1,3 +1,8 @@
+@font-face {
+    src : url("/FONTS/BMJUA_ttf.ttf");
+    font-family: "jua"
+}
+
 .map_wrap,
 .map_wrap * {
     margin: 0;
@@ -16,7 +21,8 @@
 .map_wrap {
     position: relative;
     width: 100%;
-    height: 500px;
+    /* height: 100%; */
+    height: 630px;
 }
 
 #menu_wrap {
@@ -127,10 +133,10 @@
 .wrap {
     position: absolute;
     left: 0;
-    bottom: 40px;
+    bottom: -32px;
     width: 288px;
     height: 132px;
-    margin-left: -144px;
+    margin-left: -69px;
     text-align: left;
     overflow: hidden;
     font-size: 12px;
@@ -159,6 +165,7 @@
 }
 
 .info .title {
+    font-family: "jua";
     padding: 5px 0 0 10px;
     height: 30px;
     background: #eee;
@@ -187,19 +194,22 @@
 }
 
 .info .desc {
+    font-family: "jua";
     position: relative;
     margin: 13px 0 0 90px;
     height: 75px;
 }
 
 .desc .ellipsis {
+    font-family: "jua";
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .desc .jibun {
-    font-size: 11px;
+    font-family: "jua";
+    font-size: 12px;
     color: #888;
     margin-top: -2px;
 }
@@ -234,4 +244,50 @@
 
 .info .link {
     color: #5085BB;
+}
+
+.menuList{
+    width:100%;
+    height: 120px;
+    cursor: pointer;
+}
+
+.menuImg{
+    position: relative;
+    display: flex;
+    width: 90px;
+    height: 90px;
+}
+
+.menuImg img{
+    width: 100%;
+    height: 100%;
+    border-radius: 25%;
+}
+
+.menuInfo{
+    background-color: white;
+    position: absolute;
+    left: 80px;
+    width: 160px;
+    height: 100%;
+}
+
+.shopname{
+    /* margin-top: 20px; */
+    width: 160px;
+    text-align: center;
+    font-family: "jua"
+}
+
+.menuName{
+    width: 160px;
+    text-align: center;
+    font-family: "jua"
+}
+
+.menuPrice{
+    width: 160px;
+    text-align: center;
+    font-family: "jua"
 }
