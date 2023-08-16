@@ -45,7 +45,7 @@ fetch(url)
                     li.innerHTML = `
                     <div class='menuList'>
                         <div class='menuImg'>
-                            <img src="../uploads/1_아메리카노.png"
+                            <img src="../uploads/${menuResult[i].menu_img}"
                         </div>
                         <div class='menuInfo'>
                             <div class='shopname'>
@@ -89,6 +89,7 @@ const searchEvent = () => {
                 .then(res => res.json())
                 .then(res => {
                     let menuResult = res.list
+                    console.log('menuemeue',menuResult)
                     // console.log('menuResultmenuResult',menuResult)
                     // console.log('클릭실행함',cate,name)
                     let ul = document.getElementById("placesList")
@@ -102,7 +103,7 @@ const searchEvent = () => {
                         li.innerHTML = `
                         <div class='menuList'>
                             <div class='menuImg'>
-                                <img src="../uploads/1_아메리카노.png"
+                                <img src="../uploads/${menuResult[i].menu_img}"
                             </div>
                             <div class='menuInfo'>
                                 <div class='shopname'>
@@ -234,11 +235,12 @@ const popreview = (data) => {
             let menuLikeCheck = res.menuLikeCheck
             let reviewListCheck = res.getReviewLike
             let reviewyn = res.getreviewlikeyn
-            // console.log('result:', result)
-            console.log('reviewyn', reviewyn)
+            console.log('result:', result)
+            // console.log('reviewyn', reviewyn)
             while (reviews.firstChild) {
                 reviews.removeChild(reviews.firstChild);
             }
+            document.getElementById('menuImg').src = `../uploads/${result[0].menu_img}`
             document.getElementsByName('getmenuseq')[0].value = result[0].menu_seq
             document.getElementsByName('getshopseq')[0].value = result[0].shop_seq
             document.getElementById('review').value = ''
@@ -271,14 +273,18 @@ const popreview = (data) => {
                 let div = document.createElement('div')
                 div.innerHTML = `
                 <div class="reviewitem">
-                <p class='float-left'>${result[i].user_id}</p><br>
-                <p>${result[i].review_content}</p>
-                <p class='reviewLikeUp'>
-                    <div id="reviewlikearea" onclick="reviewlikeclick('${result[i].user_id}','${cnt}','${result[i].review_seq}')">
-                        <span class="${result[i].user_id} ${cnt} like" id="reviewlike">❤️</span>
-                        <span class="${result[i].user_id} ${cnt} unlike" id="reviewunlike">🤍</span>
+                    <div>
+                        <div class='reviewcontain'>
+                            <div class='reviewbetween'>
+                                <div class='reviewname'>${result[i].user_id}</div>
+                                <div id="reviewlikearea" onclick="reviewlikeclick('${result[i].user_id}','${cnt}','${result[i].review_seq}')">
+                                    <span class="${result[i].user_id} ${cnt} like" id="reviewlike">❤️</span>
+                                    <span class="${result[i].user_id} ${cnt} unlike" id="reviewunlike">🤍</span>
+                                </div>
+                            </div>
+                            <div>${result[i].review_content}</div>
                         </div>
-                    </p>
+                    </div>
                 </div>
                 `
                 // console.log('reviewListCheck',reviewListCheck)

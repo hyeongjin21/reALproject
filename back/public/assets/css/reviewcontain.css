@@ -1,4 +1,10 @@
+@font-face {
+    src : url("/FONTS/BMJUA_ttf.ttf") !important;
+    font-family: "jua" !important;
+}
+
 .reviewitem {
+    display: flex;
     background-color: white;
     text-align: center;
     width: 98%;
@@ -8,11 +14,27 @@
     margin-bottom: 0; */
 }
 
-.reviewLikeUp 
+#reviewlikearea{
+    cursor: pointer;
+}
+
+/* .reviewLikeUp{
+    display: flex;
+    flex-direction: column;
+} */
+.reviewcontain{
+    display:flex;
+    flex-direction: column;
+}
+
+.reviewbetween{
+    display: flex;
+    justify-content: space-between;
+}
 
 .imgcontain {
-    width: 50%;
-    height: 220px;
+    width: 100px;
+    height: 200px;
     margin: 0 auto;
     text-align: center;
 }
@@ -20,6 +42,7 @@
 .imgcontain img{
     display: block;
     width : 100%;
+    height: 100%;
     height: auto;
 }
 
@@ -86,21 +109,24 @@
     font-size: 20px; /* 원하는 크기로 조절 */
 }
 
-#likearea > span {
+#likearea > img {
     display: inline-block;
-    height: 43px;
+    height: 25px;
     margin-left: 5px;
     font-size: 25px;
 }
 
 #menulikearea{
     display: inline-block;
+    width: 23px;
+    height: 23px;
 }
 
-#menulikearea > span{
+#menulikearea > img{
     display: inline-block;
-    height: 25px;
-    margin-left: 5px;
+    height: 23px;
+    margin-top: 5px;
+    margin-left: 10px;
     font-size: 25px;
 }
 
@@ -134,4 +160,13 @@ p.float-left {
 #menudesc{
     text-align: center;
     background-color: rgb(255, 255, 255);
+}
+
+.menuLikeLike{
+    display: flex;
+    justify-content: space-between;
+}
+
+#menuname{
+    margin-top: 10px;
 }

@@ -31,6 +31,8 @@
     <link rel="stylesheet" href="/assets/css/layout.css">
     <link rel="stylesheet" href="/assets/css/kakao.css">
     <link rel="stylesheet" href="/assets/css/reviewcontain.css">
+    {#
+    <link rel="stylesheet" href="/assets/css/map_change.css"> #}
 </head>
 
 <body>
@@ -143,22 +145,26 @@
         <div id="reviewcontainer">
             {# 카페 좋아요 누르는 칸 #}
             <div class="likearea" id="likearea" onclick="shopLike()">
-                <span id="shoplike">❤️</span>
-                <span id="shopunlike">🤍</span>
+                <img src="./assets/img/fullheart.png" id="shoplike">
+                <img src="./assets/img/whiteheart.png" id="shopunlike">
                 {# 카페이름 #}
                 <h1 id="cafename"> 매머드 카페 </h1>
             </div>
             <hr>
             {# 메뉴에 대한 div #}
             <div class="imgcontain">
-                <div id="menuname">메뉴이름</div>
-                {# 메뉴 좋아요에 관한 div #}
-                <div id="menulikearea" onclick="menuLike()">
-                    <span id="menulike">❤️</span>
-                    <span id="menuunlike">🤍</span>
+                <div class="list-image">
+                    <img src="/assets/img/광주매머드서석점.jpg" id="menuImg">
+                    <div class="menuLikeLike">
+                        <div id="menulikearea" onclick="menuLike()">
+                            <img src="./assets/img/fullheart.png" id="menulike">
+                            <img src="./assets/img/whiteheart.png" id="menuunlike">
+                        </div>
+                        <div class="menu-info">
+                            <div id="menuname">메뉴이름</div>
+                        </div>
+                    </div>
                 </div>
-                {# 메뉴 사진이없어서 지금있는 사진중 아무거나 넣은거입니다 #}
-                <img src="/assets/img/광주매머드서석점.jpg" class="list-image">
             </div>
             {# 메뉴설명이 들어갈 div #}
             <div id="menudesc">메뉴설명:ㅁㄴㅇㅁㄴㅇ</div>
