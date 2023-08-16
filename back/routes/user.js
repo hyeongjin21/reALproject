@@ -11,7 +11,8 @@ const GOOGLE_REDIRECT_URI  = 'http://localhost:3333/login/redirect';
 
 // 회원 가입
 router.post('/join', (req, res) => {
-    let { name, id, pw, pw2, tel, nick } = req.body
+    console.log(req.body)
+    let { name,  tel, id, check, pw, pw2 } = req.body
     if (pw == pw2) {
         conn.query(queries.joinUser, [id, pw, name, nick, tel], (err, rows) => {
             console.log(rows)
