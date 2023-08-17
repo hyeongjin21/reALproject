@@ -8,14 +8,20 @@
     background-color: white;
     text-align: center;
     width: 98%;
-    border-radius:20px;
+    /* border-radius:20px; */
     /* margin-top: 0;
     margin-top: 0;
     margin-bottom: 0; */
 }
 
+
 #reviewlikearea{
     cursor: pointer;
+}
+
+#reviewlikearea img{
+    height: 23px;
+    width: 23px;
 }
 
 /* .reviewLikeUp{
@@ -23,32 +29,46 @@
     flex-direction: column;
 } */
 .reviewcontain{
-    display:flex;
+    /* display:flex; */
+    width: 250px;
     flex-direction: column;
 }
 
 .reviewbetween{
+    /* width: 100%; */
     display: flex;
     justify-content: space-between;
 }
 
-.imgcontain {
-    width: 100px;
-    height: 200px;
-    margin: 0 auto;
-    text-align: center;
+.reviewcontent{
+    font-family: "jua";
+    text-align: left;
 }
 
-.imgcontain img{
+.imgcontain {
+    position: relative;
+    width: 100px;
+    height: 180px;
+    left: -80px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    /* text-align: center; */
+}
+
+
+
+.list-image img{
     display: block;
-    width : 100%;
-    height: 100%;
-    height: auto;
+    border-radius: 15px;
+    width : 100px;
+    height: 140px;
+    margin-top: 10px;
 }
 
 #reviewcontainer {
     width: 300px;
-    height: 560px;
+    height: 500px;
     background-color: white;
     display: none;
     /* border-radius: 20px; */
@@ -56,7 +76,7 @@
     position: fixed;
     z-index: 1;
     left: 280px;
-    top: 135.2604217529297px;
+    top: 100px;
     /* bottom: 100px; */
 }
 
@@ -69,20 +89,25 @@
 }
 
 #reviews {
-    height: 170px;
+    height: 155px;
+    width: 269px;
     overflow: auto;
-    margin:20px;
+    margin:20px 0px 0px 10px;
 }
 
 #review{
-    display: block;
-    width: 98%;
+    font-family: "jua";
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    width: 230px;
     height: 35px;
     resize: none;
+    margin-left: 15px;
+    margin-bottom: 5px;
 }
 
 #likearea {
-    display: flex;
+    /* display: flex; */
     align-items: center;
     justify-content: center;
 }
@@ -98,13 +123,15 @@
 }
 
 #likearea a img {
+    cursor: pointer;
     position: relative;
     width: 80%;  /* 이미지를 a 태그의 너비에 맞게 조절 */
     height: auto; /* 이미지를 a 태그의 높이에 맞게 조절 */
 }
 
-#likearea h1 {
-    color: rgb(52, 50, 197); /* 빨간색으로 변경 */
+#cafename {
+    font-family: "jua";
+    color: rgb(52, 50, 197);
     margin: 10px 10px 10px;
     font-size: 20px; /* 원하는 크기로 조절 */
 }
@@ -114,20 +141,27 @@
     height: 25px;
     margin-left: 5px;
     font-size: 25px;
+    cursor: pointer;
 }
 
 #menulikearea{
     display: inline-block;
+    position: relative;
+    bottom: 50px;
     width: 23px;
     height: 23px;
 }
 
 #menulikearea > img{
-    display: inline-block;
-    height: 23px;
-    margin-top: 5px;
-    margin-left: 10px;
+    /* display: inline-block;
+    height: 23px; */
+    height: 25px;
+    width: 25px;
+    position: relative;
+    margin-top: 21px;
+    margin-left: 109px;
     font-size: 25px;
+    cursor: pointer;
 }
 
 /* #menulikearea {
@@ -158,7 +192,12 @@ p.float-left {
 }
 
 #menudesc{
+    font-family: "jua";
     text-align: center;
+    width: 118px;
+    margin-top: -10px;
+    margin-left: 10px;
+    font-size: 15px;
     background-color: rgb(255, 255, 255);
 }
 
@@ -168,5 +207,47 @@ p.float-left {
 }
 
 #menuname{
+    font-family: "jua";
     margin-top: 10px;
+    margin-left: 10px;
+    width: 100px;
+    font-size: 22px;
+    display: inline-block;
+}
+
+.reviewname{
+    font-family: "jua";
+}
+
+#reviewwritename{
+    margin-top: 40px;
+    font-family: "jua";
+    text-align: center;
+}
+
+#insertreview{
+    display: flex;
+}
+
+.pushreview{
+    font-family: "jua";
+    width: 50px;
+    border: none;
+    border-radius: 25%;
+    background-color: aliceblue;
+}
+
+.menuInfoinfo{
+    display: flex;
+    flex-direction: row;
+}
+
+#text-line{
+    text-align: center;
+    font-size: 15px;
+}
+
+.likeimg{
+    width: 20px;
+    height: 20px;
 }
