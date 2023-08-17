@@ -59,6 +59,12 @@ function kakaoLogin() {
     })
 }
 
+const popId=()=>{
+    let id = document.getElementById('id').value
+    alert(`안녕하세요~${id}`)
+    location.href='http://localhost:3333/login'
+}
+
 //카카오로그아웃  
 function kakaoLogout() {
     if (Kakao.Auth.getAccessToken()) {
@@ -127,3 +133,42 @@ const addreview = () => {
         })
 
 }
+
+// 메뉴 좋아요 누르기
+const menuLike=()=>{
+    let menuLike = document.getElementById('menulike')
+    let menuUnLike = document.getElementById('menuunlike')
+    let menuSeq = document.getElementsByName('getmenuseq')[0]
+    let mlike = 0
+
+    if(menuLike.style.display == 'none'){
+        menuLike.style.display = 'inline'
+        menuUnLike.style.display = 'none'
+        mlike = 1
+    }else{
+        menuLike.style.display = 'none'
+        menuUnLike.style.display = 'inline'
+        mlike = 0
+    }
+    console.log('menuseq',menuSeq.value)
+    console.log('mlike',mlike)
+    const menuLikeChange = `http://localhost:3333/search/menulike?menu_seq=${ menuSeq.value }&&likeCheck=${ mlike }`
+    fetch(menuLikeChange,{
+    })
+        .then(res => res.json())
+        .then(res => {
+
+        })
+
+}
+
+
+document.querySelector("#likearea a").addEventListener("click", function(event) {
+    event.preventDefault();  // a 태그의 기본 동작을 중지합니다.
+    const shopWrap = document.querySelector("#reviewcontainer");
+    if (shopWrap.style.display === "block") {
+        shopWrap.style.display = "none";
+    } else {
+        shopWrap.style.display = "block";
+    }
+});

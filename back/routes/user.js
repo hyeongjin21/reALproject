@@ -11,22 +11,23 @@ const GOOGLE_REDIRECT_URI  = 'http://localhost:3333/login/redirect';
 
 // 회원 가입
 router.post('/join', (req, res) => {
-    // let { name, id, pw, pw2, tel, nick } = req.body
-    // if (pw == pw2) {
-    //     conn.query(queries.joinUser, [id, pw, name, nick, tel], (err, rows) => {
-    //         // console.log(rows.id)
-    //         if (rows.affectedRows > 0) {
-    //             res.send(`<script>alert("환영합니다.${name}님!");location.href='http://localhost:3333'</script>`)
-    //         }
-    //         else {
-    //             res.send('<script>alert("회원가입에 실패하였습니다.");location.href="http://localhost:3333/join_user"</script>')
-    //         }
-    //     })
-    // }
-    // else {
-    //     res.send('<script>alert("비밀번호가 다릅니다.");location.href="http://localhost:3333/join_user"</script>')
-    // }
-res.render('join')
+    console.log(req.body)
+    let { name,  tel, id, check, pw, pw2 } = req.body
+    if (pw == pw2) {
+        conn.query(queries.joinUser, [id, pw, name, nick, tel], (err, rows) => {
+            console.log(rows)
+            if (rows.affectedRows > 0) {
+                res.send(`<script>alert("환영합니다.${name}님!");location.href='http://localhost:3333'</script>`)
+            }
+            else {
+                res.send('<script>alert("회원가입에 실패하였습니다.");location.href="http://localhost:3333/join_user"</script>')
+            }
+        })
+    }
+    else {
+        res.send('<script>alert("비밀번호가 다릅니다.");location.href="http://localhost:3333/join_user"</script>')
+    }
+
 
 })
 

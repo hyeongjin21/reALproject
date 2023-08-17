@@ -1,5 +1,10 @@
+@font-face {
+    src : url("/FONTS/BMJUA_ttf.ttf") !important;
+    font-family: "jua" !important;
+}
+
 .reviewitem {
-    border: 1px solid;
+    display: flex;
     background-color: white;
     text-align: center;
     width: 98%;
@@ -9,9 +14,27 @@
     margin-bottom: 0; */
 }
 
+#reviewlikearea{
+    cursor: pointer;
+}
+
+/* .reviewLikeUp{
+    display: flex;
+    flex-direction: column;
+} */
+.reviewcontain{
+    display:flex;
+    flex-direction: column;
+}
+
+.reviewbetween{
+    display: flex;
+    justify-content: space-between;
+}
+
 .imgcontain {
-    width: 50%;
-    height: 50%;
+    width: 100px;
+    height: 200px;
     margin: 0 auto;
     text-align: center;
 }
@@ -19,28 +42,22 @@
 .imgcontain img{
     display: block;
     width : 100%;
+    height: 100%;
     height: auto;
 }
 
 #reviewcontainer {
     width: 300px;
-    /*height: 700px;*/
-    background-color: beige;
+    height: 560px;
+    background-color: white;
     display: none;
-    border-radius: 20px;
+    /* border-radius: 20px; */
     overflow: auto;
     position: fixed;
     z-index: 1;
     left: 280px;
     top: 135.2604217529297px;
     /* bottom: 100px; */
-}
-
-#cafename {
-    /*margin: 0 auto;*/
-    width: 100px;
-    display: inline;
-    text-align: center;
 }
 
 #pushreview {
@@ -52,8 +69,9 @@
 }
 
 #reviews {
-    height: 100px;
+    height: 170px;
     overflow: auto;
+    margin:20px;
 }
 
 #review{
@@ -64,13 +82,51 @@
 }
 
 #likearea {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#likearea > span {
+#likearea a {
+    margin-top: 1%;
+    margin-left: 1%;
+    position: absolute;
+    left: 0;
+    display: inline-block;  /* a 태그를 인라인 블록 요소로 만들어 줍니다 */
+    width: 40px;  /* 원하는 너비로 설정 */
+    height: 40px; /* 원하는 높이로 설정 */
+}
+
+#likearea a img {
+    position: relative;
+    width: 80%;  /* 이미지를 a 태그의 너비에 맞게 조절 */
+    height: auto; /* 이미지를 a 태그의 높이에 맞게 조절 */
+}
+
+#likearea h1 {
+    color: rgb(52, 50, 197); /* 빨간색으로 변경 */
+    margin: 10px 10px 10px;
+    font-size: 20px; /* 원하는 크기로 조절 */
+}
+
+#likearea > img {
     display: inline-block;
     height: 25px;
     margin-left: 5px;
+    font-size: 25px;
+}
+
+#menulikearea{
+    display: inline-block;
+    width: 23px;
+    height: 23px;
+}
+
+#menulikearea > img{
+    display: inline-block;
+    height: 23px;
+    margin-top: 5px;
+    margin-left: 10px;
     font-size: 25px;
 }
 
@@ -85,6 +141,17 @@
     font-size: 25px;
 } */
 
+p.float-left {
+    float: left;
+    margin-right: 10px;  /* 사이의 간격을 조정하려면 마진 값을 조절하세요 */
+    font-size: 17px;  /* 원하는 크기로 변경 */
+}
+
+.reviewLikeUp {
+    float: right;
+    margin-right: 200px;
+}
+
 #placesList > li {
     width: 100%;
     background-color: rgb(255, 255, 255);
@@ -93,4 +160,13 @@
 #menudesc{
     text-align: center;
     background-color: rgb(255, 255, 255);
+}
+
+.menuLikeLike{
+    display: flex;
+    justify-content: space-between;
+}
+
+#menuname{
+    margin-top: 10px;
 }

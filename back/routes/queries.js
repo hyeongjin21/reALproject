@@ -1,19 +1,19 @@
 module.exports = {
   // 일반 회원가입 할때 
-  joinUser: `insert into al_user values( ?,?,?,?,?,now() )`,
+  joinUser: `insert into al_user (user_id, user_pw, user_name, user_nick, user_phone) values( ?,?,?,?,?)`,
 
   selectID: `select * from al_user where user_id = ?`,
   // 아이디 검색
   searchId: `select * from al_user where user_id = ? and user_pw = ?`,
 
   // 메뉴정보 전체 출력
-  menuInfoAll: `select * from al_menu`,
+  menuInfoAll: `select * from al_menu a left join al_shop b on(a.shop_seq = b.shop_seq)`,
 
   //메뉴검색 & 카테고리(전체 선택)
   searchMenu: `select * from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.menu_name like ?`,
 
   //메뉴검색 - 카테고리별 선택
-  searchMenuCategory: `select * from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.menu_name like ? and b.menu_category = ?`,
+  searchMenuCategory: `select * from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.menu_name like ? and b.menu_category like ?`,
 
   //검색 - 메뉴선택 - 지도 위도 경도가져오기
   shopLocation: `select a.lat, a.lng from al_shop a inner join al_menu b on ( a.shop_seq = b.shop_seq ) where b.shop_seq = ?`,
@@ -103,7 +103,7 @@ module.exports = {
 
 
   // 메뉴 리뷰 가져오기
-  getMenuReview: `select a.menu_name,a.menu_img,a.menu_desc,a.menu_price,a.menu_options,a.shop_seq,b.menu_seq,b.user_id,b.review_content,c.shop_name from al_menu a left outer join al_review b on (a.menu_seq = b.menu_seq) inner join al_shop c on(a.shop_seq = c.shop_seq ) where a.menu_seq = ?`,
+  getMenuReview:`select a.menu_name,a.menu_img,a.menu_desc,a.menu_price,a.menu_options,a.shop_seq,b.menu_seq,b.user_id,b.review_seq,b.review_content,c.shop_name from al_menu a left outer join al_review b on (a.menu_seq = b.menu_seq) inner join al_shop c on(a.shop_seq = c.shop_seq ) where a.menu_seq = ?`,
 
   // 리뷰 관리 - 전체 검색
   reviewAll: `select row_number() over (order by c.created_at) as rownum, 
@@ -149,6 +149,10 @@ module.exports = {
 
   //좋아요
 
+  //좋아요 모두 찾기
+  LikeSearch : `select a.user_id ,a.shop_seq, a.shop_like_yn , b.menu_seq, b.menu_like_yn, c.review_seq, c.review_like_yn  from al_favorite_shop a inner join al_favorite_menu b on (a.user_id = b.user_id) inner join al_like c on (b.user_id = c.user_id) where a.user_id = ?`,
+
+
   //가게 좋아요 누른지 확인할때
   shopLikeSearch: `select * from al_favorite_shop where user_id = ?`,
 
@@ -156,7 +160,7 @@ module.exports = {
   shopInsertLike: `insert into al_favorite_shop (user_id, shop_seq) value (?,?)`,
 
   //가게 좋아요 누를때
-  shopLike: `update set al_favorite_shop shop_like_yn set shop_like_yn = ? where user_id = ? and shop_seq = ?`,
+  shopLike: `update al_favorite_shop set shop_like_yn = ? where user_id = ? and shop_seq = ?`,
 
   //가게 좋아요 지우기
   menuDeleteLike: `delete from al_favorite_menu where user_id = ? and menu_seq = ?`,
@@ -164,9 +168,20 @@ module.exports = {
   //메뉴 좋아요 누른지 확인할때
   menuLikeSearch: `select * from al_favorite_menu where user_id = ?`,
 
-  //메뉴 좋아요 누를때
+  //메뉴 좋아요 처음 볼때
   menuInsertLike: `insert into al_favorite_menu (user_id, menu_seq) values (?,?)`,
 
+  //메뉴 좋아요 누를때
+  menuLike : `update al_favorite_menu set menu_like_yn = ? where user_id = ? and menu_seq = ?`,
+
+  //리뷰 전체 확인용
+  allReviewLikeSearch : `select * from al_like where user_id = ?`,
+
+  //리뷰 좋아요 처음 누를때
+  insertLikeReview : `insert into al_like (review_seq,user_id,review_like_yn) values (?,?,?)`,
+
+  //리뷰 좋아요 누를때
+  updateLikeReview : `update al_like set review_like_yn = ? where user_id = ? and review_seq = ?`,
 
 
 

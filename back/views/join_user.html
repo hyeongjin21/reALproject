@@ -119,7 +119,7 @@
         <h2>
             <strong>Welcome!</strong>
         </h2>
-        <form method='post' action="/user/join">
+        <form method='post' action="./user/join">
             <!-- NAME -->
             <input autocomplete='off' class="input-tag" type="text" placeholder="Enter your user name"  name="name" required>
 
@@ -127,7 +127,7 @@
             <input autocomplete='off' class="input-tag" type="text" placeholder="Enter your phone number" name="tel" required>
 
             <!-- ID -->
-            <input autocomplete='off' type="text" placeholder="Enter your ID" autocomplete="off" class="id-len" id="id" required>
+            <input type="text" placeholder="Enter your ID" autocomplete="off" class="id-len" name="ID" id="id" required>
             <input type="button" value="Confirm" class="btn-confirm" onclick="checkId()" id="idCheck">
             <input type="hidden" name="checking" value="0">
 
@@ -140,6 +140,8 @@
             <input class="input-tag btn" type="button" onclick="popId()" value="SIGN UP" id="join">
             <p>            
 
+            <input class="input-tag btn" type="button" value="SIGN UP" id="join" onclick="popId()">
+            <p>
                 <br>
                 Find your menu , <br>
                 with AFTER LUNCH !

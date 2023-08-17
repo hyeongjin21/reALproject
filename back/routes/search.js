@@ -74,6 +74,7 @@ router.get('/getMenu', (req, res) => {
             })
         }
         else {
+            searchCategory = '%' + searchCategory + '%'
             conn.query(queries.searchMenuCategory, [getMenu, searchCategory], (err, rows) => {
                 if (rows.length > 0) {
                     res.json({ list: rows })
@@ -97,23 +98,46 @@ router.post('/review', (req, res) => {
     // console.log('userid',req.session.user.user_id)
     let userid = req.session.user.user_id
     let shopLikeCheck = 0
-    conn.query(queries.shopLikeSearch, [userid], (err, rows) => {
+    let menuLikeCheck = 0
+    let isReviewCheck = []
+    let reviewseq = []
+    conn.query(queries.LikeSearch, [userid], (err, rows) => {
+        // console.log('likesearch',rows[0])
         for (let i = 0; i < rows.length; i++) {
-            if (rows[i].shop_seq === shopseq) {
+            if (rows[i].shop_seq === shopseq && rows[i].shop_like_yn == "Y" ) {
                 shopLikeCheck = 1
                 break;
             }else{
                 shopLikeCheck = 0
             }
         }
-        console.log('rows',rows.length)
-        if(rows.length == 0){
+        for(let i = 0; i < rows.length; i++){
+            if(rows[i].menu_seq === menuseq && rows[i].menu_like_yn =='Y'){
+                menuLikeCheck = 1
+                break;
+            }else{
+                menuLikeCheck = 0
+            }
+        }
+        conn.query(queries.allReviewLikeSearch,[userid],(err,rows)=>{
+            for(let i =0;i<rows.length;i++){
+                reviewseq[i] = rows[i].review_seq
+                isReviewCheck[i] = rows[i].review_like_yn
+            }
+            console.log('좋아요쿼리',isReviewCheck)
+        })
+        if(rows.length == 0 && shopLikeCheck == 0){
             conn.query(queries.shopInsertLike,[userid,shopseq],(err,rows)=>{
                 console.log('첫 좋아요 쿼리 실행')
             })
         }
+        if(rows.length == 0 && menuLikeCheck == 0){
+            conn.query(queries.menuInsertLike,[userid,menuseq],(err,menuRows)=>{
+                console.log('메뉴 처음 좋아요')
+            })
+        }
         conn.query(queries.getMenuReview, [menuseq], (err, r) => {
-            res.json({ result: r, shopLikeCheck: shopLikeCheck })
+            res.json({ result: r, shopLikeCheck: shopLikeCheck , menuLikeCheck : menuLikeCheck , getReviewLike : reviewseq , getreviewlikeyn : isReviewCheck})
         })
     })
 })
@@ -164,5 +188,57 @@ router.get('/shoplike', (req, res) => {
         })
     }
 })
+
+//메뉴 좋아요
+router.get('/menulike',(req,res)=>{
+    console.log('menulikeRouter:',req.query)
+    console.log('user',req.session.user)
+    let userId = req.session.user.user_id
+    let menuseq = req.query.menu_seq
+    let likecheck = req.query.likeCheck
+    let menuLike = ''
+    if(likecheck == 0){
+        menuLike = 'N'
+        conn.query(queries.menuLike,[menuLike,userId,menuseq],(err,rows)=>{
+            console.log('메뉴 좋아요 지우기')
+        })
+    }else{
+        menuLike = 'Y'
+        conn.query(queries.menuLike,[menuLike,userId,menuseq],(err,rows)=>{
+            console.log('메뉴 좋아요')
+        })
+    }
+})
+
+router.get('/reviewlike',(req,res)=>{
+    console.log('reviewlikeRouter',req.query)
+    let user_id = req.session.user.user_id
+    let review_seq = req.query.reviewseq
+    let likecheck = req.query.reviewLike
+    let reviewlike = ''
+    let reviewseqlist = []
+    conn.query(queries.allReviewLikeSearch,[user_id],(err,rows)=>{
+        console.log('리뷰라우터',rows[0].review_seq)
+        for(let i =0;i<rows.length;i++){
+            reviewseqlist[i] = rows[0].review_seq
+        }
+        if(likecheck == 1){
+            reviewlike = 'Y'
+            if(reviewseqlist.indexOf(review_seq) == -1){
+                conn.query(queries.insertLikeReview,[review_seq,user_id,reviewlike],(err,rr)=>{
+                    console.log('리뷰좋아요')
+                })
+            }
+        }else{
+            reviewlike = 'N'
+            conn.query(queries.updateLikeReview,[reviewlike,user_id,review_seq],(err,r)=>{
+                console.log('리뷰 좋아요 취소')
+            })
+        }
+    })
+
+})
+
+
 
 module.exports = router; 

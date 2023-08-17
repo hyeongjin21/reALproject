@@ -257,7 +257,9 @@ router.get('/ranking', (req, res) => {
 
 
 
-
+router.get('/test',(req,res)=>{
+    res.render('search1')
+})
 
 
 
