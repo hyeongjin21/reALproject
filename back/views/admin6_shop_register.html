@@ -1,23 +1,54 @@
-{% extends 'm_layout.html' %}
+{% extends 'test_layout.html' %}
 
 {% block content %}
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/admin6.css">
+    <link rel="stylesheet" href="/assets/css/test.css">
 </head>
-<div style="flex-grow: 9;">
 
-    <header style="display: flex; justify-content: center; flex-direction: row;">
-        <div class="user">신규 가게 등록</div>
-    </header>
+<style>
+    table{
+        width: 700px;
+    }
+    th{
+        width : 20em;  
+        text-align: center;
+        border-bottom: 1px rgba(68, 45, 31, 0.916) solid;
+    }
+    td{
+        width: 30em;
+    }
+    a{
+        margin-right: 5em;
+    }
+    input{
+        border-top : none;
+        border-left : none;
+        border-right: none;
+        border-bottom: none;
+    }
+    .in{
+        border: none;
+        border-bottom: 3px black solid;
+    }
+    .in2{
+        text-align: center;
+    }
 
 
 
+</style>
     <!-- Body --> 
+    <div class="search-section">
+        <a class="section-name">신규 가게 등록</a><br>
+    </div>
     <form method='post' action="/img/shop_register"  encType="multipart/form-data">
-    <div class="main-container">
+        <div id="blank-n"></div>
+        <div class="main-container">
+            <div class="row">
+                <div class="col-xs-12">
         <table class="info-table">
             <tr>
+                <thead>
                 <th>가게명</th>
                 <td>
                     <input type="text" name="shopname" >
@@ -56,23 +87,31 @@
             <tr>
                 <th>가게이미지등록</th>
                 <td>
-                        <input type="file" id="profileFile" name="shop_img" accept="image/*">
+                    <div class="previewProfile">
+                        <img id="previewImage" src="/uploads/img1691520310216.jpg" title="고양이"
+                            alt="Preview Image" style="height: 200px; width: 200px;" />
+                    </div>
+                    <input type="file" id="profileFile" name="shop_img" accept="image/*">
                 </td>   
             </tr>
+        </thead>
         </table>
+    </div>
+</div>
     </div>
         <div class="table-container">
             <table>
                 <tr>    
-                    <th>
-                        <button type="submit" id="join">저장</button>
-                        <button type="button"
-                            onclick="location.href='localhost:3333/admin2_S_userpage.html'">목록</button>
+                    <th class="in2">
+                        <button class="in" type="submit" id="join">저장</button>
+                        <button class="in" type="button"
+                            onclick="location.href='admin2_S_userpage'">목록</button>
                     </th>
                 </tr>
             </table>
         </div>
     </div>
+    <script src="assets/js/menuImg.js"></script>
 
 </div>
 {% endblock %}

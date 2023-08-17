@@ -44,14 +44,12 @@ html, body {
     
     .main-container {
         /* 중요 */
-
-        width: 95%;
-        margin: auto;
-        display: flex;
+        width: 100%;
+        margin: 0%;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        margin-top: 70px; /* Move down by 50 pixels */
+        margin-top: 10%; /* Move down by 50 pixels */
 }
 /* Footer 스타일링 */
 footer {
@@ -108,7 +106,7 @@ table {
     border-collapse: collapse;
 /* 중요 */
 
-    width: 95%;
+    width: 100%;
     margin: auto;
     border: 2px solid black;
 }
@@ -123,7 +121,26 @@ th, td {
     padding: 10px;
     text-align: center;
 }
-
+.custom-table {
+    border-collapse: collapse; /* 테이블 셀 경계를 병합하여 테두리를 만듦 */
+    width: 100%;
+    border: 1px solid black; /* 테두리 스타일과 색상 설정 */
+  }
+  
+  .custom-table th, .custom-table td {
+    border: 1px solid black; /* 셀 테두리 스타일과 색상 설정 */
+    padding: 10px;
+    text-align: left;
+  }
+  
+.custom-table td input[type="file"] {
+    float: right;
+  }
+  
+.file-info {
+    font-size: 12px;
+    color: gray;
+  }
 /* output 태그 스타일 */
 output {
     display: inline-block;

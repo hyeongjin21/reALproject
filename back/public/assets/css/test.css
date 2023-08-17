@@ -1,0 +1,148 @@
+/* .search-section .section-name {
+    @font-face {
+    src: url("/FONTS/BMJUA_ttf.ttf");
+    font-family: "jua"
+  }
+} */
+
+
+body {
+    padding-left:16em;
+    padding-right: 0.5em;
+    height: 50%;
+    background: #f5f5f5
+  }
+
+#blank{
+  height: 80px;
+}
+
+#blank-n{
+  height: 25px;
+}
+
+/* .info-table #table-two{
+  border: 1px black solid;
+  border-bottom: 3px solid black;
+} */
+  
+  table {
+    border: 1px #a39485 solid;
+    font-size: .9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,.25);
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 5px;
+    overflow: hidden;
+    padding-top: 10%;
+    padding-bottom: 15em;
+  }
+  
+  th {
+    text-align: left;
+  }
+    
+  thead {
+    font-weight: bold;
+    color: #fff;
+    background: #73685d;
+  }
+    
+   td, th {
+    padding: 1em .5em;
+    vertical-align: middle;
+  }
+    
+   td {
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    background: #fff;
+  }
+  
+  a {
+    color: #73685d;
+  }
+    
+  .bodyLayout {
+    padding-bottom: 5em;
+  }
+  
+  .search-section{
+    height: 3em;
+    margin: 1em;
+  }
+
+  /* input css */
+.search-section .section-name {
+  color: black;
+  font-weight: bold;
+  font-size: 30px;
+  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif ;
+}
+
+
+.search-section #input1 {
+  width : 300px;
+  height : 50px;
+  border-top : none;
+  border-left : none;
+  border-right: none;
+  border-bottom: 3px solid black;
+  margin-top: 40px;
+}
+
+.search-section #input2 {
+  width : 100px;
+  height : 55px;
+  border-top : none;
+  border-left : none;
+  border-right: none;
+  border-bottom: 3px solid black;
+}
+
+
+
+
+
+   @media all and (max-width: 500px) {
+      
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    
+    th {
+      text-align: right;
+    }
+    
+    table {
+      position: relative; 
+      padding-bottom: 0;
+      border: none;
+      box-shadow: 0 0 10px rgba(0,0,0,.2);
+    }
+    
+    thead {
+      float: left;
+      white-space: nowrap;
+    }
+    
+    tbody {
+      overflow-x: auto;
+      overflow-y: hidden;
+      position: relative;
+      white-space: nowrap;
+    }
+    
+    tr {
+      display: inline-block;
+      vertical-align: top;
+    }
+    
+    th {
+      border-bottom: 1px solid #a39485;
+    }
+    
+    td {
+      border-bottom: 1px solid #e5e5e5;
+    }
+    
+    }

@@ -103,7 +103,7 @@ module.exports = {
 
 
   // 메뉴 리뷰 가져오기
-  getMenuReview:`select a.menu_name,a.menu_img,a.menu_desc,a.menu_price,a.menu_options,a.shop_seq,b.menu_seq,b.user_id,b.review_content,c.shop_name from al_menu a left outer join al_review b on (a.menu_seq = b.menu_seq) inner join al_shop c on(a.shop_seq = c.shop_seq ) where a.menu_seq = ?`,
+  getMenuReview: `select a.menu_name,a.menu_img,a.menu_desc,a.menu_price,a.menu_options,a.shop_seq,b.menu_seq,b.user_id,b.review_content,c.shop_name from al_menu a left outer join al_review b on (a.menu_seq = b.menu_seq) inner join al_shop c on(a.shop_seq = c.shop_seq ) where a.menu_seq = ?`,
 
   // 리뷰 관리 - 전체 검색
   reviewAll: `select row_number() over (order by c.created_at) as rownum, 
@@ -137,14 +137,26 @@ module.exports = {
 
 
 
-  //////// 마이페이지 ..///////////////
+  ///////////// 마이페이지 ///////////////
+
   // 내 메뉴 가져오기
   myMenu: `select b.menu_img, b.menu_name, c.shop_name from al_favorite_menu a inner join al_menu b on (a.menu_seq = b.menu_seq) inner join al_shop c on (b.shop_seq = c.shop_seq) where a.user_id = ?`,
- // 내 카페 가져오기
- myShop: `select b.shop_img, b.shop_name, b.shop_addr1 from al_favorite_shop a inner join al_shop b on (a.shop_seq = b.shop_seq) where a.user_id = ?`,
-  
- // 내 리뷰 가져오기
- myReview : `select a.review_content, a.user_id, a.created_at, b.menu_name, b.menu_img, c.shop_name from al_review a inner join al_menu b on (a.menu_seq = b.menu_seq) inner join al_shop c on (b.shop_seq = c.shop_seq) where a.user_id = ? `
+  // 내 카페 가져오기
+  myShop: `select b.shop_img, b.shop_name, b.shop_addr1 from al_favorite_shop a inner join al_shop b on (a.shop_seq = b.shop_seq) where a.user_id = ?`,
+
+  // 내 리뷰 가져오기
+  myReview: `select a.review_content, a.user_id, a.created_at, b.menu_name, b.menu_img, c.shop_name from al_review a inner join al_menu b on (a.menu_seq = b.menu_seq) inner join al_shop c on (b.shop_seq = c.shop_seq) where a.user_id = ? `,
+
+  //좋아요
+
+  //가게 좋아요 누른지 확인할때
+  shopLikeSearch: `select * from al_favorite_shop where user_id = ?`,
+
+  //가게 좋아요 처음
+  shopInsertLike: `insert into al_favorite_shop (user_id, shop_seq) value (?,?)`,
+
+  //가게 좋아요 누를때
+  shopLike: `update set al_favorite_shop shop_like_yn set shop_like_yn = ? where user_id = ? and shop_seq = ?`,
 
   //가게 좋아요 지우기
   menuDeleteLike: `delete from al_favorite_menu where user_id = ? and menu_seq = ?`,
@@ -154,6 +166,61 @@ module.exports = {
 
   //메뉴 좋아요 누를때
   menuInsertLike: `insert into al_favorite_menu (user_id, menu_seq) values (?,?)`,
+
+
+
+
+
+  ///////////// 랭킹 ///////////////
+ 
+  //리뷰 많은 메뉴순 (3순위)
+  menuRanking : `SELECT sub.* 
+  FROM (
+      SELECT ROW_NUMBER() OVER (ORDER BY sub_count DESC) AS rownum,
+             sub.shop_name,
+             sub.menu_name,
+             sub.menu_seq,
+             sub.menu_img,
+             sub.sub_count
+        FROM (
+            SELECT s.shop_name,
+                   m.menu_name,
+                   m.menu_img,
+                   a.menu_seq,
+                   COUNT(*) AS sub_count
+              FROM al_review a
+              INNER JOIN al_menu m ON (a.menu_seq = m.menu_seq)
+              INNER JOIN al_shop s ON (m.shop_seq = s.shop_seq)
+            GROUP BY a.menu_seq, m.menu_name, s.shop_name
+        ) sub
+  ) sub
+  WHERE sub.rownum <= 3`,
+
+  //추천 많은 리뷰순
+  reviewRanking : `select sub.*
+  from (
+	SELECT ROW_NUMBER() OVER (ORDER BY sub_count DESC) AS rownum,
+		sub.shop_name,
+	    sub.menu_name,
+	    sub.menu_img,
+		sub.review_content,
+		sub.sub_count
+	  from (
+		select a.shop_name,
+			   b.menu_name,
+			   b.menu_img,
+			   c.review_content,
+			   count(*) as sub_count
+		  from al_shop a inner join al_menu b 
+		    on (a.shop_seq = b.shop_seq) inner join al_review c 
+		    on (b.menu_seq = c.menu_seq) inner join al_like d 
+		    on (c.review_seq = d.review_seq)
+		 where d.review_like_yn = 'Y'
+		 group by c.review_seq, d.review_seq 
+		   ) sub
+      ) sub
+where sub.rownum <= 3`
+
 
 
 }

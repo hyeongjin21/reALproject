@@ -1,97 +1,104 @@
-{% extends 'm_layout.html' %}
+{% extends 'test_layout.html' %}
 
 {% block content %}
 
-{% block content %}
+
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/admin8.css">
+    <link rel="stylesheet" href="/assets/css/test.css">
     <link rel="stylesheet" href="/assets/css/pagenationTable.css">
 </head>
-<div style="flex-grow: 9;">
+
+<style>
+    select{
+        height: 3em;
+    }
+</style>
 
 
-    <!-- Header -->
-    <header style="display: flex; justify-content: center; flex-direction: row;">
-        <div class="user">리뷰 관리</div>
-    </header>
-    <!-- Body -->
-    <form action="/manager/reviewSearch">
-        <div class="search-section">
-            <select name="category">
-                <option value="all">전체</option>
-                <option value="user">글쓴이</option>
-                <option value="content">내용</option>
-                <!-- 원하는 만큼 카테고리를 추가할 수 있습니다 -->
-            </select>
-            <input type="text" name="review" placeholder="검색어를 입력해주세요">
-            <input type="submit" id="search-btn" value="검색">
-        </div>
-    </form>
-    <a href="https://naver.com?if:erere"></a>
-    <div class="table-container">
-        <table id="table-one">
-
-            <tr>
-                <th>일련번호</th>
-                <th>가게명</th>
-                <th>메뉴이름</th>
-                <th>작성자아이디</th>
-                <th>작성날짜</th>
-                <th>내용</th>
-                <th>삭제</th>
-            </tr>
-
-            <form method="post" action="/manager/reviewDelete">
-                <tbody>
-                    {% for i in list %}
-                    <tr>
-                        <th>{{i.rownum}}</th>
-                        <th>{{i.shop_name}}</th>
-                        <th>{{i.menu_name}}</th>
-                        <th>{{i.user_id}}</th>
-                        <th>{{i.created_at}}</th>
-                        <th>{{i.review_content}}</th>
-                        <th>
-                            <button type="button" onclick="deleteRow({{i.review_seq}})">삭제</button>
-                        </th>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </form>
-
-        </table>
+<!-- Body -->
+<form action="/manager/reviewSearch">
+    <div class="search-section">
+        <a class="section-name">리뷰관리</a><br>
+        <select name="category">
+            <option value="all">전체</option>
+            <option value="user">글쓴이</option>
+            <option value="content">내용</option>
+            <!-- 원하는 만큼 카테고리를 추가할 수 있습니다 -->
+        </select>
+        <input id="input1" type="text" name="review" placeholder="검색어를 입력해주세요">
+        <input id="input2" type="submit" value="검색">
     </div>
-    <script src="./assets/js/pagenationTable.js"></script>
-    <script>
-        Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
-    </script>
-    <script>
-        let refreshList = () => {
-            location.reload()
-        }
-        let url = "/manager/reviewDelete"
-        const deleteRow = (review_seq) => {
-            let rs = confirm("삭제하시겠습니까?")
-            if (rs == true) {
-                fetch(url, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        seq: review_seq
+</form>
+<div id="blank"></div>
+<div class="table-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <table id="table-one">
+                <thead>
+                    <tr>
+                        <th>일련번호</th>
+                        <th>가게명</th>
+                        <th>메뉴이름</th>
+                        <th>작성자아이디</th>
+                        <th>작성날짜</th>
+                        <th>내용</th>
+                        <th>삭제</th>
+                    </tr>
+                </thead>
 
-                    })
+                <form method="post" action="/manager/reviewDelete">
+                    <tbody>
+                        {% for i in list %}
+                        <tr>
+                            <td>{{i.rownum}}</td>
+                            <td>{{i.shop_name}}</td>
+                            <td>{{i.menu_name}}</td>
+                            <td>{{i.user_id}}</td>
+                            <td>{{i.created_at}}</td>
+                            <td>{{i.review_content}}</td>
+                            <td>
+                                <button type="button" onclick="deleteRow({{i.review_seq}})">삭제</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </form>
+
+            </table>
+        </div>
+    </div>
+</div>
+<!-- <div class="bodyLayout"> -->
+<script src="./assets/js/pagenationTable.js"></script>
+<script>
+    Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
+</script>
+<script>
+    let refreshList = () => {
+        location.reload()
+    }
+    let url = "/manager/reviewDelete"
+    const deleteRow = (review_seq) => {
+        let rs = confirm("삭제하시겠습니까?")
+        if (rs == true) {
+            fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    seq: review_seq
+
                 })
-                    .then(res => res.json())
-                    .then(res => { })
+            })
+                .then(res => res.json())
+                .then(res => { })
 
 
-                alert("삭제되었습니다.");
-                refreshList();
-            }
+            alert("삭제되었습니다.");
+            refreshList();
         }
-    </script>
+    }
+</script>
 </div>
 {% endblock %}

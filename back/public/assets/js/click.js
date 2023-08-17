@@ -30,6 +30,12 @@ const checkId = () => {
         })
 }
 
+const popId=()=>{
+    let id = document.getElementById('id').value
+    alert(`${id}님 환영합니다!`)
+    location.href='http://localhost:3333/login'
+}
+
 //카카오로그인
 function kakaoLogin() {
     console.log('카카오')

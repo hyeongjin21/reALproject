@@ -1,0 +1,102 @@
+<!-- 관리용 페이지 레이아웃 -->
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>test레이아웃</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/test_layout.css">
+  </head>
+
+  <style>
+  #summery{
+    margin-left : 27px;
+  }
+
+  .bigfont{
+    font-size: large;
+  }
+  li{
+    height: 30px;
+  }
+  .blank{
+    height: 30px;
+  }
+
+
+
+
+
+  </style>
+  
+    <div class="nav-container">
+        <div class="logo"  id = "summery">
+          <img  src="/assets/img/KakaoTalk_20230815_201750992.png" alt="로고">
+        </div>    
+    <div class="nav-list" style="position:relative;">
+    <ul class="nav-list">
+      <li class="">
+        <h5 class="bigfont" href="#" class="nav-link">회원관리</h5>
+      </li>
+      <li class="nav-item">
+        <a href="/admin1_userpage" class="nav-link">사용자</a>
+      </li>
+      <li class="nav-item">
+        <a href="admin2_S_userpage" class="nav-link">등록가게</a>
+      </li>
+      <div class="blank"></div>
+      <li class="">
+        <h5 class="bigfont" href="#" class="nav-link">카페관리</h5>
+      </li>
+      <li class="nav-item">
+        <a href="admin6_shop_register" class="nav-link">신규 가게 등록</a>
+      </li>
+      <li class="nav-item">
+        <a href="admin8_review_manage" class="nav-link">리뷰관리</a>
+      </li>
+    </ul>
+    </div>
+       <!-- 로그인 기능 등을 넣는 부분 -->
+       <div class="login-logout-nav">
+        <!--  <a href="#">로그인</a> -->
+       <a class = "login-logout-border" href="/admin_login">로그아웃</a>
+      </div>
+  </div>
+
+  {% block content %}
+  {% endblock %}
+
+  <!-- FOOTER -->
+  <footer class="footer-fixed">
+    <div class="inner">
+      <ul class="menu">
+        <li><a href="javascript:void(0)" class="green">개인정보처리방침</a></li>
+        <li><a href="javascript:void(0)">영상정보처리기기 운영관리 방침</a></li>
+        <li><a href="javascript:void(0)">홈페이지 이용약관</a></li>
+        <li><a href="javascript:void(0)">위치정보 이용약관</a></li>
+
+      </ul>
+
+      <div class="btn-group">
+        <a href="javascript:void(0)" class="btn btn--white">찾아오시는 길</a>
+        <a href="javascript:void(0)" class="btn btn--white">신규입점제의</a>
+        <a href="javascript:void(0)" class="btn btn--white">사이트 맵</a>
+      </div>
+      <div class="info">
+        <span>사업자등록번호 201-81-21515</span>
+        <span>(주)AFTER LUNCH</span>
+        <span>TEL : 062-1234-1234</span>
+        <span>개인정보 책임자 : 정혜빈</span>
+      </div>
+
+      <p class="copyright">
+        &copy; <span class="thisyear"></span>ALCompany. All Rights Reserved.
+        <!-- &lt; &gt; -->
+      </p>
+      <img src="./images/starbucks_logo_only_text.png" alt="" class="logo"/>
+
+
+    </div>
+
+  </footer>
+</body>
+</html>

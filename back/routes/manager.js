@@ -4,6 +4,25 @@ const queries = require('./queries')
 const conn = require('../config/database')
 
 
+
+
+// 관리자 로그인
+// 로그인
+router.post('/admin_login', (req, res) => {
+    let { id, pw } = req.body
+    conn.query(queries.adminLogin, [id, pw], (err, rows) => {
+        console.log("{adminLoginTest : }",rows)
+        if (rows.length > 0) {
+            req.session.admin = rows[0]
+            res.send(`<script>alert('어서오세요~ ${req.session.admin.admin_memo}님');location.href='http://localhost:3333/admin1_userpage';</script>`)
+        }
+        else {
+            res.send('<script>alert("로그인에 실패했습니다.");location.href="http://localhost:3333/admin_login";</script>')
+        }
+    })  
+})
+
+
 // 회원관리 - 사용자 라우터
 router.get('/',(req,res)=>{
     let userSearch = "%" + req.query.userSearch + "%"

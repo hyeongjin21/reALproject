@@ -32,6 +32,14 @@
     <link rel="stylesheet" href="/assets/css/login.css">
 </head>
 
+<style>
+    #layoutLogo{
+        position: fixed;
+        top: 0px;
+        left: 20px;
+    }
+    </style>
+
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
@@ -88,12 +96,13 @@
     <div class="header-area">
         <h1 class="visually-hidden">Headers examples</h1>
 
-        <div class="container">
+        <div class="container" style="height: 80px;">
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4 ">
                 <a href="/"
                     class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                     <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
-                    <span class="fs-4">AFTER LUNCH</span>
+                    <!--<span class="fs-4">AFTER LUNCH</span>-->
+                    <img src="./assets/img/KakaoTalk_20230815_201750992.png" id="layoutLogo" style="height: 80px; margin-bottom: 10px; ">
                 </a>
 
                 <ul class="nav nav-pills">
@@ -113,8 +122,8 @@
                 <strong>HELLO !</strong> <br><br> Good to see you again
             </h2>
             <form method="post" action="../user/login">
-                <input type="text" placeholder="아이디를 입력하세요." name="id">
-                <input type="password" placeholder="비밀번호를 입력하세요." name="pw">
+                <input autocomplete='off' type="text" placeholder="아이디를 입력하세요." name="id">
+                <input autocomplete='off' type="password" placeholder="비밀번호를 입력하세요." name="pw">
                 <input type="submit" value="LOG IN">
                 <input type="submit" id="kakaologin" value="KAKAO LOG IN" onclick="kakaoLogin()">
                 <p>

@@ -1,5 +1,5 @@
 <!-- 메뉴 검색 페이지 -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" data-bs-theme="auto">
 
 <head>
@@ -31,8 +31,15 @@
     <link rel="stylesheet" href="/assets/css/layout.css">
     <link rel="stylesheet" href="/assets/css/kakao.css">
     <link rel="stylesheet" href="/assets/css/reviewcontain.css">
+    {# <link rel="stylesheet" href="/assets/css/map_change.css"> #}
 </head>
-
+<style>
+#layoutLogo{
+    position: fixed;
+    top: 0px;
+    left: 20px;
+}
+</style>
 <body>
 
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -87,25 +94,28 @@
     </svg>
 
     <!-- 헤더 -->
-    <h1 class="visually-hidden">Header</h1>
+    <div class="header-area">
+        <h1 class="visually-hidden">Headers examples</h1>
 
-    <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-            <a href="/"
-                class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
-                <span class="fs-4">AFTER LUNCH</span>
-            </a>
+        <div class="container" style="height:80px;">
+            <header class="d-flex flex-wrap justify-content-center py-3 mb-4 ">
+                <a href="/"
+                    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+                    <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
+                    <!-- <span class="fs-4">AFTER LUNCH</span> -->
+                    <img src="./assets/img/KakaoTalk_20230815_201750992.png" id="layoutLogo" style="height: 80px; margin-bottom: 10px; ">
+                </a>
 
-            <ul class="nav nav-pills">
-                <!-- 로고 자리 -->
-                <!-- <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li> -->
-                <li class="nav-item"><a href="../search" class="nav-link">FIND MENU</a></li>
-                <li class="nav-item"><a href="../ranking" class="nav-link">RANKING</a></li>
-                <li class="nav-item"><a href="../mypage" class="nav-link">MY PAGE</a></li>
-                <li class="nav-item"><a href="../login" class="nav-link">LOG IN</a></li>
-            </ul>
-        </header>
+                <ul class="nav nav-pills">
+                    <!-- 로고 자리 -->
+                    <!-- <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li> -->
+                    <li class="nav-item"><a href="/search" class="nav-link">FIND MENU</a></li>
+                    <li class="nav-item"><a href="/ranking" class="nav-link">RANKING</a></li>
+                    <li class="nav-item"><a href="/mypage" class="nav-link">MY PAGE</a></li>
+                    <li class="nav-item"><a href="/login" class="nav-link">LOG IN</a></li>
+                </ul>
+            </header>
+        </div>
     </div>
 
     <div class="map_wrap">
@@ -169,7 +179,7 @@
         <!-- <input type="submit" class="pushreview" onclick="addreview()"> -->
     </div>
     <!-- 푸터 -->
-    <footer class="py-3 my-4">
+    <footer class="py-3 my-4" style="bottom:0px;">
         <ul class="nav justify-content-center pb-3 mb-3">
             <div class="info">
                 <span>팀명 : SUMMERY</span>

@@ -1,24 +1,62 @@
-{% extends 'm_layout.html' %}
+{% extends 'test_layout.html' %}
 
 {% block content %}
 
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Orbit:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/assets/css/admin6.css">
+    <link rel="stylesheet" href="/assets/css/test.css">
 </head>
-<div style="flex-grow: 9;">
+
+<style>
+    table{
+        width: 700px;
+    }
+    th{
+        width : 20em;  
+        text-align: center;
+        border-bottom: 1px rgba(68, 45, 31, 0.916) solid;
+    }
+    td{
+        width: 30em;
+    }
+    a{
+        margin-right: 5em;
+    }
+    
+    input{
+        border-top : none;
+        border-left : none;
+        border-right: none;
+        border-bottom: none;
+    }
+    button{
+        border-top : none;
+        border-left : none;
+        border-right: none;
+        border-bottom: none;
+    }
+    .in{
+        border: none;
+        border-bottom: 3px black solid;
+    }
+    .in2{
+        text-align: center;
+    }
 
 
-<!-- Header -->
-<header style="display: flex; justify-content: center; flex-direction: row;">
-    <div class="user">가게 정보 수정</div>
-</header>
+</style>
 
 <!-- Body --> 
+<div class="search-section">
+    <a class="section-name">가게 정보 수정</a><br>
+</div>
     <form method='post' action="/img/shopinfo_modify" encType="multipart/form-data">
-    <div class="main-container">
+        <div id="blank-n"></div>
+        <div class="main-container">
+            <div class="row">
+                <div class="col-xs-12">
         <table class="info-table">
             <tr>
+                <thead>
                 <th>가게명</th>
                 <td>
                     <input type="text" name="shopname" value="{{cols.shop_name}}">
@@ -57,7 +95,10 @@
             <tr>
                 <th>가게이미지등록</th>
                 <td>
-                    <input type="file" id="profileFile" name="shop_img" value="{{cols.shop_img}}" accept="image/*">
+                    <img src="./shop_uploads/{{cols.shop_img}}" id="previewImage" alt="Preview Image" style="height: 200px; width: 200px;" />
+                    <div class="previewProfile">
+                        <input type="file" id="profileFile" name="shop_img" value="{{cols.shop_img}}" accept="image/*">
+                    </div>
                 </td>
             </tr>
         </table>
@@ -65,16 +106,19 @@
         <div class="table-container">
             <table>
                 <tr>
-                    <th>
+                    <th class="in2">
                         <input type="hidden" name="shop_seq" value="{{ shop_seq }}">
-                        <button type="submit" id="join">저장</button>
-                        <button type="button"
+                        <button class = "in" type="submit" id="join">저장</button>
+                        <button class = "in" type="button"
                             onclick="location.href='http://localhost:3333/admin2_S_userpage'">목록</button>
                     </th>
                 </tr>
+            </thead>
             </table>
         </div>
+    </div>
+        </div>
     </form>
-
+    <script src="assets/js/menuImg.js"></script>
 </div>
 {% endblock %}

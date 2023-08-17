@@ -32,6 +32,14 @@
     <link rel="stylesheet" href="/assets/css/join_user.css">
 </head>
 
+<style>
+    #layoutLogo{
+        position: fixed;
+        top: 0px;
+        left: 20px;
+    }
+    </style>
+
 <body>
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
         <symbol id="check2" viewBox="0 0 16 16">
@@ -87,12 +95,12 @@
     <!-- 헤더 -->
     <div class="header-area">
         <h1 class="visually-hidden">Headers examples</h1>
-        <div class="container">
+        <div class="container" style="height:80px;"> 
             <header class="d-flex flex-wrap justify-content-center py-3 mb-4 ">
                 <a href="/"
                     class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
                     <!-- <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg> -->
-                    <span class="fs-4">AFTER LUNCH</span>
+                    <img src="./assets/img/KakaoTalk_20230815_201750992.png" id="layoutLogo" style="height: 80px; margin-bottom: 10px; ">
                 </a>
 
                 <ul class="nav nav-pills">
@@ -105,32 +113,33 @@
                 </ul>
             </header>
         </div>
-    </div>>
+    </div>
     <!-- 일반 회원가입 폼 -->
     <div class="signin__card">
         <h2>
             <strong>Welcome!</strong>
         </h2>
-        <form method='post' action="../user/join">
+        <form method='post' action="/user/join">
             <!-- NAME -->
-            <input class="input-tag" type="text" placeholder="Enter your user name"  name="name" required>
+            <input autocomplete='off' class="input-tag" type="text" placeholder="Enter your user name"  name="name" required>
 
             <!-- TEL -->
-            <input class="input-tag" type="text" placeholder="Enter your phone number" name="tel" required>
+            <input autocomplete='off' class="input-tag" type="text" placeholder="Enter your phone number" name="tel" required>
 
             <!-- ID -->
-            <input type="text" placeholder="Enter your ID" autocomplete="off" class="id-len" id="id" required>
+            <input autocomplete='off' type="text" placeholder="Enter your ID" autocomplete="off" class="id-len" id="id" required>
             <input type="button" value="Confirm" class="btn-confirm" onclick="checkId()" id="idCheck">
             <input type="hidden" name="checking" value="0">
 
             <!-- PW -->
-            <input class="input-tag" type="text" placeholder="Enter your Password" name="pw" required>
+            <input autocomplete='off' class="input-tag" type="text" placeholder="Enter your Password" name="pw" required>
 
             <!-- RE_PW -->
-            <input class="input-tag psw-len" type="text" placeholder="Confrim your Password" name="pw2" required>
+            <input autocomplete='off' class="input-tag psw-len" type="text" placeholder="Confrim your Password" name="pw2" required>
 
-            <input class="input-tag btn" type="submit" value="SIGN UP" id="join">
-            <p>
+            <input class="input-tag btn" type="button" onclick="popId()" value="SIGN UP" id="join">
+            <p>            
+
                 <br>
                 Find your menu , <br>
                 with AFTER LUNCH !

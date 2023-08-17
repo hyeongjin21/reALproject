@@ -1,79 +1,84 @@
-{% extends 'm_layout.html' %}
+{% extends 'test_layout.html' %}
 
 {% block content %}
 
 <head>
-    <link rel="stylesheet" href="/assets/css/admin3.css">
+    <link rel="stylesheet" href="/assets/css/test.css">
     <link rel="stylesheet" href="/assets/css/pagenationTable.css">
 </head>
 
-<div style="flex-grow: 9;">
-    <!-- Header -->
-    <header style="display: flex; justify-content: center; flex-direction: row;">
-        <div class="user">가게 정보</div>
-    </header>
-
-    <!-- Body -->
-    <div class="main-container">
-        <table class="info-table" id="table-two">
-            <tr>
-                <th>카페 이름</th>
-                <td>
-                    {{ name }}
-                </td>
-            </tr>
-            <tr>
-                <th>카페 메뉴</th>
-                <td colspan="2">
-                    <button><a href="/admin4_menu_register?shop_seq={{shop_seq}}">메뉴등록</a></button>
-                </td>
-            </tr>
-        </table>
+<!-- Body -->
+<div class="main-container">
+    <div class="search-section">
+        <a class="section-name">가게 상세 정보</a><br>
     </div>
+    <div id="blank-n"></div>
     <div class="table-container">
-        <table id="table-one">
-            <tr>
-                <th>일련번호</th>
-                <th>메뉴이름</th>
-                <th>메뉴가격</th>
-                <th>메뉴설명</th>
-                <th>카테고리</th>
-                <th>제공형식</th>
-                <th>추가옵션</th>
-                <th>메뉴특징</th>
-                <th>이미지등록여부</th>
-                <th>수정</th>
-                <th>삭제</th>
-            </tr>
-
-                <tbody>
-                    {% for i in list %}
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="info-table" id="table-two">
                     <tr>
-                        <td>{{i.rownum}}</td>
-                        <td>{{i.menu_name}}</td>
-                        <td>{{i.menu_price}}</td>
-                        <td>{{i.menu_desc}}</td>
-                        <td>{{i.menu_category}}</td>
-                        <td>{{i.menu_type}}</td>
-                        <td>{{i.menu_options}}</td>
-                        <td>{{i.menu_ingredient_tag}}</td>
-                        {% if i.menu_img != null %}
-                        <td>O</td>
-                        {%else%}
-                        <td>X</td>
-                        {%endif%}
+                        <th>카페 이름</th>
                         <td>
-                            <button onclick="menuUpdate('{{i.menu_seq}}','{{ name }}','{{ shop_seq }}')">수정</button>
-                        </td>
-                        <td>
-                            <button type="button" onclick="deletemenuRow({{i.menu_seq}})">삭제</button>
+                            {{ name }}
                         </td>
                     </tr>
-                    {% endfor %}
-                </tbody>
-        </table>
-    </div>
+                    <tr>
+                        <th>카페 메뉴</th>
+                        <td colspan="2">
+                            <button><a href="/admin4_menu_register?shop_seq={{shop_seq}}">메뉴등록</a></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="table-container">
+                <table id="table-one">
+                    <thead>
+                    <tr>
+                        <th>일련번호</th>
+                        <th>메뉴이름</th>
+                        <th>메뉴가격</th>
+                        <th>메뉴설명</th>
+                        <th>카테고리</th>
+                        <th>제공형식</th>
+                        <th>추가옵션</th>
+                        <th>메뉴특징</th>
+                        <th>이미지등록여부</th>
+                        <th>수정</th>
+                        <th>삭제</th>
+                    </tr>
+                    </thead>
 
+                    <tbody>
+                        {% for i in list %}
+                        <tr>
+                            <td>{{i.rownum}}</td>
+                            <td>{{i.menu_name}}</td>
+                            <td>{{i.menu_price}}</td>
+                            <td>{{i.menu_desc}}</td>
+                            <td>{{i.menu_category}}</td>
+                            <td>{{i.menu_type}}</td>
+                            <td>{{i.menu_options}}</td>
+                            <td>{{i.menu_ingredient_tag}}</td>
+                            {% if i.menu_img != null %}
+                            <td>O</td>
+                            {%else%}
+                            <td>X</td>
+                            {%endif%}
+                            <td>
+                                <button onclick="menuUpdate('{{i.menu_seq}}','{{ name }}','{{ shop_seq }}')">수정</button>
+                            </td>
+                            <td>
+                                <button type="button" onclick="deletemenuRow({{i.menu_seq}})">삭제</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="bodyLayout"></div>
     <!--페이지네이션-->
     <script src="/assets/js/pagenationTable.js"></script>
     <script>
@@ -118,7 +123,7 @@
 
 {% endblock %}
 
-    <!-- <script> //삭제할 메뉴 seq 가져오는 비동기fetch
+<!-- <script> //삭제할 메뉴 seq 가져오는 비동기fetch
         let refreshList = () => {
             location.reload()
         }

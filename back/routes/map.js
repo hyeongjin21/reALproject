@@ -108,6 +108,7 @@ const useShoploca = () => {
                         `<div class = "wrap">
                         <div class="info">
                             <div class="title">
+                            
                                 ${shoploca[i].shop_name}
                             </div>
                             <div class='body'>

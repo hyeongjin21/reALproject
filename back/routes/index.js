@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
     } else {
         res.render('index', { name: req.session.user.user_name })
     }
-})//
+})
 
 // 로그인 페이지 이동
 router.get('/login', (req, res) => {
@@ -35,6 +35,11 @@ router.get('/join_user', (req, res) => {
 
 /////////////////////////////관리자페이지/////////////////////////////////
 
+// admin로그인 페이지 이동
+router.get('/admin_login',(req,res)=>{
+    res.render('admin_login')
+})
+
 // 회원관리 - 사용자 페이지로 이동
 router.get('/admin1_userpage', (req, res) => {
     const userSearch = queries.userAll
@@ -47,9 +52,6 @@ router.get('/admin1_userpage', (req, res) => {
     })
 })
 
-router.get('/ranking',(req,res)=>{
-    res.render('ranking')
-})
 
 // 회원관리 - 사용자 삭제
 router.post('/admin1_userpage', (req, res) => {
@@ -228,7 +230,24 @@ router.get('/mypage', (req, res) => {
 
 
 
+/////////////////////////  ranking 페이지  //////////////////////////////
 
+// ranking
+// 카페관리 - 리뷰관리 페이지로 이동
+router.get('/ranking', (req, res) => {
+    const menuRanking = queries.menuRanking
+    const reviewRanking = queries.reviewRanking
+
+    conn.query(menuRanking, (err, m_result) => {
+        
+        conn.query(reviewRanking, (err, r_result) => {
+            res.render('ranking', { 
+                M_Rlist : m_result,
+                R_Rlist : r_result
+            })
+        })
+    })
+})
 
 
 
