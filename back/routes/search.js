@@ -224,7 +224,7 @@ router.get('/reviewlike',(req,res)=>{
     let reviewlike = ''
     let reviewseqlist = []
     conn.query(queries.allReviewLikeSearch,[user_id],(err,rows)=>{
-        console.log('리뷰라우터',rows[0].review_seq)
+        // console.log('리뷰라우터',rows[0].review_seq)
         for(let i =0;i<rows.length;i++){
             reviewseqlist[i] = rows[0].review_seq
         }

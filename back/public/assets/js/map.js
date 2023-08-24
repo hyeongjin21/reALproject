@@ -101,7 +101,7 @@ const searchEvent = () => {
                         //     menuResult[i].menu_category == cate) {
                         let li = document.createElement('li')
                         li.innerHTML = `
-                        <div class='menuList'>
+                        <div class='menuList scrolldiv'>
                             <div class='menuImg'>
                                 <img src="../uploads/${menuResult[i].menu_img}"
                             </div>
@@ -240,6 +240,7 @@ const popreview = (data) => {
             while (reviews.firstChild) {
                 reviews.removeChild(reviews.firstChild);
             }
+            //메뉴 이미지
             document.getElementById('menuImg').src = `../uploads/${result[0].menu_img}`
             document.getElementsByName('getmenuseq')[0].value = result[0].menu_seq
             document.getElementsByName('getshopseq')[0].value = result[0].shop_seq
@@ -278,11 +279,11 @@ const popreview = (data) => {
                             <div class='reviewbetween'>
                                 <div class='reviewname'>${result[i].user_id}</div>
                                 <div id="reviewlikearea" onclick="reviewlikeclick('${result[i].user_id}','${cnt}','${result[i].review_seq}')">
-                                    <span class="${result[i].user_id} ${cnt} like" id="reviewlike">❤️</span>
-                                    <span class="${result[i].user_id} ${cnt} unlike" id="reviewunlike">🤍</span>
+                                    <img src='./assets/img/굿1.png' class="${result[i].user_id} ${cnt} like" id="reviewlike">
+                                    <img src='./assets/img/굿2.png' class="${result[i].user_id} ${cnt} unlike" id="reviewunlike">
                                 </div>
                             </div>
-                            <div>${result[i].review_content}</div>
+                            <div class='reviewcontent'>"${result[i].review_content}"</div>
                         </div>
                     </div>
                 </div>
@@ -291,7 +292,7 @@ const popreview = (data) => {
                 // console.log('리뷰시퀀스',result[i].review_seq)
                 // console.log('인덱스오브',reviewListCheck.indexOf(result[i].review_seq))
                 reviews.appendChild(div)
-                console.log('123123123', reviewListCheck.indexOf(result[i].review_seq))
+                // console.log('123123123', reviewListCheck.indexOf(result[i].review_seq))
                 if (reviewListCheck.indexOf(result[i].review_seq) == -1 || reviewyn[reviewListCheck.indexOf(result[i].review_seq)] == 'N') {
                     document.getElementsByClassName(`${result[i].user_id} ${cnt} like`)[0].style.display = 'none'
                     document.getElementsByClassName(`${result[i].user_id} ${cnt} unlike`)[0].style.display = 'block'
