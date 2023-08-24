@@ -59,11 +59,6 @@ function kakaoLogin() {
     })
 }
 
-const popId=()=>{
-    let id = document.getElementById('id').value
-    alert(`안녕하세요~${id}`)
-    location.href='http://localhost:3333/login'
-}
 
 //카카오로그아웃  
 function kakaoLogout() {
