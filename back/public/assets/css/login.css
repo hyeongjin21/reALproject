@@ -88,3 +88,14 @@ font-family: "jua" !important;
   color: #555;
   
 }
+
+/* input[type=password]{
+  font-family: '맑은 고딕', 'malgun gothic', '돋움', Dotum, sans-serif;
+} */
+
+input[type=password]{
+  font-family: '맑은 고딕', 'malgun gothic', '돋움', Dotum, sans-serif !important;
+}
+input[type=password]::placeholder{
+  font-family: "jua" !important;
+}

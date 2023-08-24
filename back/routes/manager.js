@@ -14,7 +14,7 @@ router.post('/admin_login', (req, res) => {
         console.log("{adminLoginTest : }",rows)
         if (rows.length > 0) {
             req.session.admin = rows[0]
-            res.send(`<script>alert('어서오세요~ ${req.session.admin.admin_memo}님');location.href='http://localhost:3333/admin1_userpage';</script>`)
+            res.send(`<script>alert('${req.session.admin.admin_memo}님, 관리자페이지에 접속하셨습니다.');location.href='http://localhost:3333/admin1_userpage';</script>`)
         }
         else {
             res.send('<script>alert("로그인에 실패했습니다.");location.href="http://localhost:3333/admin_login";</script>')
@@ -84,7 +84,7 @@ router.post('/shopDelete', (req, res) => {
 
     conn.query(queries.shopDelete,[deleteshop],(err, rows)=>{
         // console.log(rows)
-        res.send(`<script>alert("삭제되었습니다.");</script>`)
+        res.send(`<script>alert("삭제되었습니다.");location.href="http://localhost:3333/manager/admin2_S_userpage";</script>`)
     })
 })
 
@@ -107,8 +107,8 @@ router.post('/menuDelete', (req, res) => {
 // 카페관리 - 가게 등록
 router.post('/shopRegister', (req, res) => {
     let { shopname, bno, addr1, addr2, tel, ownername} = req.body
-
-    if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '')
+    console.log(lat, lng)
+    if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '' )
     {
         res.send(`<script>
         alert("빈칸을 빠짐없이 입력해주세요");
@@ -117,6 +117,7 @@ router.post('/shopRegister', (req, res) => {
         // res.render('/admin6_shop_register')
     }else{
         conn.query(queries.insertShop, [shopname, bno, addr1, addr2, tel, ownername], (err, rows)=>{
+            // console.log(rows)
         res.send(`<script>alert("${shopname} 카페가 등록되었습니다.");location.href='http://localhost:3333/admin2_S_userpage'</script>`)
         })
     }

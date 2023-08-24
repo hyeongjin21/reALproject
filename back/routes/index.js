@@ -19,6 +19,8 @@ router.get('/', (req, res) => {
     }
 })
 
+// user_id_ranking: currentUser.user.user_id
+
 // 로그인 페이지 이동
 router.get('/login', (req, res) => {
     res.render('login')
@@ -235,15 +237,18 @@ router.get('/mypage', (req, res) => {
 // ranking
 // 카페관리 - 리뷰관리 페이지로 이동
 router.get('/ranking', (req, res) => {
+    const currentUser = req.session
     const menuRanking = queries.menuRanking
     const reviewRanking = queries.reviewRanking
+    // console.log(currentUser.user.user_id)
 
     conn.query(menuRanking, (err, m_result) => {
         
         conn.query(reviewRanking, (err, r_result) => {
             res.render('ranking', { 
                 M_Rlist : m_result,
-                R_Rlist : r_result
+                R_Rlist : r_result,
+                user_id_ranking: currentUser.user.user_id
             })
         })
     })
@@ -252,8 +257,13 @@ router.get('/ranking', (req, res) => {
 
 
 
-
-
+router.get('/search',(req,res)=>{
+    const currentUser = req.session
+    // console.log(user_id_search, '0000000000000000')
+        res.render('search',{
+        user_id_search : currentUser.user.user_id
+})
+})
 
 
 

@@ -109,11 +109,20 @@
           <li class="nav-item"><a href="/search" class="nav-link">FIND MENU</a></li>
           <li class="nav-item"><a href="/ranking" class="nav-link">RANKING</a></li>
           <li class="nav-item"><a href="/mypage" class="nav-link">MY PAGE</a></li>
-          <li class="nav-item"><a href="/login" class="nav-link">LOG IN</a></li>
+          <!-- <li class="nav-item"><a href="/login" class="nav-link">LOG IN</a></li> -->
+          {% if user_id_ranking == undefined%}
+          <li class="nav-item"><a href="login" class="nav-link">LOG IN</a></li>
+          {% else %}
+          <li class="nav-item"><a href="login" class="nav-link" style="color: #997554">{{user_id_ranking}}</a></li>
+          {% endif %}
         </ul>
       </header>
     </div>
   </div>
+
+  <style>
+    
+  </style>
 
   <body>
     

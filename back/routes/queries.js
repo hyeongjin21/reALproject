@@ -42,7 +42,7 @@ module.exports = {
 
   //// 카페관리 ////
   // 가게 등록하기
-  insertShop: `INSERT INTO al_shop (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner) VALUES(?, ?, ?, ?, ?, ?)`,
+  insertShop: `INSERT INTO al_shop (shop_name, shop_bno, shop_addr1, shop_addr2, shop_tel, shop_owner, lat, lng) VALUES(?, ?, ?, ?, ?, ?, ?, ?)`,
 
   // 가게 위치 정보 가져오기
   shopLocationAll: `SELECT ROW_NUMBER() OVER (ORDER BY created_at) AS rownum, shop_name, shop_addr1, lat, lng FROM al_shop `,
@@ -209,7 +209,7 @@ module.exports = {
             GROUP BY a.menu_seq, m.menu_name, s.shop_name
         ) sub
   ) sub
-  WHERE sub.rownum <= 3`,
+  WHERE sub.rownum <= 5`,
 
   //추천 많은 리뷰순
   reviewRanking : `select sub.*
@@ -234,7 +234,7 @@ module.exports = {
 		 group by c.review_seq, d.review_seq 
 		   ) sub
       ) sub
-where sub.rownum <= 3`
+where sub.rownum <= 5`
 
 
 
