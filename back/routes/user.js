@@ -6,16 +6,16 @@ const queries = require('./queries')
 const conn = require('../config/database')
 
 const GOOGLE_CLIENT_ID = '537291097258-4pr3h4b3skes2b7svrj73lj7s0imvhmp.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET  = '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';
-const GOOGLE_REDIRECT_URI  = 'http://localhost:3333/login/redirect';
-
+const GOOGLE_CLIENT_SECRET = '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';
+const GOOGLE_REDIRECT_URI = 'http://localhost:3333/login/redirect';
 // 회원 가입
 router.post('/join', (req, res) => {
-    console.log(req.body)
-    let { name,  tel, id, check, pw, pw2 } = req.body
+    console.log('join req.body', req.body)
+    let { name, nick, tel, ID, check, pw, pw2 } = req.body
     if (pw == pw2) {
-        conn.query(queries.joinUser, [id, pw, name, nick, tel], (err, rows) => {
+        conn.query(queries.joinUser, [ID, pw, name, nick, tel], (err, rows) => {
             console.log(rows)
+            console.log(err)
             if (rows.affectedRows > 0) {
                 res.send(`<script>alert("환영합니다.${name}님!");location.href='http://localhost:3333'</script>`)
             }
@@ -37,30 +37,31 @@ router.post('/login', (req, res) => {
     conn.query(queries.searchId, [id, pw], (err, rows) => {
         if (rows.length > 0) {
             req.session.user = rows[0]
-            res.send(`<script>alert('어서오세요~ ${req.session.user.user_name}님');location.href='http://localhost:3333/search';</script>`)
+            // res.send(`<script>alert('어서오세요~ ${req.session.user.user_name}님');location.href='http://localhost:3333/search';</script>`)
+            res.send(`<script>alert('어서오세요~');location.href='http://localhost:3333/search';</script>`)
         }
         else {
             res.send('<script>alert("로그인에 실패했습니다.");location.href="http://localhost:3333/login";</script>')
         }
-    })  
+    })
 })
 
 // 구글로그인
-router.get('/loginGoogle',(req,res)=>{
+router.get('/loginGoogle', (req, res) => {
     let url = 'https://accounts.google.com/o/oauth2/v2/auth';
-	// client_id는 위 스크린샷을 보면 발급 받았음을 알 수 있음
-	// 단, 스크린샷에 있는 ID가 아닌 당신이 직접 발급 받은 ID를 사용해야 함.
+    // client_id는 위 스크린샷을 보면 발급 받았음을 알 수 있음
+    // 단, 스크린샷에 있는 ID가 아닌 당신이 직접 발급 받은 ID를 사용해야 함.
     url += `?client_id=${GOOGLE_CLIENT_ID}`
-	// 아까 등록한 redirect_uri
+    // 아까 등록한 redirect_uri
     // 로그인 창에서 계정을 선택하면 구글 서버가 이 redirect_uri로 redirect 시켜줌
     url += `&redirect_uri=${GOOGLE_REDIRECT_URI}`
     // 필수 옵션.
     url += '&response_type=code'
-  	// 구글에 등록된 유저 정보 email, profile을 가져오겠다 명시
-    url += '&scope=email profile'    
-  	// 완성된 url로 이동
-  	// 이 url이 위에서 본 구글 계정을 선택하는 화면임.
-	res.redirect(url);
+    // 구글에 등록된 유저 정보 email, profile을 가져오겠다 명시
+    url += '&scope=email profile'
+    // 완성된 url로 이동
+    // 이 url이 위에서 본 구글 계정을 선택하는 화면임.
+    res.redirect(url);
 })
 
 // 구글 계정 선택 화면에서 계정 선택 후 redirect 된 주소
@@ -95,8 +96,9 @@ router.post('/checkId', (req, res) => {
 
 // 로그아웃
 router.get('/logout', (req, res) => {
-    req.session.user = ''
-    req.session.user = {user_name:''}
+    // req.session.user = ''
+    // req.session.user = {user_name:''}
+
     // req.session.destroy();
     res.send(`
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  

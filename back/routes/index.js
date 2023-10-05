@@ -7,7 +7,7 @@ const multer = require('multer')
 /////////////////////////  user 페이지  //////////////////////////////
 // 메인 페이지 이동
 router.get('/', (req, res) => {
-    console.log('kakao user_name:', req.query.user_name)
+    // console.log('kakao user_name:', req.query.user_name)
     if (req.query.user_name != undefined) {
         req.session.user.user_name = req.query.user_name
     }
@@ -258,11 +258,10 @@ router.get('/ranking', (req, res) => {
 
 
 router.get('/search',(req,res)=>{
-    const currentUser = req.session
+    // const currentUser = req.session
     // console.log(user_id_search, '0000000000000000')
-        res.render('search',{
-        user_id_search : currentUser.user.user_id
-})
+        // res.render('search',{user_id_search : currentUser.user.user_id})
+    res.render('search')
 })
 
 

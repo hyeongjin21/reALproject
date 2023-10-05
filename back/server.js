@@ -21,7 +21,7 @@ const imgRouter = require('./routes/img')
 app.use(express.json()) // json 변환에 필요한것
 app.use(cors()) // cors 때문에 필요한것
 app.use(morgan('dev'))
-app.use('/', imgRouter)
+// app.use('/', imgRouter)
 
 // 1. port 번호 설정
 app.set('port',process.env.PORT||3333);

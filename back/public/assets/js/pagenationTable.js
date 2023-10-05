@@ -80,7 +80,7 @@ const ModelController = (() => {
             } else {
                 tableSets.push(new TableState(data.tableID, data));
             }
-            console.log(tableSets)
+            // console.log(tableSets)
         },        
 
         //update table and global array dataset

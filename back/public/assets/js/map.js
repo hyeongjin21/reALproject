@@ -26,6 +26,12 @@ let category = document.getElementById('cate')
 
 let searchname = document.getElementById('keyword')
 
+fetch(url)
+.then(res => res.json())
+.then(res=>{
+    console.log('eksudhkTekdtlqkf')
+})
+
 // 지도에 가게 핑 찍기용 fetch
 fetch(url)
     .then(res => res.json())
