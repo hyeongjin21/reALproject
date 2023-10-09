@@ -1,5 +1,3 @@
-
-
 // 광인사 좌표 35.146587, 126.922354
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
     mapOption = {
@@ -26,29 +24,29 @@ let category = document.getElementById('cate')
 
 let searchname = document.getElementById('keyword')
 
-fetch(url)
-.then(res => res.json())
-.then(res=>{
-    console.log('eksudhkTekdtlqkf')
-})
-
-// 지도에 가게 핑 찍기용 fetch
-fetch(url)
+fetch(gMenu)
     .then(res => res.json())
     .then(res => {
-        shoploca = res.result
-        // console.log('test')
-        // 목록에 메뉴 출력용 fetch
-        fetch(gMenu)
-            .then(res => res.json())
-            .then(res => {
-                // console.log('패치값:',res.list)
-                menuResult = res.list
-                let ul = document.getElementById("placesList")
-                for (let i = 0; i < menuResult.length; i++) {
-                    // console.log('메뉴결과값',menuResult[i])
-                    let li = document.createElement('li')
-                    li.innerHTML = `
+        // console.log('eksudhkTekdtlqkf')
+        console.log('디디디디디디디', res)
+        printList(res.list);
+        useShoploca(res.list);
+    })
+
+const printList = (menuResult,search) => {
+    console.log('printList:', menuResult)
+    console.log('printList-search',search)
+    let ul = document.getElementById("placesList")
+    console.log('ulul',ul.childNodes.length)
+    console.log('ul',ul)
+    if(search){
+        ul.innerHTML = ''
+        search = false
+    }
+    for (let i = 0; i < menuResult.length; i++) {
+        // console.log('메뉴결과값',menuResult[i])
+        let li = document.createElement('li')
+        li.innerHTML = `
                     <div class='menuList'>
                         <div class='menuImg'>
                             <img src="../uploads/${menuResult[i].menu_img}"
@@ -65,77 +63,30 @@ fetch(url)
                             </div>
                         </div>
                     </div>`
-                    li.addEventListener('click', function () {
-                        popreview(menuResult[i])
-                    })
-                    ul.appendChild(li)
-                }
-
-                // searchEvent()
-
-            })
-        useShoploca();
-    })
-
-
+        li.addEventListener('click', function () {
+            popreview(menuResult[i])
+        })
+        ul.appendChild(li)
+    }
+}
 
 const searchEvent = () => {
-    fetch(url)
+    let categoryvalue = category.options[category.selectedIndex]
+    let cate = categoryvalue.value
+    let name = searchname.value
+    const searchmenu = `http://localhost:3333/search/getMenu?category=${cate}&&inputmenu=${name}`
+    fetch(searchmenu)
         .then(res => res.json())
         .then(res => {
-            shoploca = res.result
-            // console.log('test')
-            // 목록에 메뉴 출력용 fetch
-            let categoryvalue = category.options[category.selectedIndex]
-            menuResult = res.list
-            let cate = categoryvalue.value
-            let name = searchname.value
-            const searchmenu = `http://localhost:3333/search/getMenu?category=${cate}&&inputmenu=${name}`
-            fetch(searchmenu)
-                .then(res => res.json())
-                .then(res => {
-                    let menuResult = res.list
-                    console.log('menuemeue',menuResult)
-                    // console.log('menuResultmenuResult',menuResult)
-                    // console.log('클릭실행함',cate,name)
-                    let ul = document.getElementById("placesList")
-                    ul.innerHTML = ''
-                    for (let i = 0; i < menuResult.length; i++) {
-                        // console.log('메뉴결과값',menuResult[i].menu_name)
-                        // console.log("T,F",menuResult[i].menu_name.indexOf(name))
-                        // if (menuResult[i].menu_name.indexOf(name) >= 0 &&
-                        //     menuResult[i].menu_category == cate) {
-                        let li = document.createElement('li')
-                        li.innerHTML = `
-                        <div class='menuList scrolldiv'>
-                            <div class='menuImg'>
-                                <img src="../uploads/${menuResult[i].menu_img}"
-                            </div>
-                            <div class='menuInfo'>
-                                <div class='shopname'>
-                                    ${menuResult[i].shop_name}
-                                </div>
-                                <div class='menuName'>
-                                    메뉴 이름 : ${menuResult[i].menu_name}<br> 
-                                </div>
-                                <div class='menuPrice'>
-                                    ${menuResult[i].menu_price} 원
-                                </div>
-                            </div>
-                        </div>`
-                        li.addEventListener('click', function () {
-                            popreview(menuResult[i])
-                        })
-                        ul.appendChild(li)
-                        // }
-                    }
-                })
-            useShoploca();
+            console.log('searchMenu', res.list)
+            printList(res.list,true);
+            useShoploca(res.list,true);
         })
 }
 
 // 가게 위도경도 받아오기
-const useShoploca = () => {
+const useShoploca = (shoploca,search) => {
+    console.log('위도경도가져오는 함수', shoploca)
     let ul = document.getElementById("placesList")
     let positions = []
     for (let i = 0; i < shoploca.length; i++) {
@@ -175,6 +126,8 @@ const useShoploca = () => {
 
     var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
+    let marker = {};
+
     for (var i = 0; i < positions.length; i++) {
 
         // 마커 이미지의 이미지 크기 입니다
@@ -189,7 +142,7 @@ const useShoploca = () => {
         });
 
         // 마커를 생성합니다
-        var marker = new kakao.maps.Marker({
+        marker = new kakao.maps.Marker({
             map: map, // 마커를 표시할 지도
             position: positions[i][0].latlng, // 마커를 표시할 위치
             title: positions[i][0].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다

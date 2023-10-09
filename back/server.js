@@ -44,7 +44,7 @@ app.use(session({
     resave : false,
     secret : 'secret',
     store : new fileStore,
-    saveUninitialized: false,
+    saveUninitialized: true,
     expires: new Date(Date.now() + (60 * 60 * 24 * 7 * 1000)),
 }))
 // app.use((req,res,next)=>{

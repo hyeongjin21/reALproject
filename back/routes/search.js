@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
 })
 
 router.get('/get-coordinate', (req, res) => {
-    console.log('hihihihihihihiihihi')
+    // console.log('hihihihihihihiihihi')
     conn.query(queries.selectLocationAll, (err, rows) => {
         if (rows.length > 0) {
             res.json({ result: rows })

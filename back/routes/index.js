@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     if (req.session.user === undefined) {
         res.render('index')
     } else {
-        res.render('index', { name: req.session.user.user_name })
+        res.render('index',{user_id_search : req.session.user.user_id})
     }
 })
 
@@ -260,8 +260,9 @@ router.get('/ranking', (req, res) => {
 router.get('/search',(req,res)=>{
     // const currentUser = req.session
     // console.log(user_id_search, '0000000000000000')
-        // res.render('search',{user_id_search : currentUser.user.user_id})
-    res.render('search')
+    // res.render('search',{user_id_search : currentUser.user.user_id})
+    // console.log('user_id',req.session.user)
+    res.render('search',{user_id_search : req.session.user.user_id})
 })
 
 
