@@ -43,7 +43,7 @@ const uploads = multer({
 //메뉴이미지등록
 // 이미지 업로드를 위한 API
 // upload의 single 메서드는 하나의 이미지를 업로드할 때 사용
-router.post('/admin3_S_info', upload.single('menu_img'), (req, res) => {
+router.post('/m_shop_dt', upload.single('menu_img'), (req, res) => {
     // console.log("{ tlqkf:}",req.body)
     // console.log("{ dlalkdgf:}",req.file.filename)
     conn.query(queries.insertMenu,
@@ -63,7 +63,7 @@ router.post('/admin3_S_info', upload.single('menu_img'), (req, res) => {
         }else{
             conn.query(queries.shopMenu,[req.body.shop_seq],(err,result)=>{
                 // console.log("test menu : ", result)
-                res.render('admin3_S_info', {
+                res.render('m_shop_dt', {
                 list : result,
                 name : req.query.shop_name,
                 shop_seq : req.query.shop_seq
@@ -76,7 +76,7 @@ router.post('/admin3_S_info', upload.single('menu_img'), (req, res) => {
 })
 
 // 회원관리 - 가게 수정버튼 -> 수정페이지로 이동
-// router.post('/shopInfo_Modify', (req, res) => {
+// router.post('/m_shop_modi', (req, res) => {
 //     // console.log("{ tlqkf:}",req.body)
 //     // console.log("{ dlalkdgf:}",req.file.filename)
 //     // conn.query(queries.insertMenu,
@@ -113,27 +113,27 @@ router.post('/shop_register', uploads.single('shop_img'), (req, res) => {
         {
             res.send(`<script>
             alert("빈칸을 빠짐없이 입력해주세요");
-            location.href='http://localhost:3333/admin6_shop_register'
+            location.href='http://localhost:3333/m_newshop'
             </script>`)
-            // res.render('/admin6_shop_register')
+            // res.render('/m_newshop')
         }else{
             conn.query(queries.insertShop, [shopname, bno, addr1, addr2, tel, ownername, shop_img], (err, rows)=>{
-            res.send(`<script>alert("${shopname} 카페가 등록되었습니다.");location.href='http://localhost:3333/admin2_S_userpage'</script>`)
+            res.send(`<script>alert("${shopname} 카페가 등록되었습니다.");location.href='http://localhost:3333/m_shop'</script>`)
             })
         }
 })
 
 //가게이미지 등록수정
-router.post('/shopinfo_modify', uploads.single('shop_img'),(req, res) => {
+router.post('/m_shop_modi', uploads.single('shop_img'),(req, res) => {
     let { shopname, bno, addr1, addr2, tel, ownername} = req.body
     // console.log("runnnnnnnnnnnnnnnnnn",req.body)
     if(shopname == '' || bno == ''|| addr1 =='' || tel == '' || ownername == '')
         {
             res.send(`<script>
             alert("빈칸을 빠짐없이 입력해주세요");
-            location.href='http://localhost:3333/shopinfo_modify'
+            location.href='http://localhost:3333/m_shop_modi'
             </script>`)
-            // res.render('/admin6_shop_register')
+            // res.render('/m_newshop')
         }else{
             let fileName = ''
             try{
@@ -146,7 +146,7 @@ router.post('/shopinfo_modify', uploads.single('shop_img'),(req, res) => {
                         // console.log("{err :}",err)
                     }else{
                         // console.log("{succece :}",rows)
-                        res.send(`<script>alert("${shopname} 카페정보가 수정되었습니다.");location.href='http://localhost:3333/admin2_S_userpage'</script>`)
+                        res.send(`<script>alert("${shopname} 카페정보가 수정되었습니다.");location.href='http://localhost:3333/m_shop'</script>`)
                     }
 
                 })
@@ -155,14 +155,14 @@ router.post('/shopinfo_modify', uploads.single('shop_img'),(req, res) => {
 })
 
 //메뉴이미지 등록수정
-router.post('/admin5_menu_modify', uploads.single('menu_img'),(req, res) => {
+router.post('/m_menu_modi', uploads.single('menu_img'),(req, res) => {
     let { menuname, menu_img, price, temperature, option, info, category, tags} = req.body
     // console.log("runnnnnnnnnnnnnnnnnn",req.body)
     if(menuname == '' || price == ''|| category =='')
         {
             res.send(`<script>
             alert("빈칸을 빠짐없이 입력해주세요");
-            location.href='http://localhost:3333/admin3_S_info'
+            location.href='http://localhost:3333/m_shop_dt'
             </script>`)
         }else{
             let fileName = ''
@@ -177,7 +177,7 @@ router.post('/admin5_menu_modify', uploads.single('menu_img'),(req, res) => {
                         // console.log("{err :}",err)
                     }else{
                         // console.log("{succece :}",rows)
-                        res.send(`<script>alert("${menuname} 메뉴정보가 수정되었습니다.");location.href='http://localhost:3333/admin3_S_info?shop_seq=${req.body.shop_seq}&shop_name=${req.body.shop_name}'</script>`)
+                        res.send(`<script>alert("${menuname} 메뉴정보가 수정되었습니다.");location.href='http://localhost:3333/m_shop_dt?shop_seq=${req.body.shop_seq}&shop_name=${req.body.shop_name}'</script>`)
                     }
 
                 })

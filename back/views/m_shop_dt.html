@@ -1,4 +1,4 @@
-{% extends 'test_layout.html' %}
+{# {% extends 'test_layout.html' %} #}
 
 {% block content %}
 
@@ -26,7 +26,7 @@
                     <tr>
                         <th>카페 메뉴</th>
                         <td colspan="2">
-                            <button><a href="/admin4_menu_register?shop_seq={{shop_seq}}">메뉴등록</a></button>
+                            <button><a href="/m_newmenu?shop_seq={{shop_seq}}">메뉴등록</a></button>
                         </td>
                     </tr>
                 </table>
@@ -87,7 +87,7 @@
     <!--수정페이지 이동-->
     <script>
         const menuUpdate = (menu_seq, name, shop_seq) => {
-            location.href = `http://localhost:3333/admin5_menu_modify?menu_seq=${menu_seq}&shop_name=${name}&shop_seq=${shop_seq}`
+            location.href = `http://localhost:3333/m_menu_modi?menu_seq=${menu_seq}&shop_name=${name}&shop_seq=${shop_seq}`
         }
     </script>
     <!--메뉴삭제-->

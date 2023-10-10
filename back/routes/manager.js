@@ -8,16 +8,16 @@ const conn = require('../config/database')
 
 // 관리자 로그인
 // 로그인
-router.post('/admin_login', (req, res) => {
+router.post('/m_login', (req, res) => {
     let { id, pw } = req.body
     conn.query(queries.adminLogin, [id, pw], (err, rows) => {
         console.log("{adminLoginTest : }",rows)
         if (rows.length > 0) {
             req.session.admin = rows[0]
-            res.send(`<script>alert('${req.session.admin.admin_memo}님, 관리자페이지에 접속하셨습니다.');location.href='http://localhost:3333/admin1_userpage';</script>`)
+            res.send(`<script>alert('${req.session.admin.admin_memo}님, 관리자페이지에 접속하셨습니다.');location.href='http://localhost:3333/m_user';</script>`)
         }
         else {
-            res.send('<script>alert("로그인에 실패했습니다.");location.href="http://localhost:3333/admin_login";</script>')
+            res.send('<script>alert("로그인에 실패했습니다.");location.href="http://localhost:3333/m_login";</script>')
         }
     })  
 })
@@ -30,13 +30,13 @@ router.get('/',(req,res)=>{
     if(userSearch == ''){
         conn.query(queries.userAll,(err, rows)=>{
             if(rows.length > 0){
-                res.render('admin1_userpage',{list:rows})
+                res.render('m_user',{list:rows})
             }
         })
     }else{
         conn.query(queries.userNameSearch,[userSearch],(err, rows)=>{
             if(rows.length > 0){
-                res.render('admin1_userpage',{list:rows})
+                res.render('m_user',{list:rows})
             }       
         })
     }
@@ -57,7 +57,7 @@ router.post('/userDelete', (req, res) => {
 
 
 // 회원관리 - 등록가게 라우터
-router.get('/admin2_S_userpage',(req,res)=>{
+router.get('/m_shop',(req,res)=>{
     let shopSearch = "%" + req.query.shopSearch + "%"
     // console.log(shopSearch)
     
@@ -65,13 +65,13 @@ router.get('/admin2_S_userpage',(req,res)=>{
         conn.query(queries.shopAll,[],(err, rows)=>{
             if(rows.length > 0){
                 console.log("tlqkfshadk : ",rows)
-                res.render('admin2_S_userpage',{list:rows})
+                res.render('m_shop',{list:rows})
             }
         })
     }else{
         conn.query(queries.shopNameSearch,[shopSearch],(err, rows)=>{
             if(rows.length > 0){
-                res.render('admin2_S_userpage',{list:rows})
+                res.render('m_shop',{list:rows})
             }       
         })
     }
@@ -84,7 +84,7 @@ router.post('/shopDelete', (req, res) => {
 
     conn.query(queries.shopDelete,[deleteshop],(err, rows)=>{
         // console.log(rows)
-        res.send(`<script>alert("삭제되었습니다.");location.href="http://localhost:3333/manager/admin2_S_userpage";</script>`)
+        res.send(`<script>alert("삭제되었습니다.");location.href="http://localhost:3333/manager/m_shop";</script>`)
     })
 })
 
@@ -112,13 +112,13 @@ router.post('/shopRegister', (req, res) => {
     {
         res.send(`<script>
         alert("빈칸을 빠짐없이 입력해주세요");
-        location.href='http://localhost:3333/admin6_shop_register'
+        location.href='http://localhost:3333/m_newshop'
         </script>`)
-        // res.render('/admin6_shop_register')
+        // res.render('/m_newshop')
     }else{
         conn.query(queries.insertShop, [shopname, bno, addr1, addr2, tel, ownername], (err, rows)=>{
             // console.log(rows)
-        res.send(`<script>alert("${shopname} 카페가 등록되었습니다.");location.href='http://localhost:3333/admin2_S_userpage'</script>`)
+        res.send(`<script>alert("${shopname} 카페가 등록되었습니다.");location.href='http://localhost:3333/m_shop'</script>`)
         })
     }
 })
@@ -145,20 +145,20 @@ router.get('/reviewSearch', (req, res) => {
         conn.query(queries.reviewAll,[],(err, rows)=>{
             // console.log(rows)
             if(rows.length > 0){
-                res.render('admin8_review_manage',{list:rows})
+                res.render('m_review',{list:rows})
             }
         }) 
     }else if(category == 'user'){
         conn.query(queries.reviewSearchUser,[review],(err, rows)=>{
             // console.log(rows)
             if(rows.length > 0){
-                res.render('admin8_review_manage',{list:rows})
+                res.render('m_review',{list:rows})
             }
         })    
     }else{
         conn.query(queries.reviewSearchContent,[review],(err, rows)=>{
             if(rows.length > 0){
-                res.render('admin8_review_manage',{list:rows})
+                res.render('m_review',{list:rows})
             }
         })   
     }

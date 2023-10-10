@@ -1,0 +1,113 @@
+{% extends 'test_layout.html' %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="/assets/css/test.css">
+    <link rel="stylesheet" href="/assets/css/pagenationTable.css">
+</head>
+
+<!-- Body -->
+<form action="/manager/m_shop">
+    <div class="search-section">
+        <a class="section-name">등록가게 정보</a><br>
+        <input autocomplete='off' id="input1" type="text" name='shopSearch' placeholder="사업자명을 입력해주세요">
+        <input id="input2" type="submit" value="검색">
+    </div>
+</form>
+<div id="blank"></div>
+<div class="table-container">
+    <div class="row">
+        <div class="col-xs-12">
+            <table id="table-one">
+                <thead>
+                    <tr>
+                        <th>일련번호</th>
+                        <th>사업자명</th>
+                        <th>사업자번호</th>
+                        <th>주소</th>
+                        <th>상세주소</th>
+                        <th>전화번호</th>
+                        <th>대표자명</th>
+                        <th>등록일자</th>
+                        <th>수정</th>
+                        <th>삭제</th>
+                    </tr>
+                </thead>
+
+                <form method="post" action="/manager/shopDelete">
+                    <tbody>
+
+                        {% for i in list %}
+                        <tr>
+                            <td>{{i.rownum}}</td>
+                            <td>
+                                <a href="/m_shop_dt?shop_seq={{i.shop_seq}}&shop_name={{i.shop_name}}">
+                                    {{i.shop_name}}
+                                </a>
+                            </td>
+                            <td>{{i.shop_bno}}</td>
+                            <td>{{i.shop_addr1}}</td>
+                            <td>{{i.shop_addr2}}</td>
+                            <td>{{i.shop_tel}}</td>
+                            <td>{{i.shop_owner}}</td>
+                            <td>{{i.created_at}}</td>
+                            <td>
+                                <button type="button" onclick="modifyShopRow({{ i.shop_seq }})">수정</button>
+                            </td>
+                            <td>
+                                <button type="button" onclick="deleteShopRow({{i.shop_seq}})">삭제</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </form>
+
+
+            </table>
+        </div>
+    </div>
+</div>
+<div class="bodyLayout">
+    <script src="./assets/js/pagenationTable.js"></script>
+    <script>
+        Paginator.init({ tableID: "table-one", rows: 14, headers: 2, navRange: 5, navStyle: 'default' });
+    </script>
+
+    <script>
+        // 가게 목록에서 가게 삭제하는 fetch
+        let refreshList = () => {
+            location.reload()
+        }
+        let url = "/manager/shopDelete"
+        const deleteShopRow = (shop_seq) => {
+            let rs = confirm("삭제하시겠습니까?")
+            if (rs == true) {
+                fetch(url, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        seq: shop_seq
+
+                    })
+                })
+                    .then(res => res.json())
+                    .then(res => { })
+
+
+                alert("삭제되었습니다.");
+                refreshList();
+            }
+        }
+
+        // 가게 목록에서 가게 정보 수정하는 fetch
+        const modifyShopRow = (i) => {
+            location.href = `http://localhost:3333/m_shop_modi?shop_seq=${i}`
+        }
+
+    </script>
+
+</div>
+{% endblock %}

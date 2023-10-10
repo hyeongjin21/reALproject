@@ -24,15 +24,17 @@ let category = document.getElementById('cate')
 
 let searchname = document.getElementById('keyword')
 
+/** 처음 메뉴리스트, 가게 위치 핑 만들기 */
 fetch(gMenu)
     .then(res => res.json())
     .then(res => {
         // console.log('eksudhkTekdtlqkf')
-        console.log('디디디디디디디', res)
+        // console.log('디디디디디디디', res)
         printList(res.list);
         useShoploca(res.list);
     })
 
+/** 메뉴 리스트 만들기 */
 const printList = (menuResult,search) => {
     console.log('printList:', menuResult)
     console.log('printList-search',search)
@@ -70,6 +72,7 @@ const printList = (menuResult,search) => {
     }
 }
 
+/** 검색 이벤트 */
 const searchEvent = () => {
     let categoryvalue = category.options[category.selectedIndex]
     let cate = categoryvalue.value
@@ -84,7 +87,7 @@ const searchEvent = () => {
         })
 }
 
-// 가게 위도경도 받아오기
+/** 가게 위도,경도 받아와서 맵에 핑 만들기 */
 const useShoploca = (shoploca,search) => {
     console.log('위도경도가져오는 함수', shoploca)
     let ul = document.getElementById("placesList")
@@ -171,7 +174,7 @@ const useShoploca = (shoploca,search) => {
     }
 }
 
-//리뷰창 띄우기
+/** 리뷰창 띄우기 */
 const popreview = (data) => {
     // console.log('리뷰띄우기')
     let getMenu = 'http://localhost:3333/search/review'
@@ -266,6 +269,7 @@ const popreview = (data) => {
 
 }
 
+/** 리뷰 좋아요 눌렀을때 */
 const reviewlikeclick = (id, cnt, seq) => {
     // console.log('id,cnt',id,cnt)
     let like = document.getElementsByClassName(`${id} ${cnt} like`)[0]

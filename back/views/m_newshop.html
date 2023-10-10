@@ -1,7 +1,6 @@
 {% extends 'test_layout.html' %}
 
 {% block content %}
-
 <head>
     <link rel="stylesheet" href="/assets/css/test.css">
 </head>
@@ -21,14 +20,7 @@
     a{
         margin-right: 5em;
     }
-    
     input{
-        border-top : none;
-        border-left : none;
-        border-right: none;
-        border-bottom: none;
-    }
-    button{
         border-top : none;
         border-left : none;
         border-right: none;
@@ -43,13 +35,13 @@
     }
 
 
-</style>
 
-<!-- Body --> 
-<div class="search-section">
-    <a class="section-name">가게 정보 수정</a><br>
-</div>
-    <form method='post' action="/img/shopinfo_modify" encType="multipart/form-data">
+</style>
+    <!-- Body --> 
+    <div class="search-section">
+        <a class="section-name">신규 가게 등록</a><br>
+    </div>
+    <form method='post' action="/img/shop_register"  encType="multipart/form-data">
         <div id="blank-n"></div>
         <div class="main-container">
             <div class="row">
@@ -59,78 +51,79 @@
                 <thead>
                 <th>가게명</th>
                 <td>
-                    <input type="text" name="shopname" value="{{cols.shop_name}}">
+                    <input autocomplete='off' type="text" name="shopname" >
                 </td>
             </tr>
             <tr>
                 <th>사업자번호</th>
                 <td>
-                    <input type="text" name="bno" value="{{cols.shop_bno}}">
+                    <input autocomplete='off' type="text" name="bno" >
                 </td>
             </tr>
             <tr>
                 <th>사업장 주소</th>
                 <td>
-                    <input type="text" name="addr1" value="{{cols.shop_addr1}}">
+                    <input autocomplete='off' type="text" name="addr1" >
                 </td>
             </tr>
             <tr>
                 <th>상세주소</th>
                 <td>
-                    <input type="text" name="addr2" value="{{cols.shop_addr2}}">
+                    <input autocomplete='off' type="text" name="addr2" >
                 </td>
             </tr>
             <tr>
                 <th>전화번호</th>
                 <td>
-                    <input type="text" name="tel" value="{{cols.shop_tel}}">
+                    <input autocomplete='off' type="text" name="tel" >
                 </td>
             </tr>
             <tr>
                 <th>대표자명</th>
                 <td>
-                    <input type="text" name="ownername" value="{{cols.shop_owner}}">
+                    <input autocomplete='off' type="text" name="ownername" >
                 </td>
             </tr>
             <tr>
                 <th>가게이미지등록</th>
                 <td>
-                    <img src="./shop_uploads/{{cols.shop_img}}" id="previewImage" alt="Preview Image" style="height: 200px; width: 200px;" />
                     <div class="previewProfile">
-                        <input type="file" id="profileFile" name="shop_img" value="{{cols.shop_img}}" accept="image/*">
+                        <img id="previewImage" src="/uploads/img1691520310216.jpg" title="고양이"
+                            alt="Preview Image" style="height: 200px; width: 200px;" />
                     </div>
-                </td>
+                    <input type="file" id="profileFile" name="shop_img" accept="image/*">
+                </td>   
             </tr>
             <tr>
                 <th>위도</th>
                 <td>
-                    <input autocomplete='off' type="text" name="lat" value="35.14506347827494">
+                    <input autocomplete='off' type="text" name="lat" >
                 </td>
             </tr>
             <tr>
                 <th>경도</th>
                 <td>
-                    <input autocomplete='off' type="text" name="lng" value="126.92250631316652" >
+                    <input autocomplete='off' type="text" name="lng" >
                 </td>
             </tr>
+        </thead>
         </table>
+    </div>
+</div>
     </div>
         <div class="table-container">
             <table>
-                <tr>
+                <tr>    
                     <th class="in2">
-                        <input type="hidden" name="shop_seq" value="{{ shop_seq }}">
-                        <button class = "in" type="submit" id="join">저장</button>
-                        <button class = "in" type="button"
-                            onclick="location.href='http://localhost:3333/admin2_S_userpage'">목록</button>
+                        <button class="in" type="submit" id="join">저장</button>
+                        <button class="in" type="button"
+                            onclick="location.href='m_shop'">목록</button>
                     </th>
                 </tr>
-            </thead>
             </table>
         </div>
     </div>
-        </div>
-    </form>
     <script src="assets/js/menuImg.js"></script>
+
 </div>
 {% endblock %}
