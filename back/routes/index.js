@@ -239,7 +239,8 @@ router.get('/search',(req,res)=>{
     // console.log(user_id_search, '0000000000000000')
     // res.render('search',{user_id_search : currentUser.user.user_id})
     // console.log('user_id',req.session.user)
-    res.render('search',{user_id_search : req.session.user.user_id})
+    // res.render('search',{user_id_search : req.session.user.user_id})
+    res.render('search')
 })
 
 module.exports = router;

@@ -30,10 +30,10 @@ const checkId = () => {
         })
 }
 
-const popId=()=>{
+const popId = () => {
     let id = document.getElementById('id').value
     alert(`${id}님 환영합니다!`)
-    location.href='http://localhost:3333/login'
+    location.href = 'http://localhost:3333/login'
 }
 
 //카카오로그인
@@ -73,7 +73,8 @@ function kakaoLogout() {
             },
         })
         Kakao.Auth.setAccessToken(undefined)
-}}
+    }
+}
 
 
 //상점 좋아요 눌렀을때 반응
@@ -84,7 +85,7 @@ const shopLike = () => {
     let getShopSeq = document.getElementsByName('getshopseq')[0]
     // like.style.display = 'none'
     let likeCheck = 0
-    console.log('shopseq:',getShopSeq.value)
+    console.log('shopseq:', getShopSeq.value)
     if (like.style.display == 'none') {
         like.style.display = 'inline'
         unlike.style.display = 'none'
@@ -94,11 +95,11 @@ const shopLike = () => {
         unlike.style.display = 'inline'
         likeCheck = 0
     }
-    let shop_seq =  getShopSeq.value
+    let shop_seq = getShopSeq.value
     // console.log(shop_seq)
     //user_id, shop_seq get쿼리로보내기
-    const shopLikeChange = `http://localhost:3333/search/shoplike?shop_seq=${ shop_seq }&&likeCheck=${likeCheck}`
-    fetch(shopLikeChange,{
+    const shopLikeChange = `http://localhost:3333/search/shoplike?shop_seq=${shop_seq}&&likeCheck=${likeCheck}`
+    fetch(shopLikeChange, {
     })
         .then(res => res.json())
         .then(res => {
@@ -130,29 +131,34 @@ const addreview = () => {
 }
 
 // 메뉴 좋아요 누르기
-const menuLike=()=>{
+const menuLike = () => {
     let menuLike = document.getElementById('menulike')
     let menuUnLike = document.getElementById('menuunlike')
     let menuSeq = document.getElementsByName('getmenuseq')[0]
     let mlike = 0
 
-    if(menuLike.style.display == 'none'){
+    if (menuLike.style.display == 'none') {
         menuLike.style.display = 'inline'
         menuUnLike.style.display = 'none'
         mlike = 1
-    }else{
+    } else {
         menuLike.style.display = 'none'
         menuUnLike.style.display = 'inline'
         mlike = 0
     }
-    console.log('menuseq',menuSeq.value)
-    console.log('mlike',mlike)
-    const menuLikeChange = `http://localhost:3333/search/menulike?menu_seq=${ menuSeq.value }&&likeCheck=${ mlike }`
-    fetch(menuLikeChange,{
+    console.log('menuseq', menuSeq.value)
+    console.log('mlike', mlike)
+    const menuLikeChange = `http://localhost:3333/search/menulike?menu_seq=${menuSeq.value}&&likeCheck=${mlike}`
+    fetch(menuLikeChange, {
     })
         .then(res => res.json())
         .then(res => {
 
         })
 
+}
+
+/** 리뷰창 닫기 */
+const closereviewcontainer = () => {
+    document.getElementById('reviewcontainer').style.display = 'none'
 }

@@ -103,7 +103,10 @@ router.post('/review', (req, res) => {
     let shopseq = req.body.shopseq
     // console.log(menuseq)
     // console.log('userid',req.session.user.user_id)
-    let userid = req.session.user.user_id
+    let userid = ''
+    if(req.session.user != undefined){
+        userid = req.session.user.user_id
+    }
     let shopLikeCheck = 0
     let menuLikeCheck = 0
     let isReviewCheck = []
@@ -156,7 +159,9 @@ router.post('/inputreview', (req, res) => {
     console.log('name :', req.session)
     let menuseq = req.body.menuseq;
     let review = req.body.review;
-    let userid = req.session.user.user_id;
+    if(req.session.user.user_id != undefined){
+        let userid = req.session.user.user_id;
+    }
     let islogin = false
     if (req.session.user.user_name == '') {
         console.log('로그인해')

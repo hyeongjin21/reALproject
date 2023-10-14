@@ -1,5 +1,5 @@
 @font-face {
-    src : url("/FONTS/BMJUA_ttf.ttf") !important;
+    src: url("/FONTS/BMJUA_ttf.ttf") !important;
     font-family: "jua" !important;
 }
 
@@ -15,11 +15,11 @@
 }
 
 
-#reviewlikearea{
+#reviewlikearea {
     cursor: pointer;
 }
 
-#reviewlikearea img{
+#reviewlikearea img {
     height: 23px;
     width: 23px;
 }
@@ -28,19 +28,19 @@
     display: flex;
     flex-direction: column;
 } */
-.reviewcontain{
+.reviewcontain {
     /* display:flex; */
     width: 250px;
     flex-direction: column;
 }
 
-.reviewbetween{
+.reviewbetween {
     /* width: 100%; */
     display: flex;
     justify-content: space-between;
 }
 
-.reviewcontent{
+.reviewcontent {
     font-family: "jua";
     text-align: left;
 }
@@ -58,10 +58,10 @@
 
 
 
-.list-image img{
+.list-image img {
     display: block;
     border-radius: 15px;
-    width : 100px;
+    width: 100px;
     height: 140px;
     margin-top: 10px;
 }
@@ -92,10 +92,10 @@
     height: 155px;
     width: 269px;
     overflow: auto;
-    margin:20px 0px 0px 10px;
+    margin: 20px 0px 0px 10px;
 }
 
-#review{
+#review {
     font-family: "jua";
     border: 2px solid lightgray;
     border-radius: 5px;
@@ -117,26 +117,32 @@
     margin-left: 1%;
     position: absolute;
     left: 0;
-    display: inline-block;  /* a 태그를 인라인 블록 요소로 만들어 줍니다 */
-    width: 40px;  /* 원하는 너비로 설정 */
-    height: 40px; /* 원하는 높이로 설정 */
+    display: inline-block;
+    /* a 태그를 인라인 블록 요소로 만들어 줍니다 */
+    width: 40px;
+    /* 원하는 너비로 설정 */
+    height: 40px;
+    /* 원하는 높이로 설정 */
 }
 
 #likearea a img {
     cursor: pointer;
     position: relative;
-    width: 80%;  /* 이미지를 a 태그의 너비에 맞게 조절 */
-    height: auto; /* 이미지를 a 태그의 높이에 맞게 조절 */
+    width: 80%;
+    /* 이미지를 a 태그의 너비에 맞게 조절 */
+    height: auto;
+    /* 이미지를 a 태그의 높이에 맞게 조절 */
 }
 
 #cafename {
     font-family: "jua";
     color: rgb(52, 50, 197);
     margin: 10px 10px 10px;
-    font-size: 20px; /* 원하는 크기로 조절 */
+    font-size: 20px;
+    /* 원하는 크기로 조절 */
 }
 
-#likearea > img {
+#likearea>img {
     display: inline-block;
     height: 25px;
     margin-left: 5px;
@@ -144,7 +150,7 @@
     cursor: pointer;
 }
 
-#menulikearea{
+#menulikearea {
     display: inline-block;
     position: relative;
     bottom: 50px;
@@ -152,7 +158,7 @@
     height: 23px;
 }
 
-#menulikearea > img{
+#menulikearea>img {
     /* display: inline-block;
     height: 23px; */
     height: 25px;
@@ -177,8 +183,10 @@
 
 p.float-left {
     float: left;
-    margin-right: 10px;  /* 사이의 간격을 조정하려면 마진 값을 조절하세요 */
-    font-size: 17px;  /* 원하는 크기로 변경 */
+    margin-right: 10px;
+    /* 사이의 간격을 조정하려면 마진 값을 조절하세요 */
+    font-size: 17px;
+    /* 원하는 크기로 변경 */
 }
 
 .reviewLikeUp {
@@ -186,12 +194,12 @@ p.float-left {
     margin-right: 200px;
 }
 
-#placesList > li {
+#placesList>li {
     width: 100%;
     background-color: rgb(255, 255, 255);
 }
 
-#menudesc{
+#menudesc {
     font-family: "jua";
     text-align: center;
     width: 118px;
@@ -201,12 +209,12 @@ p.float-left {
     background-color: rgb(255, 255, 255);
 }
 
-.menuLikeLike{
+.menuLikeLike {
     display: flex;
     justify-content: space-between;
 }
 
-#menuname{
+#menuname {
     font-family: "jua";
     margin-top: 10px;
     margin-left: 10px;
@@ -215,21 +223,21 @@ p.float-left {
     display: inline-block;
 }
 
-.reviewname{
+.reviewname {
     font-family: "jua";
 }
 
-#reviewwritename{
+#reviewwritename {
     margin-top: 40px;
     font-family: "jua";
     text-align: center;
 }
 
-#insertreview{
+#insertreview {
     display: flex;
 }
 
-.pushreview{
+.pushreview {
     font-family: "jua";
     width: 50px;
     border: none;
@@ -237,17 +245,35 @@ p.float-left {
     background-color: aliceblue;
 }
 
-.menuInfoinfo{
+.menuInfoinfo {
     display: flex;
     flex-direction: row;
 }
 
-#text-line{
+#text-line {
     text-align: center;
     font-size: 15px;
 }
 
-.likeimg{
+.likeimg {
     width: 20px;
     height: 20px;
+}
+
+.close_btn {
+    display: flex;
+    position: relative;
+    float: right;
+    width: 26px;
+    height: 20px;
+    bottom: 24px;
+}
+
+.close_btn>img {
+    width: 100%;
+    height: 100%;
+}
+
+.close_btn :hover{
+    cursor: pointer;
 }
