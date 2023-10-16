@@ -15,11 +15,12 @@ router.get('/', (req, res) => {
     if (req.session.user === undefined) {
         res.render('index')
     } else {
-        res.render('index',{user_id_search : req.session.user.user_id})
+        res.render('index',{user_id : req.session.user.user_id})
     }
 })
 
-// user_id_ranking: currentUser.user.user_id
+
+
 
 // 로그인 페이지 이동
 router.get('/login', (req, res) => {
@@ -193,7 +194,7 @@ router.get('/mypage', (req, res) => {
     const myShop = queries.myShop
     const myReview = queries.myReview
 
-    if (currentUser != undefined) {
+    if (currentUser.user != undefined) {
 
         conn.query(myMenu, [currentUser.user.user_id], (err, myMenu_result) => {
 
@@ -209,6 +210,8 @@ router.get('/mypage', (req, res) => {
                 })
             })
         })
+    }else{
+        res.send("<script>alert('로그인 후 이용가능한 페이지입니다.');location.href='http://localhost:3333/login';</script>")
     }
 })
 
@@ -220,27 +223,30 @@ router.get('/ranking', (req, res) => {
     const currentUser = req.session
     const menuRanking = queries.menuRanking
     const reviewRanking = queries.reviewRanking
-    // console.log(currentUser.user.user_id)
+    console.log(currentUser.user)
 
     conn.query(menuRanking, (err, m_result) => {
-        
         conn.query(reviewRanking, (err, r_result) => {
-            res.render('ranking', { 
-                M_Rlist : m_result,
-                R_Rlist : r_result,
-                user_id_ranking: currentUser.user.user_id
-            })
+            if(currentUser.user != undefined) {
+                res.render('ranking', { 
+                    M_Rlist : m_result,
+                    R_Rlist : r_result,                
+                    user_id: currentUser.user.user_id    
+                })
+            } else {
+                res.render('ranking', { 
+                    M_Rlist : m_result,
+                    R_Rlist : r_result             
+                })
+            }
         })
     })
 })
 
-router.get('/search',(req,res)=>{
-    // const currentUser = req.session
-    // console.log(user_id_search, '0000000000000000')
-    // res.render('search',{user_id_search : currentUser.user.user_id})
-    // console.log('user_id',req.session.user)
-    // res.render('search',{user_id_search : req.session.user.user_id})
-    res.render('search')
-})
+// router.get('/layout',(req,res)=>{
+//     const currentUser = req.session
+//     // console.log(user_id_search, '0000000000000000')
+//     res.render('layout',{user_id_search : currentUser.user.user_id})
+// })
 
 module.exports = router;

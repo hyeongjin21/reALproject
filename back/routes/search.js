@@ -3,40 +3,59 @@ const router = express.Router()
 const queries = require('./queries')
 const conn = require('../config/database')
 
-// router.get('/search', (req, res)=>{
-//     let user_id_search = req.session.user.user_id
-//     res.render('search')
+// router.get('/', (req, res)=>{
+//     const currentUser = req.session
+//     // console.log(user_id_search, '0000000000000000')
+//     res.render('layout',{user_id : currentUser.user.user_id})
 // })
 
 router.get('/', (req, res) => {
     let category = req.query.category
-    let searchCategory = req.query.category
     let menu = "%" + req.query.inputmenu + "%"
-
+    let currentUser = req.session
+    let sendData=[];
     if (category == 'all') {
         conn.query(queries.searchMenu, [menu], (err, rows) => {
             if (rows.length > 0) {
                 // res.json({menu:rows})
-                res.render('search', { list: rows })
+                sendData = rows;
+                // res.render('search', { list: rows })
             }
-            else {
-                res.render('search')
+            // else {
+            //     res.render('search')
                 
-            }
+            // }
         })
     }
     else {
-        conn.query(queries.searchMenuCategory, [menu, searchCategory], (err, rows) => {
+        conn.query(queries.searchMenuCategory, [menu, category], (err, rows) => {
             if (rows.length > 0) {
                 // res.json({menu:rows})
-                res.render('search', { list: rows })
+                // res.render('search', { list: rows })
+                sendData = rows;
             }
-            else {
-                res.render('search')
-            }
+            // else {
+            //     res.render('search')
+            // }
         })
     }
+    if(sendData.length > 0) {
+        if(currentUser.user != undefined){
+            res.render('search', {list : sendData, user_id:currentUser.user.user_id })
+        }else{
+            res.render('search', {list : sendData})
+        }
+    } else {
+        if(currentUser.user != undefined){
+            res.render('search', { user_id:currentUser.user.user_id })
+        }else{
+            res.render('search')
+        }
+    }
 })
+
+
+
 
 router.get('/get-coordinate', (req, res) => {
     // console.log('hihihihihihihiihihi')
@@ -46,6 +65,9 @@ router.get('/get-coordinate', (req, res) => {
         }
     })
 })
+
+
+
 
 router.get('/getMenu', (req, res) => {
     // console.log('getMenu called')
