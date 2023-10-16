@@ -3,11 +3,6 @@ const router = express.Router()
 const queries = require('./queries')
 const conn = require('../config/database')
 
-// router.get('/', (req, res)=>{
-//     const currentUser = req.session
-//     // console.log(user_id_search, '0000000000000000')
-//     res.render('layout',{user_id : currentUser.user.user_id})
-// })
 
 router.get('/', (req, res) => {
     let category = req.query.category

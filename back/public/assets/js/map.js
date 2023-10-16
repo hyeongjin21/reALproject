@@ -19,7 +19,6 @@ let nowPosition = ''
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
 
-    console.log('efjiwheiughwuiafhe')
 
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function (position) {
