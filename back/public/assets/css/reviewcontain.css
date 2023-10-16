@@ -73,11 +73,11 @@
     display: none;
     /* border-radius: 20px; */
     overflow: auto;
-    position: fixed;
+    position: relative;
     z-index: 1;
     left: 280px;
-    top: 100px;
-    /* bottom: 100px; */
+    /* top: 100px; */
+    bottom: 480px;
 }
 
 #pushreview {

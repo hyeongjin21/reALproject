@@ -17,26 +17,15 @@ router.get('/', (req, res) => {
     if (category == 'all') {
         conn.query(queries.searchMenu, [menu], (err, rows) => {
             if (rows.length > 0) {
-                // res.json({menu:rows})
                 sendData = rows;
-                // res.render('search', { list: rows })
             }
-            // else {
-            //     res.render('search')
-                
-            // }
         })
     }
     else {
         conn.query(queries.searchMenuCategory, [menu, category], (err, rows) => {
             if (rows.length > 0) {
-                // res.json({menu:rows})
-                // res.render('search', { list: rows })
                 sendData = rows;
             }
-            // else {
-            //     res.render('search')
-            // }
         })
     }
     if(sendData.length > 0) {
@@ -56,15 +45,6 @@ router.get('/', (req, res) => {
 
 
 
-
-router.get('/get-coordinate', (req, res) => {
-    // console.log('hihihihihihihiihihi')
-    conn.query(queries.selectLocationAll, (err, rows) => {
-        if (rows.length > 0) {
-            res.json({ result: rows })
-        }
-    })
-})
 
 
 

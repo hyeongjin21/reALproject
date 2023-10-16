@@ -42,9 +42,9 @@
             </div>
             <hr>
             <div class="buttonsgroup">
-                <button>가격순</button>
-                <button>거리순</button>
-                <button>인기순</button>
+                <button id="price_order" value='desc' onclick="orderList(id,value)">가격순</button>
+                <button id="distance_order" value='desc' onclick="orderList(id,value)">거리순</button>
+                <button id="pop_order" value='desc' onclick="orderList(id,value)">인기순</button>
             </div>
             {# 여기 placesList안에 목록들이 뜸니다. #}
             <ul class="scrolldiv" id="placesList">
@@ -74,8 +74,6 @@
                         <div class="menu-info">
                             <div id="menuname">메뉴이름</div>
                             <div id="menulikearea" onclick="menuLike()">
-                                {# style="width: 20px; height:20px;" #}
-                                {# style="width: 20px; height:20px;" #}
                                 <img src="./assets/img/fullheart.png" id="menulike">
                                 <img src="./assets/img/whiteheart.png" id="menuunlike">
                             </div>

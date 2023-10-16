@@ -14,11 +14,66 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 // 장소 검색 객체를 생성합니다
 var ps = new kakao.maps.services.Places();
 
-const url = 'http://localhost:3333/search/get-coordinate'
+let nowPosition = ''
+
+// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
+if (navigator.geolocation) {
+
+    console.log('efjiwheiughwuiafhe')
+
+    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+    navigator.geolocation.getCurrentPosition(function (position) {
+
+        var lat = position.coords.latitude, // 위도
+            lon = position.coords.longitude; // 경도
+
+        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+            message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+        nowPosition = new kakao.maps.LatLng(lat, lon);
+        // 마커와 인포윈도우를 표시합니다
+        displayMarker(locPosition, message);
+
+    });
+
+} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+
+    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+        message = 'geolocation을 사용할수 없어요..'
+
+    displayMarker(locPosition, message);
+}
+
+// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+function displayMarker(locPosition, message) {
+
+    // 마커를 생성합니다
+    var user_marker = new kakao.maps.Marker({
+        map: map,
+        position: locPosition
+    });
+
+    var iwContent = message, // 인포윈도우에 표시할 내용
+        iwRemoveable = true;
+
+    // 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        content: iwContent,
+        removable: iwRemoveable
+    });
+
+    // 인포윈도우를 마커위에 표시합니다 
+    infowindow.open(map, user_marker);
+
+    // 지도 중심좌표를 접속위치로 변경합니다
+    map.setCenter(locPosition);
+}
+
 const gMenu = 'http://localhost:3333/search/getMenu'
 
 let shoploca = ''
 let menuResult = ''
+
+let menuList = {}
 
 let category = document.getElementById('cate')
 
@@ -30,18 +85,18 @@ fetch(gMenu)
     .then(res => {
         // console.log('eksudhkTekdtlqkf')
         // console.log('디디디디디디디', res)
-        printList(res.list);
-        useShoploca(res.list);
+        menuList = res.list
+        console.log('새로운 객체', menuList)
+        printList(menuList);
+        useShoploca(menuList);
     })
 
 /** 메뉴 리스트 만들기 */
-const printList = (menuResult,search) => {
+const printList = (menuResult, search) => {
     console.log('printList:', menuResult)
-    console.log('printList-search',search)
+    console.log('printList-search', search)
     let ul = document.getElementById("placesList")
-    console.log('ulul',ul.childNodes.length)
-    console.log('ul',ul)
-    if(search){
+    if (search) {
         ul.innerHTML = ''
         search = false
     }
@@ -49,7 +104,7 @@ const printList = (menuResult,search) => {
         // console.log('메뉴결과값',menuResult[i])
         let li = document.createElement('li')
         li.innerHTML = `
-                    <div class='menuList'>
+                    <div class='menuList' id=menu${i}>
                         <div class='menuImg'>
                             <img src="../uploads/${menuResult[i].menu_img}"
                         </div>
@@ -82,17 +137,25 @@ const searchEvent = () => {
         .then(res => res.json())
         .then(res => {
             console.log('searchMenu', res.list)
-            printList(res.list,true);
-            useShoploca(res.list,true);
+            menuList = res.list
+            printList(menuList, true);
+            useShoploca(menuList, true);
         })
 }
 
 /** 가게 위도,경도 받아와서 맵에 핑 만들기 */
-const useShoploca = (shoploca,search) => {
+const useShoploca = (shoploca, search) => {
     console.log('위도경도가져오는 함수', shoploca)
     let ul = document.getElementById("placesList")
     let positions = []
+    let imgPath = '';
     for (let i = 0; i < shoploca.length; i++) {
+        console.log('shopimg', shoploca[i].shop_img)
+        if (shoploca[i].shop_img == null) {
+            imgPath = `./img/no_img.png`
+        } else {
+            imgPath = `../shop_uploads/${shoploca[i].shop_img}`
+        }
         if (shoploca.lat != 0) {
             if (shoploca[i].shop_addr2 == null) {
                 shoploca[i].shop_addr2 = ''
@@ -108,7 +171,7 @@ const useShoploca = (shoploca,search) => {
                             </div>
                             <div class='body'>
                                 <div class="img">
-                                    <img src="../shop_uploads/${shoploca[i].shop_img}">
+                                    <img src=${imgPath}>
                                 </div>
                                 <div class="desc">
                                     <div class="ellipsis">
@@ -203,7 +266,12 @@ const popreview = (data) => {
                 reviews.removeChild(reviews.firstChild);
             }
             //메뉴 이미지
-            document.getElementById('menuImg').src = `../uploads/${result[0].menu_img}`
+            if (result[0].menu_img == null) {
+                document.getElementById('menuImg').src = `../img/no_img.png`
+            }
+            else {
+                document.getElementById('menuImg').src = `../uploads/${result[0].menu_img}`
+            }
             document.getElementsByName('getmenuseq')[0].value = result[0].menu_seq
             document.getElementsByName('getshopseq')[0].value = result[0].shop_seq
             document.getElementById('review').value = ''
@@ -300,3 +368,41 @@ const reviewlikeclick = (id, cnt, seq) => {
         })
 }
 
+/** 정렬 버튼 눌렀을 때 반응 */
+const orderList = (id, value) => {
+    // <button id="price_order" value='desc'>가격순</button>
+    // <button id="distance_order" value='desc'>거리순</button>
+    // <button id="pop_order" value='desc'>인기순</button>
+
+    switch (id) {
+        case 'price_order':
+            let orderList = menuList.sort((a, b) => value == 'desc' ? (a.menu_price - b.menu_price) : (b.menu_price - a.menu_price))
+
+            document.getElementById('price_order').value == 'desc' ? document.getElementById('price_order').value = 'asc' : document.getElementById('price_order').value = 'desc'
+
+            printList(orderList, true)
+            break;
+
+        case 'distance_order':
+            let distanceOrder = menuList.sort((a, b) => value == 'desc' ? (positionDistance(a.lat, a.lng, nowPosition.Ma, nowPosition.La)) - (positionDistance(b.lat, b.lng, nowPosition.Ma, nowPosition.La)) : (positionDistance(b.lat, b.lng, nowPosition.Ma, nowPosition.La)) - (positionDistance(a.lat, a.lng, nowPosition.Ma, nowPosition.La)))
+
+            document.getElementById('distance_order').value == 'desc' ? document.getElementById('distance_order').value = 'asc' : document.getElementById('distance_order').value = 'desc'
+
+            printList(distanceOrder,true)
+            break;
+
+        case 'pop_order':
+
+            document.getElementById('pop_order').value == 'desc' ? document.getElementById('pop_order').value = 'asc' : document.getElementById('pop_order').value = 'desc'
+            
+            break;
+    }
+}
+
+/** 좌표간 거리 구하기 */
+const positionDistance = (aLat, aLng, bLat, bLng) => {
+    let lat = aLat - bLat
+    let lng = aLng - bLng
+    let dist = Math.sqrt(Math.abs(lat * lat) + Math.abs(lng * lng))
+    return dist
+}
