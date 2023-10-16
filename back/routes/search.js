@@ -38,15 +38,6 @@ router.get('/', (req, res) => {
     }
 })
 
-router.get('/get-coordinate', (req, res) => {
-    // console.log('hihihihihihihiihihi')
-    conn.query(queries.selectLocationAll, (err, rows) => {
-        if (rows.length > 0) {
-            res.json({ result: rows })
-        }
-    })
-})
-
 router.get('/getMenu', (req, res) => {
     // console.log('getMenu called')
     // console.log('search.getmenu req:', req.query)

@@ -1,10 +1,7 @@
 
-
-let inputId = document.getElementById('id')
-let join = document.getElementById('join')
-let checking = document.getElementsByClassName('checking')
-
+/** 아이디 중복확인 */
 const checkId = () => {
+    let inputId = document.getElementById('id')
     console.log(inputId.value)
     let id = inputId.value;
     let url = 'http://localhost:3333/user/checkId';
@@ -17,6 +14,7 @@ const checkId = () => {
     })
         .then(res => res.json())
         .then(res => {
+            let checking = document.getElementsByClassName('checking')
             document.getElementsByClassName('checking').value = res.check
             if (res.ok == 1) {
                 alert('중복되었습니다.')
@@ -30,6 +28,7 @@ const checkId = () => {
         })
 }
 
+/** 환영창 띄우기 */
 const popId = () => {
     let id = document.getElementById('id').value
     alert(`${id}님 환영합니다!`)

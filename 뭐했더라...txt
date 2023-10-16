@@ -1,0 +1,13 @@
+-형진
+    23/10/14
+    창닫기 완료
+    리뷰창 위치 조정 완료
+    지금 위치 맵에 핑 찍기
+
+    23/10/16
+    메뉴 거리순 완료
+
+menu_category, menu_desc, menu_img, menu_ingredient_tag, manu_name, menu_price, menu_type, menu_seq , shop_name, shop_seq
+일단 이렇게
+
+-주리
