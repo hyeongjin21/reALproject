@@ -1,15 +1,21 @@
-@font-face {
+/* @font-face {
   src : url("/FONTS/BMJUA_ttf.ttf");
   font-family: "jua"
+} */
+
+@font-face {
+  font-family: 'Cafe24Oneprettynight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
 
-* {
+/* * {
 font-family: "jua" !important;
-}
+} */
 
 .signin__card {
   width: 500px;
-    /* margin 0 -> 60px 변경했습니다. */
   margin: 60px auto;
   border-radius: 6px;
   background-color: #f6f5f0;
@@ -94,8 +100,10 @@ font-family: "jua" !important;
 } */
 
 input[type=password]{
-  font-family: '맑은 고딕', 'malgun gothic', '돋움', Dotum, sans-serif !important;
+  font-family: 'Cafe24Oneprettynight';
+
 }
 input[type=password]::placeholder{
-  font-family: "jua" !important;
+  font-family: 'Cafe24Oneprettynight';
+
 }

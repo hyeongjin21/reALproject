@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block content %}    
+
+<link rel="stylesheet" href="/assets/css/join_user.css">
+
+
+<!-- 일반 회원가입 폼 -->
+<div class="signin__card">
+    <h2>
+        <strong>아이디 찾기</strong>
+    </h2>
+    <form method='post' action="/user/join">
+        <!-- NAME -->
+        <input autocomplete='off' class="input-tag" type="text" placeholder="Enter your user name"  name="name" required>
+
+        <!-- NICK -->
+        <input autocomplete='off' class="input-tag" type="text" placeholder="Enter your user nick"  name="nick" required>
+
+        <!-- TEL -->
+        <input autocomplete='off' class="input-tag" type="text" placeholder="Enter your phone number" name="tel" required>
+
+        <!-- ID -->
+        <input type="text" placeholder="Enter your ID" autocomplete="off" class="id-len" name="ID" id="id" required>
+        <input type="button" value="Confirm" class="btn-confirm" onclick="checkId()" id="idCheck">
+        <input type="hidden" name="checking" value="0">
+
+        <!-- PW -->
+        <input autocomplete='off' class="input-tag" type="  text" placeholder="Enter your Password" name="pw" required>
+
+        <!-- RE_PW -->
+        <input autocomplete='off' class="input-tag psw-len" type="text" placeholder="Confrim your Password" name="pw2" required>
+
+        <input class="input-tag btn" type="submit" value="SIGN UP" id="join" onclick="popId()">
+        <p>
+            <br>
+            Find your menu , <br>
+            with AFTER LUNCH !
+        </p>
+    </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

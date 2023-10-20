@@ -1,6 +1,16 @@
-@font-face {
+/* @font-face {
     src: url("/FONTS/BMJUA_ttf.ttf") !important;
     font-family: "jua" !important;
+} */
+@font-face {
+    font-family: 'Cafe24Oneprettynight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Cafe24Oneprettynight';
 }
 
 .reviewitem {
@@ -41,7 +51,7 @@
 }
 
 .reviewcontent {
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
     text-align: left;
 }
 
@@ -96,7 +106,7 @@
 }
 
 #review {
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
     border: 2px solid lightgray;
     border-radius: 5px;
     width: 230px;
@@ -135,7 +145,7 @@
 }
 
 #cafename {
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
     color: rgb(52, 50, 197);
     margin: 10px 10px 10px;
     font-size: 20px;
@@ -200,7 +210,7 @@ p.float-left {
 }
 
 #menudesc {
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
     text-align: center;
     width: 118px;
     margin-top: -10px;
@@ -215,7 +225,7 @@ p.float-left {
 }
 
 #menuname {
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
     margin-top: 10px;
     margin-left: 10px;
     width: 100px;
@@ -224,12 +234,12 @@ p.float-left {
 }
 
 .reviewname {
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
 }
 
 #reviewwritename {
     margin-top: 40px;
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
     text-align: center;
 }
 
@@ -238,7 +248,7 @@ p.float-left {
 }
 
 .pushreview {
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
     width: 50px;
     border: none;
     border-radius: 25%;

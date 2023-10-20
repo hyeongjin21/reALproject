@@ -1,9 +1,18 @@
+@font-face {
+  font-family: 'Cafe24Oneprettynight';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  /* font-family: Arial, Helvetica, sans-serif; */
-  font-family: "jua";
+  /* font-family: "jua"; */
+  font-family: 'Cafe24Oneprettynight';
+  font-size: large;
+  
 }
 
 html, body {
@@ -178,6 +187,16 @@ a {
   z-index: 1500;
 }
 
+#header {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#header-nav {
+  align-items: center;
+}
+
+
 footer {
   /* background-color: #F6F5F0; */
   background-color: #FDFBF1;
@@ -198,3 +217,4 @@ footer .info span{
 footer .info span:last-child{
   margin-right: 0;
 }
+

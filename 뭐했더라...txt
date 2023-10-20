@@ -11,6 +11,7 @@ menu_category, menu_desc, menu_img, menu_ingredient_tag, manu_name, menu_price, 
 일단 이렇게
 
 -주리
-로그아웃 버튼 (세션 삭제기능은 만들어야함 ^^)
+로그아웃(세션 삭제)
 레이아웃 
 세션 없는 상태에서 마이페이지를 주소창으로 들어오려하면 알림창+로그인페이지 이동
+세션관리(존나많이 생기는거 없앰)

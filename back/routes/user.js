@@ -46,6 +46,13 @@ router.post('/login', (req, res) => {
     })
 })
 
+// 아이디 찾기
+router.get('/find_id', (req, res)=>{
+    res.render('find_id')
+})
+
+
+
 // 구글로그인
 router.get('/loginGoogle', (req, res) => {
     let url = 'https://accounts.google.com/o/oauth2/v2/auth';
@@ -96,30 +103,39 @@ router.post('/checkId', (req, res) => {
 
 // 로그아웃
 router.get('/logout', (req, res) => {
-    // req.session.user = ''
-    // req.session.user = {user_name:''}
-
-    // req.session.destroy();
-    res.send(`
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  
-    <script>
-    Kakao.init('c1b7cc23c48477786fcb69b68f5862e5');
-    if (Kakao.Auth.getAccessToken()) {
-        console.log("유저로그아웃")
-        Kakao.API.request({
-            url: '/v1/user/unlink',
-            success: function (response) {
-                console.log(response)
-            },
-            fail: function (error) {
-                console.log(error)
-            },
+    // var session = req.session
+    console.log('logout 라우터 접근', res)
+    // res.redirect('/')
+    if (req.session.user) {
+        req.session.destroy((err)=>{
+            if(err) throw err;
+            console.log('세션 삭제하고 로그아웃')
+            res.redirect('/login')
         })
-        Kakao.Auth.setAccessToken(undefined)
     }
-    </script>
-    <script>alert("로그아웃");location.href="http://localhost:3333/"</script>
-    `)
+
+
+
+    // res.send(`
+    // <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>  
+    // <script>
+    // Kakao.init('c1b7cc23c48477786fcb69b68f5862e5');
+    // if (Kakao.Auth.getAccessToken()) {
+    //     console.log("유저로그아웃")
+    //     Kakao.API.request({
+    //         url: '/v1/user/unlink',
+    //         success: function (response) {
+    //             console.log(response)
+    //         },
+    //         fail: function (error) {
+    //             console.log(error)
+    //         },
+    //     })
+    //     Kakao.Auth.setAccessToken(undefined)
+    // }
+    // </script>
+    // <script>alert("로그아웃");location.href="http://localhost:3333/"</script>
+    // `)
 })
 
 module.exports = router;

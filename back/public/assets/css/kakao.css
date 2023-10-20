@@ -1,16 +1,24 @@
-@font-face {
-    src: url("/FONTS/BMJUA_ttf.ttf");
-    font-family: "jua";
-}
+/* @font-face {
+    src: url("/FONTS/BMCafe24Oneprettynight_ttf.ttf");
+    font-family: "Cafe24Oneprettynight";
+} */
+/* @font-face {
+    font-family: 'Cafe24Oneprettynight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_twelve@1.1/Cafe24Oneprettynight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} */
+
 
 .map_wrap,
 .map_wrap * {
     margin: 0;
     padding: 0;
     font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+    /* font-family: 'Cafe24Oneprettynight'; */
     font-size: 12px;
 }
-
+ 
 .map_wrap a,
 .map_wrap a:hover,
 .map_wrap a:active {
@@ -26,6 +34,7 @@
 }
 
 #menu_wrap {
+    /* font-family: 'Cafe24Oneprettynight' ; */
     position: absolute;
     top: 0;
     left: 0;
@@ -165,7 +174,7 @@
 }
 
 .info .title {
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
     padding: 5px 0 0 10px;
     height: 30px;
     background: #eee;
@@ -194,21 +203,21 @@
 }
 
 .info .desc {
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
     position: relative;
     margin: 13px 0 0 90px;
     height: 75px;
 }
 
 .desc .ellipsis {
-    font-family: "jua";
+    font-family: 'Cafe24Oneprettynight';
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .desc .jibun {
-    font-family: "jua";
+    font-family: "Cafe24Oneprettynight";
     font-size: 12px;
     color: #888;
     margin-top: -2px;
@@ -229,17 +238,6 @@
 .img img {
     width: 100%;
     height: 100%;
-}
-
-.info:after {
-    content: '';
-    position: absolute;
-    margin-left: -12px;
-    left: 50%;
-    bottom: 0;
-    width: 22px;
-    height: 12px;
-    background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
 }
 
 .info .link {
@@ -266,6 +264,7 @@
 }
 
 .menuInfo {
+    /* font-family: 'Cafe24Oneprettynight'; */
     background-color: white;
     position: absolute;
     left: 80px;
@@ -278,20 +277,21 @@
     color: #51e3d4;
     width: 160px;
     text-align: center;
-    font-family: "jua";
+    font-family: "Cafe24Oneprettynight";
+    font-weight: bold;
 }
 
 .menuName {
     margin-top: 16px;
     width: 160px;
     text-align: center;
-    font-family: "jua";
+    font-family: "Cafe24Oneprettynight";
 }
 
 .menuPrice {
     width: 160px;
     text-align: center;
-    font-family: "jua";
+    font-family: "Cafe24Oneprettynight";
 }
 
 
@@ -357,7 +357,7 @@ i {
 }
 
 .cateselect{
-    font-family: "jua";
+    font-family: "Cafe24Oneprettynight";
     display: flex;
     width: 58px;
 }
@@ -370,7 +370,7 @@ select {
     text-align: center;
 
 
-    font-family: "jua";
+    font-family: "Cafe24Oneprettynight";
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
@@ -391,7 +391,7 @@ select:hover {
 }
 
 select:focus {
-    font-family: "jua";
+    font-family: "Cafe24Oneprettynight";
     border-color: #51e3d4;
     box-shadow: 0 0 1px 3px hsl(174, 72%, 60%,0.7);
     box-shadow: 0 0 0 3px -moz-mac-focusring;
@@ -448,12 +448,12 @@ div::-webkit-scrollbar-track {
 }
 
 .buttonsgroup button{
-    font-family: "jua";
+    font-family: "Cafe24Oneprettynight";
     border: none;
     border-width: 2px;
-    border-radius: 20px;
+    border-radius: 10px;
     margin-left: 3px;
-    background-color: aquamarine;
+    background-color:darkgreen;
 }
 
 .buttonsgroup button:hover{
@@ -462,4 +462,5 @@ div::-webkit-scrollbar-track {
     margin-left: 3px;
     background-color: white;
     border: 1px solid aquamarine;
+    
 }
