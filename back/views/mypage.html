@@ -9,7 +9,7 @@
 <!-- 즐찾 메뉴 들어올 자리 ! -->
 <div class="container mymenu" style="display: flex;">
     <button class="arbtn" id="leftbtn">❮</button>
-    <div>
+    <div class="mypage-contain">
         <h1>MY MENU</h1>
         <div class="division-line"></div>
         <br />
@@ -17,14 +17,16 @@
         <div class="row menu_card">
             {% for i in menulist %}
             <div class="col-md-4">
-                <div class="card" style="width:100%;">
+                <div class="card">
                     <div class="imgSize">
-                        <img src="/uploads/{{i.menu_img}}" class="card-img-top" alt="...">
+                        <img src="/uploads/{{i.menu_img}}"  onerror='this.src="./assets/img/no_img.jpg"'class="card-img-top" alt="...">
                     </div>
-                    <!-- 빈 하트입니다 -->
-                    <button><img src="/assets/img/whiteheart.png" alt="빈하트" class="white-like"></button>
-                    <!-- 채워진 하트입니다 -->
-                    <button><img src="/assets/img/fullheart.png" alt="채워진하트" class="full-like"></button>
+                    <div class="heart-like" id='{{i.menu_seq}}' value="menu" onclick='clickHeart(this)'>
+                        <!-- 빈 하트입니다 -->
+                        <button><img src="/assets/img/whiteheart.png" alt="빈하트" class="white-like"></button>
+                        <!-- 채워진 하트입니다 -->
+                        <button><img src="/assets/img/fullheart.png" alt="채워진하트" class="full-like"></button>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{i.menu_name}}</h5>
                         <p class="card-text">{{i.shop_name}}</p>
@@ -42,21 +44,23 @@
 <!-- 즐찾 카페 들어올 자리 ! -->
 <div class="container mycafe" style="display: flex;">
     <button class="arbtn" id="cafe_leftbtn">❮</button>
-    <div>
+    <div class="mypage-contain">
         <h1>MY CAFE</h1>
         <div class="division-line"></div> <br />
         {% if shoplist %}
         <div class="row cafe_card">
             {% for i in shoplist %}
             <div class="col-md-4">
-                <div class="card" style="width:100%;">
+                <div class="card">
                     <div class="imgSize">
-                        <img src="/shop_uploads/{{i.shop_img}}" class="card-img-top" alt="...">
+                        <img src="/shop_uploads/{{i.shop_img}}"  onerror='this.src="./assets/img/no_img.jpg"'class="card-img-top" alt="...">
                     </div>
-                    <!-- 빈 하트입니다 -->
-                    <button><img src="/assets/img/whiteheart.png" alt="빈하트" class="white-like"></button>
-                    <!-- 채워진 하트입니다 -->
-                    <button><img src="/assets/img/fullheart.png" alt="채워진하트" class="full-like"></button>
+                    <div class="heart-like" id="{{i.shop_seq}}" value='shop' onclick="clickHeart(this)">
+                        <!-- 빈 하트입니다 -->
+                        <button><img src="/assets/img/whiteheart.png" alt="빈하트" class="white-like"></button>
+                        <!-- 채워진 하트입니다 -->
+                        <button><img src="/assets/img/fullheart.png" alt="채워진하트" class="full-like"></button>
+                    </div>
                     <div class="card-body">
                         <h5 class="card-title">{{i.shop_name}}</h5>
                         <p class="card-text">{{i.shop_addr1}}</p>
@@ -74,22 +78,22 @@
 <!-- 리뷰 들어올 자리 ! my review -->
 <div class="container myreview" style="display: flex;">
     <button class="arbtn" id="review_leftbtn">❮</button>
-    <div>
+    <div class="mypage-contain">
         <h1>MY REVIEW</h1>
         <div class="division-line"></div> <br />
         {% if reviewlist %}
         <div class="row review_card">
             {% for i in reviewlist %}
             <div class="col-md-4">
-                <div class="card" style="width:100%;">
+                <div class="card">
                     <div class="imgSize">
                         <!-- 아래 이미지태그는 리뷰에 해당하는 메뉴 사진 자리 입니다 -->
-                        <img src="/uploads/{{i.menu_img}}" class="card-img-top" alt="...">
+                        <img src="/uploads/{{i.menu_img}}"  onerror='this.src="./assets/img/no_img.jpg"'class="card-img-top" alt="...">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">"{{i.review_content}}"</h5>
                         <p class="card-text">{{i.shop_name}} | {{i.menu_name}}</p>
-                        <a href="#" class="btn btn-primary">리뷰 삭제</a>
+                        <p id="{{i.review_seq}}"  class="btn btn-primary" onclick="reviewDel(this)">리뷰 삭제</p>
                     </div>
                 </div>
             </div>

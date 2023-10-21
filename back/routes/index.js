@@ -15,7 +15,7 @@ router.get('/', (req, res) => {
     if (req.session.user === undefined) {
         res.render('index')
     } else {
-        res.render('index',{user_id : req.session.user.user_id})
+        res.render('index', { user_id: req.session.user.user_id })
     }
 })
 
@@ -35,7 +35,7 @@ router.get('/join_user', (req, res) => {
 /////////////////////////////관리자페이지/////////////////////////////////
 
 // admin로그인 페이지 이동
-router.get('/m_login',(req,res)=>{
+router.get('/m_login', (req, res) => {
     res.render('m_login')
 })
 
@@ -199,7 +199,6 @@ router.get('/mypage', (req, res) => {
         conn.query(myMenu, [currentUser.user.user_id], (err, myMenu_result) => {
 
             conn.query(myShop, [currentUser.user.user_id], (err, myShop_result) => {
-
                 conn.query(myReview, [currentUser.user.user_id], (err, myReview_result) => {
                     res.render('mypage', {
                         menulist: myMenu_result,
@@ -210,9 +209,37 @@ router.get('/mypage', (req, res) => {
                 })
             })
         })
-    }else{
+    } else {
         res.send("<script>alert('로그인 후 이용가능한 페이지입니다.');location.href='http://localhost:3333/login';</script>")
     }
+})
+
+router.post('/setlike', (req, res) => {
+    // console.log('setlike',req.body)
+    // let menu_seq = req.body.menu_seq
+    let { check, menu_seq, shop_seq } = req.body
+    let id = req.session.user.user_id
+    console.log('setlike', check, menu_seq, shop_seq)
+    if (check == 'menu') {
+        conn.query(queries.menuLike, ['N', id, menu_seq], (err, rows) => {
+            console.log('setlike conn', rows)
+            // res.json({ result: 'success' })
+            res.render('mypage')
+        })
+    } else {
+        conn.query(queries.shopLike, ['N', id, shop_seq], (err, rows) => {
+            // res.json({ result: 'success' })
+            res.render('mypage')
+        })
+    }
+})
+
+router.post('/reviewdel', (req, res) => {
+    let review_seq = req.body.review_seq
+    let id = req.session.user.user_id
+    conn.query(queries.myReviewDelete, [review_seq, id], (err, rows) => {
+        res.json({ result: 'success' })
+    })
 })
 
 /////////////////////////  ranking 페이지  //////////////////////////////
@@ -227,16 +254,16 @@ router.get('/ranking', (req, res) => {
 
     conn.query(menuRanking, (err, m_result) => {
         conn.query(reviewRanking, (err, r_result) => {
-            if(currentUser.user != undefined) {
-                res.render('ranking', { 
-                    M_Rlist : m_result,
-                    R_Rlist : r_result,                
-                    user_id: currentUser.user.user_id    
+            if (currentUser.user != undefined) {
+                res.render('ranking', {
+                    M_Rlist: m_result,
+                    R_Rlist: r_result,
+                    user_id: currentUser.user.user_id
                 })
             } else {
-                res.render('ranking', { 
-                    M_Rlist : m_result,
-                    R_Rlist : r_result             
+                res.render('ranking', {
+                    M_Rlist: m_result,
+                    R_Rlist: r_result
                 })
             }
         })

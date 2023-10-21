@@ -140,12 +140,15 @@ module.exports = {
   ///////////// 마이페이지 ///////////////
 
   // 내 메뉴 가져오기
-  myMenu: `select b.menu_img, b.menu_name, c.shop_name from al_favorite_menu a inner join al_menu b on (a.menu_seq = b.menu_seq) inner join al_shop c on (b.shop_seq = c.shop_seq) where a.user_id = ?`,
+  myMenu: `select b.menu_img, b.menu_name, c.shop_name, a.menu_seq from al_favorite_menu a inner join al_menu b on (a.menu_seq = b.menu_seq) inner join al_shop c on (b.shop_seq = c.shop_seq) where a.user_id = ? and a.menu_like_yn = 'Y'`,
   // 내 카페 가져오기
-  myShop: `select b.shop_img, b.shop_name, b.shop_addr1 from al_favorite_shop a inner join al_shop b on (a.shop_seq = b.shop_seq) where a.user_id = ?`,
+  myShop: `select b.shop_img, b.shop_name, b.shop_addr1, a.shop_seq from al_favorite_shop a inner join al_shop b on (a.shop_seq = b.shop_seq) where a.user_id = ? and a.shop_like_yn = 'Y'`,
 
   // 내 리뷰 가져오기
-  myReview: `select a.review_content, a.user_id, a.created_at, b.menu_name, b.menu_img, c.shop_name from al_review a inner join al_menu b on (a.menu_seq = b.menu_seq) inner join al_shop c on (b.shop_seq = c.shop_seq) where a.user_id = ? `,
+  myReview: `select a.review_content, a.user_id, a.created_at, b.menu_name, b.menu_img, c.shop_name, a.review_seq from al_review a inner join al_menu b on (a.menu_seq = b.menu_seq) inner join al_shop c on (b.shop_seq = c.shop_seq) where a.user_id = ? `,
+
+  // 리뷰 관리 - 삭제
+  myReviewDelete: `delete from al_review where review_seq = ? and user_id = ?`,
 
   //좋아요
 

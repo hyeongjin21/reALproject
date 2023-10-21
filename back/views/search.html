@@ -10,6 +10,7 @@
 <body>
     <div class="map_wrap">
         <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+        {# <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;" onclick="closereviewcontainer()"></div> #}
         <div id="menu_wrap" class="bg_white">
             <div class="option">
                 <div>
@@ -68,7 +69,7 @@
             {# <div class="menuInfoinfo"> #}
                 <div class="imgcontain">
                     <div class="list-image">
-                        <img src="/assets/img/광주매머드서석점.jpg" id="menuImg">
+                        <img src="/assets/img/광주매머드서석점.jpg" id="menuImg" onerror='this.src="./assets/img/no_img.jpg"'>
                     </div>
                     <div class="menuLikeLike">
                         <div class="menu-info">

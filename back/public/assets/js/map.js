@@ -19,7 +19,6 @@ let nowPosition = ''
 // HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
 if (navigator.geolocation) {
 
-
     // GeoLocation을 이용해서 접속 위치를 얻어옵니다
     navigator.geolocation.getCurrentPosition(function (position) {
 
@@ -89,6 +88,9 @@ fetch(gMenu)
         printList(menuList);
         useShoploca(menuList);
     })
+    .catch(()=>{
+        location.reload();
+    })
 
 /** 메뉴 리스트 만들기 */
 const printList = (menuResult, search) => {
@@ -102,10 +104,18 @@ const printList = (menuResult, search) => {
     for (let i = 0; i < menuResult.length; i++) {
         // console.log('메뉴결과값',menuResult[i])
         let li = document.createElement('li')
+        // <img src="../uploads/${menuResult[i].menu_img}" onerror='this.src="assets/img/no_img.jpg"'/>
+        let imagePath = ''
+        if (menuResult[i].menu_img == null) {
+            imagePath = `./assets/img/no_img.jpg`
+        }
+        else {
+            imagePath = `../uploads/${menuResult[i].menu_img}`
+        };
         li.innerHTML = `
                     <div class='menuList' id=menu${i}>
                         <div class='menuImg'>
-                            <img src="../uploads/${menuResult[i].menu_img}"
+                            <img src=${imagePath} onerror='this.src="./assets/img/no_img.jpg"'/>
                         </div>
                         <div class='menuInfo'>
                             <div class='shopname'>
@@ -149,9 +159,9 @@ const useShoploca = (shoploca, search) => {
     let positions = []
     let imgPath = '';
     for (let i = 0; i < shoploca.length; i++) {
-        console.log('shopimg', shoploca[i].shop_img)
+        // console.log('shopimg', shoploca[i].shop_img)
         if (shoploca[i].shop_img == null) {
-            imgPath = `./img/no_img.png`
+            imgPath = `./img/no_img.jpg`
         } else {
             imgPath = `../shop_uploads/${shoploca[i].shop_img}`
         }
@@ -170,7 +180,7 @@ const useShoploca = (shoploca, search) => {
                             </div>
                             <div class='body'>
                                 <div class="img">
-                                    <img src=${imgPath}>
+                                    <img src=${imgPath} onerror='this.src="./assets/img/no_img.jpg"'>
                                 </div>
                                 <div class="desc">
                                     <div class="ellipsis">
@@ -264,13 +274,7 @@ const popreview = (data) => {
             while (reviews.firstChild) {
                 reviews.removeChild(reviews.firstChild);
             }
-            //메뉴 이미지
-            if (result[0].menu_img == null) {
-                document.getElementById('menuImg').src = `../img/no_img.png`
-            }
-            else {
-                document.getElementById('menuImg').src = `../uploads/${result[0].menu_img}`
-            }
+
             document.getElementsByName('getmenuseq')[0].value = result[0].menu_seq
             document.getElementsByName('getshopseq')[0].value = result[0].shop_seq
             document.getElementById('review').value = ''
@@ -301,6 +305,14 @@ const popreview = (data) => {
             let cnt = 0
             for (let i = 0; i < result.length; i++) {
                 let div = document.createElement('div')
+                //메뉴 이미지
+                if (result[i].menu_img == null) {
+                    document.getElementById('menuImg').src = `../img/no_img.jpg`
+                }
+                else {
+                    document.getElementById('menuImg').src = `../uploads/${result[i].menu_img}`
+                }
+             
                 div.innerHTML = `
                 <div class="reviewitem">
                     <div>
@@ -387,13 +399,13 @@ const orderList = (id, value) => {
 
             document.getElementById('distance_order').value == 'desc' ? document.getElementById('distance_order').value = 'asc' : document.getElementById('distance_order').value = 'desc'
 
-            printList(distanceOrder,true)
+            printList(distanceOrder, true)
             break;
 
         case 'pop_order':
 
             document.getElementById('pop_order').value == 'desc' ? document.getElementById('pop_order').value = 'asc' : document.getElementById('pop_order').value = 'desc'
-            
+
             break;
     }
 }

@@ -13,6 +13,7 @@
     position: relative;
     margin-bottom: 120px;
     margin-top: 50px;
+    text-align:center;
 }
 
 .arbtn {
@@ -22,46 +23,42 @@
 .mymenu>#leftbtn,
 .mycafe>#cafe_leftbtn {
     z-index: 1;
-    top: 40px;
-    left: 11px;
+    left: 47px;
 }
 
 /* 리뷰 좌/우측 버튼 길이 수정 */
 .myreview>#review_rightbtn {
     z-index: 1;
-    top: 40px;
-    right: 11px;
-    height: 600px;
+    right: 50px;
 }
 
 .myreview>#review_leftbtn {
     z-index: 1;
-    top: 40px;
-    left: 11px;
-    height: 600px;
+    left: 47px;
 }
 
 
 .mymenu>#rightbtn,
 .mycafe>#cafe_rightbtn {
     z-index: 1;
-    top: 40px;
-    right: 11px;
-
+    /* top: 40px; */
+    right: 50px;
 }
 
 
 .arbtn {
+    position: relative;
     color: #f5f5f5;
-    height: 550px;
-    width: 65px;
+    top: 295px;
+    height: 50px;
+    width: 50px;
     margin-top: 95px;
     border-color: beige;
     border-style: none;
-    font-size: 60px;
+    font-size: 40px;
     /* 배경투명 */
     background-color: transparent;
-    border-radius: 4px;
+    border-radius: 100%;
 }
 
 .arbtn:hover {
@@ -75,25 +72,37 @@
     margin: 30px 0px;
 }
 
+.mypage-contain{
+    width: 1116px;
+}
+
 .card {
     position: relative;
+    display:flex;
+    width:100%;
+    height:600px;
+}
+
+.card-body{
+    height: 100%;
 }
 
 .imgSize {
-    width: 415px;
+    width: 100%;
     height: 460px;
     display: flex;
     justify-content: center;
+    margin-top: -10px;
 }
 
 .imgSize img {
     margin-top: 10px;
-    width: 380px;
+    width: 100%;
     height: 450px;
 
 }
 
-.card>button {
+.card>.heart-like>button {
     position: absolute;
     background-color: transparent;
     border: 0;
@@ -103,13 +112,13 @@
 }
 
 /* 빈 하트 입니다 */
-.card>button>.white-like {
+.card>.heart-like>button>.white-like {
     width: 50px;
     height: 50px;
 }
 
 /* 채워진 하트 입니다 */
-.card>button>.full-like {
+.card>.heart-like>button>.full-like {
     width: 50px;
     height: 50px;
 }
