@@ -16,9 +16,12 @@ git config --global user.name 'git 이름'
 git config --global user.email 'git 이메일'
 
 --------------------------------------------------------
-4. 
-git remote add origin https://github.com/hyeongjin21/ALproject.git
+4. 레파지토리 초기설정
+git remote add origin https://github.com/hyeongjin21/reALproject.git
 복사 후 붙여넣기(shift + insert)
+
+4-1. 레파지토리 변경
+git remote set-url origin https://github.com/leejuri27/refactoringjudy.git
 
 5.
 git add .
