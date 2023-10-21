@@ -7,6 +7,15 @@
     23/10/16
     메뉴 거리순 완료
 
+    이미지 엑박뜨면 대체 이미지로 바꿈
+
+    23/10/20
+    마이페이지   // 아마 완
+    - 하트제거 기능 
+    - 마이리뷰 삭제
+       - 사이드바 겹치는거
+    - 사진 크기 자동조정
+
 menu_category, menu_desc, menu_img, menu_ingredient_tag, manu_name, menu_price, menu_type, menu_seq , shop_name, shop_seq
 일단 이렇게
 

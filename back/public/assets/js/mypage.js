@@ -13,7 +13,6 @@ let endItemIndext = 2;
 let right_btn = document.getElementById('rightbtn');
 let left_btn = document.getElementById('leftbtn');
 
-menu_init();
 
 if (divs.length < 3) {
     endItemIndext = divs.length
@@ -43,12 +42,13 @@ left_btn.onclick = function () {
 }
 
 function menu_init() {
-    divs.forEach((item) => {
-        item.style.display = "none";
+    divs.forEach((item, index) => {
+        if (index < 3) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
     });
-    for (i = 0; i < 3; i++) {
-        divs[i].style.display = "block";
-    }
     console.log(divs)
 }
 
@@ -58,12 +58,10 @@ let cafe_endItemIndext = 2;
 let cafe_right_btn = document.getElementById('cafe_rightbtn');
 let cafe_left_btn = document.getElementById('cafe_leftbtn');
 
-cafe_init();
-
 if (cafe_divs.length < 3) {
     cafe_endItemIndext = cafe_divs.length
-    cafe_rightbtn.style.display = 'none'
-    cafe_leftbtn.style.display = 'none'
+    cafe_right_btn.style.display = 'none'
+    cafe_left_btn.style.display = 'none'
 }
 cafe_rightbtn.onclick = function () {
     if (cafe_endItemIndext == cafe_divs.length - 1) {
@@ -88,12 +86,13 @@ cafe_left_btn.onclick = function () {
 }
 
 function cafe_init() {
-    cafe_divs.forEach((item) => {
-        item.style.display = "none";
+    cafe_divs.forEach((item, index) => {
+        if (index < 3) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
     });
-    for (i = 0; i < 3; i++) {
-        cafe_divs[i].style.display = "block";
-    }
     console.log(cafe_divs)
 }
 
@@ -103,7 +102,6 @@ let review_endItemIndext = 2;
 let review_right_btn = document.getElementById('review_rightbtn');
 let review_left_btn = document.getElementById('review_leftbtn');
 
-review_init();
 
 if (review_divs.length < 3) {
     review_endItemIndext = review_divs.length
@@ -133,11 +131,77 @@ review_left_btn.onclick = function () {
 }
 
 function review_init() {
-    review_divs.forEach((item) => {
-        item.style.display = "none";
+    review_divs.forEach((item, index) => {
+        if (index < 3) {
+            item.style.display = "block";
+        } else {
+            item.style.display = "none";
+        }
     });
-    for (i = 0; i < 3; i++) {
-        review_divs[i].style.display = "block";
-    }
     console.log(review_divs)
 }
+
+/** 즐겨찾기 지우기 */
+const clickHeart = (e) => {
+    console.log('menuseq', e.getAttribute('id'), e.getAttribute('value'))
+    // let menuseq = e.getAttribute('value')
+
+    if (confirm("즐겨찾기를 삭제 하시겠습니까?")) {
+        let menuseq = ''
+        let shopseq = ''
+        let value = e.getAttribute('value')
+        switch (value) {
+            case 'menu':
+                menuseq = e.getAttribute('id')
+                shopseq = 0
+                break;
+            case 'shop':
+                menuseq = 0
+                shopseq = e.getAttribute('id')
+                break;
+        }
+
+        let url = 'http://localhost:3333/setlike'
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                check: value,
+                menu_seq: menuseq,
+                shop_seq: shopseq
+            })
+        })
+            .then(res => res.json())
+            .then(res => {
+                // console.log('result',res.result)
+                alert('삭제되었습니다.')
+                location.href('localhost:3333/mypage')
+            })
+    } else {
+
+    }
+}
+
+/** 리뷰 지우기 */
+const reviewDel = (e) => {
+    if (confirm('리뷰를 삭제하시겠습니까?')) {
+        let review_seq = e.getAttribute('id')
+        let url = 'http://localhost:3333/reviewdel'
+        fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                review_seq: review_seq
+            })
+        })
+            .then(res => res.json())
+            .then(res => {
+                // console.log('result',res.result)
+                alert('삭제되었습니다.')
+            })
+    }
+}
+
+menu_init();
+cafe_init();
+review_init();
